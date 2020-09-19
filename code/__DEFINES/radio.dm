@@ -14,7 +14,7 @@
 #define RADIO_TOKEN_ENGINEERING ":e",":у"
 
 #define RADIO_CHANNEL_COMMAND "Command"
-#define RADIO_KEY_COMMAND "c"
+#define RADIO_KEY_COMMAND "c","с"
 #define RADIO_TOKEN_COMMAND ":c",":с"
 
 #define RADIO_CHANNEL_SCIENCE "Science"
