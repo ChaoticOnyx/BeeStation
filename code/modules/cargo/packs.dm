@@ -2662,3 +2662,16 @@
 					/obj/item/toner,
 					/obj/item/toner)
 	crate_name = "toner crate"
+
+/datum/supply_pack/misc/demagogue
+	name = "Demagogue Supply crate"
+	desc = "Where are the pigs, darn it? The crew demand pigs!"
+	cost = 5000
+	contains = list(/obj/item/toy/pig,
+					/obj/item/toy/pig,
+					/obj/item/reagent_containers/food/drinks/bottle/vodka,
+					/obj/item/reagent_containers/food/drinks/mug/tea,
+					/obj/item/reagent_containers/food/drinks/mug/tea,
+					/obj/item/lighter,
+					/obj/item/clothing/mask/cigarette/cigar/havana)
+	crate_name = "demagogue crate"

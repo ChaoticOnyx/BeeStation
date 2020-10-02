@@ -22,6 +22,7 @@
  *		Snowballs
  *		Clockwork Watches
  *		Toy Daggers
+ *		Pigs, blin
  */
 
 
@@ -1435,3 +1436,58 @@
 
 /obj/item/toy/dummy/GetVoice()
 	return doll_name
+
+/obj/item/toy/pig
+	name = "rubber piggy"
+	desc = "The people demand pigs!"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "pig1"
+	var/spam_flag = 0
+	var/message_spam_flag = 0
+
+/obj/item/toy/pig/proc/oink(mob/user, msg)
+	if(spam_flag == 0)
+		spam_flag = 1
+		playsound(loc, pick('sound/misc/pig1.ogg','sound/misc/pig2.ogg','sound/misc/pig3.ogg'), 100, 1)
+		add_fingerprint(user)
+		if(message_spam_flag == 0)
+			message_spam_flag = 1
+			user.visible_message("<span class='notice'>[user] [msg] \the [src] in hand!</span>")
+			spawn(30)
+				message_spam_flag = 0
+		spawn(3)
+			spam_flag = 0
+	return
+
+/obj/item/toy/pig/New()
+	..()
+	switch(rand(1, 100))
+		if(1 to 33)
+			icon_state = "pig1"
+		if(34 to 66)
+			icon_state = "pig2"
+		if(67 to 99)
+			icon_state = "pig3"
+		if(100)
+			icon_state = "pig4"
+			name = "Kathleen"
+			desc = "The people demand Lucas!"
+
+/obj/item/toy/pig/attack_self(mob/user)
+	oink(user, "squeezes")
+
+/obj/item/toy/pig/attack_hand(mob/user)
+	oink(user, pick("presses","squeezes","squashes","champs","pinches"))
+
+/obj/item/toy/pig/MouseDrop(atom/over_object)
+	. = ..()
+	var/mob/living/M = usr
+	if(!istype(M) || M.incapacitated() || !Adjacent(M))
+		return
+	if(over_object == M)
+		M.put_in_hands(src)
+	else if(istype(over_object, /obj/screen/inventory/hand))
+		var/obj/screen/inventory/hand/H = over_object
+		M.putItemFromInventoryInHandIfPossible(src, H.held_index)
+	to_chat(M, "<span class='notice'>You pick up \the [src].</span>")
+	add_fingerprint(M)
