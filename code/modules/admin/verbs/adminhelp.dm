@@ -757,7 +757,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 // Used for methods where input via arg doesn't work
 /client/proc/get_adminhelp()
-	var/msg = input(src, "Please describe your problem concisely and an admin will help as soon as they're able. Include the names of the people you are ahelping against if applicable.", "Adminhelp contents") as text|null
+	var/msg = input(src, "Кратко опишите свою проблему. Не забудьте указать имена людей, если проблема связана с ними.", "Связь с администрацией") as text|null
 	adminhelp(msg)
 
 /client/verb/adminhelp(msg as text)

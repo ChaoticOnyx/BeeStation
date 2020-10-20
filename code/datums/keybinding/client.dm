@@ -15,7 +15,7 @@
 
 
 /datum/keybinding/client/screenshot
-    key = "F9"
+    key = "L"
     name = "screenshot"
     full_name = "Screenshot"
     description = "Take a screenshot."

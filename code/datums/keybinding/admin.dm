@@ -4,7 +4,7 @@
 
 
 /datum/keybinding/admin/admin_say
-	key = "F3"
+	key = "F9"
 	name = "admin_say"
 	full_name = "Admin say"
 	description = "Talk with other admins."
@@ -16,7 +16,7 @@
 
 
 /datum/keybinding/admin/mentor_say
-	key = "F4"
+	key = "F5"
 	name = "mentor_say"
 	full_name = "Mentor say"
 	description = "Speak with other mentors."
@@ -28,7 +28,7 @@
 
 
 /datum/keybinding/admin/admin_ghost
-	key = "F5"
+	key = "F10"
 	name = "admin_ghost"
 	full_name = "Admin Ghost"
 	description = "Toggle your admin ghost status."
@@ -52,7 +52,7 @@
 
 
 /datum/keybinding/admin/build_mode
-	key = "F7"
+	key = "F11"
 	name = "toggle_build_mode"
 	full_name = "Toggle Build Mode"
 	description = "Toggle admin build mode on or off."
@@ -76,7 +76,7 @@
 
 
 /datum/keybinding/admin/dead_say
-	key = "F10"
+	key = "P"
 	name = "dead_say"
 	full_name = "Dead Say"
 	description = "Speak in deadchat as an admin."
