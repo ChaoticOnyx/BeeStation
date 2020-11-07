@@ -36,7 +36,7 @@
 /client/proc/set_metacoin_count(mc_count, ann=TRUE)
 	var/datum/DBQuery/query_set_metacoins = SSdbcore.NewQuery(
 		"UPDATE [format_table_name("player")] SET metacoins = :mc_count WHERE ckey = :ckey",
-		list("mc_count" = mc_count, "ckey" = ckey)	
+		list("mc_count" = mc_count, "ckey" = ckey)
 	)
 	query_set_metacoins.warn_execute()
 	qdel(query_set_metacoins)
@@ -48,7 +48,7 @@
 		return
 	var/datum/DBQuery/query_inc_metacoins = SSdbcore.NewQuery(
 		"UPDATE [format_table_name("player")] SET metacoins = metacoins + :mc_count WHERE ckey = :ckey",
-		list("mc_count" = mc_count, "ckey" = ckey)	
+		list("mc_count" = mc_count, "ckey" = ckey)
 	)
 	query_inc_metacoins.warn_execute()
 	qdel(query_inc_metacoins)
@@ -57,3 +57,42 @@
 			to_chat(src, "<span class='rose bold'>[abs(mc_count)] [CONFIG_GET(string/metacurrency_name)]\s have been [mc_count >= 0 ? "deposited to" : "withdrawn from"] your account! Reason: [reason]</span>")
 		else
 			to_chat(src, "<span class='rose bold'>[abs(mc_count)] [CONFIG_GET(string/metacurrency_name)]\s have been [mc_count >= 0 ? "deposited to" : "withdrawn from"] your account!</span>")
+
+/client/proc/mod_metabalance(client/C in GLOB.clients, var/operation)
+	if(!check_rights(R_PERMISSIONS))
+		return
+
+	var/msg = ""
+	var/log_text = ""
+
+	if(operation == "zero")
+		log_text = "Set to 0"
+		C.set_metacoin_count(0)
+	else
+		var/prompt = "Please enter the amount of metacoins to [operation]:"
+
+		if(operation == "set")
+			prompt = "Please enter the new metacoins amount:"
+
+		msg = input("Message:", prompt) as num|null
+
+		if (!msg)
+			return
+
+		if(operation == "set")
+			log_text = "Set to [num2text(msg)]"
+			C.set_metacoin_count(msg)
+		else if(operation == "add")
+			log_text = "Added [num2text(msg)]"
+			C.inc_metabalance(msg)
+		else if(operation == "subtract")
+			log_text = "Subtracted [num2text(msg)]"
+			C.inc_metabalance(-msg)
+		else
+			to_chat(src, "Invalid operation for metacoins modification: [operation] by user [key_name(usr)]")
+			return
+
+
+	log_admin("[key_name(usr)]: Modified [key_name(C)]'s metacoins amount [log_text]")
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)]: Modified [key_name(C)]'s metacoins ([log_text])</span>")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Modify Metacoins")
