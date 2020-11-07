@@ -689,7 +689,7 @@
 	template_height = 3
 	template_width = 3
 	weight = 3
-	
+
 /datum/map_template/random_room/sk_rdm082
 	name = "Maint Chemistry"
 	room_id = "sk_rdm082_maintmedical"
@@ -1161,7 +1161,6 @@
 	template_width = 10
 	weight = 3
 
-
 ///datum/map_template/random_room/sk_rdm135 //this room is fun.
 //	name = "Cluwne Altar"
 //	room_id = "sk_rdm135_cluwnealtar"
@@ -1198,7 +1197,7 @@
 	template_width = 5
 	weight = 4
 
-/datum/map_template/random_room/sk_rdm139 
+/datum/map_template/random_room/sk_rdm139
 	name = "containment cell"
 	room_id = "sk_rdm139_containmentcell"
 	mappath = "_maps/RandomRooms/3x3/containmentcell.dmm"
