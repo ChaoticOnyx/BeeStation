@@ -221,7 +221,6 @@
 /datum/symptom/heal/surface/passive_message_condition(mob/living/M)
 	return M.getBruteLoss() <= threshhold || M.getFireLoss() <= threshhold
 
-
 /datum/symptom/heal/metabolism
 	name = "Metabolic Boost"
 	stealth = -1

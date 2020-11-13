@@ -1161,7 +1161,6 @@
 	template_width = 10
 	weight = 3
 
-
 /datum/map_template/random_room/sk_rdm137
 	name = "Tiny psych ward"
 	room_id = "sk_rdm137_tinyshrink"

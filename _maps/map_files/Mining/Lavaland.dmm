@@ -3716,7 +3716,7 @@
 /area/mine/science)
 "tJ" = (
 /obj/effect/turf_decal/tile/brown{
-	dir = 8
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
@@ -3741,8 +3741,10 @@
 	name = "Station Intercom (General)";
 	pixel_x = 28
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8
+	},
+/obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -3839,21 +3841,6 @@
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mine/production)
-"vs" = (
-/obj/structure/spider/stickyweb,
-/turf/open/floor/carpet/royalblue,
-/area/mine/science)
-"vu" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)

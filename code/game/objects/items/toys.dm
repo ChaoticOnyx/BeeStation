@@ -22,11 +22,8 @@
  *		Snowballs
  *		Clockwork Watches
  *		Toy Daggers
-<<<<<<< HEAD
  *		Pigs, blin
-=======
  *		Eldrich stuff
->>>>>>> 592efd8a24e5ae64ee4ff68085272878915928c8
  */
 
 
