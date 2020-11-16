@@ -639,6 +639,7 @@ This is here to make the tiles around the station mininuke change when it's arme
 	if(fake)
 		STOP_PROCESSING(SSobj, src)
 		CRASH("A fake nuke disk tried to call process(). Who the fuck and how the fuck")
+/* No more Lone Orerative
 	var/turf/newturf = get_turf(src)
 	if(newturf && lastlocation == newturf)
 		if(last_disk_move < world.time - 5000 && prob((world.time - 5000 - last_disk_move)*0.0001))
@@ -658,7 +659,7 @@ This is here to make the tiles around the station mininuke change when it's arme
 			if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
 				message_admins("[src] is on the move (currently in [ADMIN_VERBOSEJMP(newturf)]). The weight of Lone Operative is now [loneop.weight].")
 			log_game("[src] being on the move has reduced the weight of the Lone Operative event to [loneop.weight].")
-
+*/
 /obj/item/disk/nuclear/examine(mob/user)
 	. = ..()
 	if(!fake)
