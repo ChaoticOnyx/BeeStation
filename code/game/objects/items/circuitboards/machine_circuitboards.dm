@@ -656,7 +656,9 @@
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stack/sheet/glass = 1,
-		/obj/item/stack/cable_coil = 2)
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/cell = 1
+		)
 
 /obj/item/circuitboard/machine/chem_dispenser/botany				//probably should be generic but who cares
 	name = "Minor Botanical Chem Dispenser (Machine Board)"
@@ -664,7 +666,8 @@
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stack/cable_coil = 1,
-		/obj/item/stack/sheet/glass = 4)
+		/obj/item/stack/sheet/glass = 4,
+		/obj/item/stock_parts/cell = 1)
 
 /obj/item/circuitboard/machine/chem_heater
 	name = "Chemical Heater (Machine Board)"
