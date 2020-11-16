@@ -1,0 +1,11 @@
+{
+    "map_name": "BR PubbyStation",
+    "map_path": "map_files/BR_PubbyStation",
+    "map_file": "BR_PubbyStation.dmm",
+    "shuttles": {
+	    "emergency": "emergency_pubby",
+	    "whiteship": "whiteship_pubby",
+	    "ferry": "ferry_fancy",
+	    "cargo": "cargo_box"
+    }
+}

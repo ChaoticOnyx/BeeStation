@@ -652,32 +652,33 @@
 	icon_state = "medical"
 	build_path = /obj/machinery/chem_dispenser
 	req_components = list(
-		/obj/item/stock_parts/scanning_module = 1,
-		/obj/item/stock_parts/matter_bin = 1,
-		/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/stock_parts/matter_bin = 2,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stack/sheet/glass = 1,
-		/obj/item/stack/cable_coil = 2,
-		/obj/item/stock_parts/cell = 1
-		)
+		/obj/item/stock_parts/cell = 1)
+	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
+	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/chem_dispenser/botany				//probably should be generic but who cares
 	name = "Minor Botanical Chem Dispenser (Machine Board)"
 	build_path = /obj/machinery/chem_dispenser/mutagensaltpetersmall
 	req_components = list(
-		/obj/item/stock_parts/matter_bin = 1,
-		/obj/item/stack/cable_coil = 1,
-		/obj/item/stack/sheet/glass = 4,
+		/obj/item/stock_parts/matter_bin = 2,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stack/sheet/glass = 1,
 		/obj/item/stock_parts/cell = 1)
+	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
+	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/chem_heater
 	name = "Chemical Heater (Machine Board)"
 	icon_state = "medical"
 	build_path = /obj/machinery/chem_heater
 	req_components = list(
-		/obj/item/stock_parts/matter_bin = 1,
-		/obj/item/stock_parts/manipulator = 1,
-		/obj/item/stack/cable_coil = 1,
-		/obj/item/stack/sheet/glass = 2)
+		/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/chem_master
 	name = "ChemMaster 3000 (Machine Board)"
@@ -902,11 +903,9 @@
 	icon_state = "science"
 	build_path = /obj/machinery/nanite_programmer
 	req_components = list(
-		/obj/item/stack/ore/bluespace_crystal = 1,
-		/obj/item/stock_parts/capacitor = 1,
-		/obj/item/stock_parts/manipulator = 1,
-		/obj/item/stack/cable_coil = 1)
-	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/micro_laser = 2,
+		/obj/item/stock_parts/scanning_module = 1)
 
 /obj/item/circuitboard/machine/processor/slime
 	name = "Slime Processor (Machine Board)"
