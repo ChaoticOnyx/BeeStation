@@ -1,0 +1,11 @@
+{
+    "map_name": "BR Box Station",
+    "map_path": "map_files/BR_BoxStation",
+    "map_file": "BR_BoxStation.dmm",
+    "shuttles": {
+	    "cargo": "cargo_box",
+	    "ferry": "ferry_fancy",
+	    "whiteship": "whiteship_box",
+	    "emergency": "emergency_box"
+    }
+}

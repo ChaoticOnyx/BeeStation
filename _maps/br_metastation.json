@@ -1,0 +1,11 @@
+{
+    "map_name": "BR MetaStation",
+    "map_path": "map_files/BR_MetaStation",
+    "map_file": "BR_MetaStation.dmm",
+    "shuttles": {
+	    "cargo": "cargo_box",
+	    "ferry": "ferry_fancy",
+	    "whiteship": "whiteship_meta",
+	    "emergency": "emergency_meta"
+    }
+}
