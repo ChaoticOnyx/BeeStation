@@ -13,6 +13,7 @@
 	var/datum/track/selection = null
 	/// Volume of the songs played
 	var/volume = 100
+	var/obj/item/music_tape/select_tape = null
 
 /obj/machinery/jukebox/disco
 	name = "radiant dance machine mark IV"
@@ -67,6 +68,16 @@
 
 /obj/machinery/jukebox/attackby(obj/item/O, mob/user, params)
 	if(!active && !(flags_1 & NODECONSTRUCT_1))
+		if(istype(O, /obj/item/music_tape))
+			if(select_tape)
+				songs |= select_tape.track
+				select_tape.forceMove(drop_location())
+			var/obj/item/tape/T = O
+			if(!user.transferItemToLoc(T, src))
+				return
+			select_tape = T
+			user.visible_message("[user] inserts a tape into [src].", "<span class='notice'>You insert a tape into [src].</span>")
+			songs |= select_tape.track
 		if(O.tool_behaviour == TOOL_WRENCH)
 			if(!anchored && !isinspace())
 				to_chat(user,"<span class='notice'>You secure [src] to the floor.</span>")
