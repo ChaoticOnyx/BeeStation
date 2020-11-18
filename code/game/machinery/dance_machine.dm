@@ -5,7 +5,6 @@
 	icon_state = "jukebox"
 	verb_say = "states"
 	density = TRUE
-	req_access = list(ACCESS_BAR)
 	var/active = FALSE
 	var/list/rangers = list()
 	var/stop = 0
@@ -13,7 +12,7 @@
 	var/datum/track/selection = null
 	/// Volume of the songs played
 	var/volume = 100
-	var/obj/item/music_tape/select_tape = null
+	var/obj/item/vinyl/selected_vinyl = null
 
 /obj/machinery/jukebox/disco
 	name = "radiant dance machine mark IV"
@@ -68,16 +67,16 @@
 
 /obj/machinery/jukebox/attackby(obj/item/O, mob/user, params)
 	if(!active && !(flags_1 & NODECONSTRUCT_1))
-		if(istype(O, /obj/item/music_tape))
-			if(select_tape)
-				songs |= select_tape.track
-				select_tape.forceMove(drop_location())
-			var/obj/item/tape/T = O
+		if(istype(O, /obj/item/vinyl))
+			if(selected_vinyl)
+				songs |= selected_vinyl.track
+				selected_vinyl.forceMove(drop_location())
+			var/obj/item/vinyl/T = O
 			if(!user.transferItemToLoc(T, src))
 				return
-			select_tape = T
-			user.visible_message("[user] inserts a tape into [src].", "<span class='notice'>You insert a tape into [src].</span>")
-			songs |= select_tape.track
+			selected_vinyl = T
+			user.visible_message("[user] inserts a vinyl into [src].", "<span class='notice'>You insert a vinyl into [src].</span>")
+			songs |= selected_vinyl.track
 		if(O.tool_behaviour == TOOL_WRENCH)
 			if(!anchored && !isinspace())
 				to_chat(user,"<span class='notice'>You secure [src] to the floor.</span>")
@@ -98,10 +97,6 @@
 /obj/machinery/jukebox/ui_status(mob/user)
 	if(!anchored)
 		to_chat(user,"<span class='warning'>This device must be anchored by a wrench!</span>")
-		return UI_CLOSE
-	if(!allowed(user) && !isobserver(user))
-		to_chat(user,"<span class='warning'>Error: Access Denied.</span>")
-		user.playsound_local(src, 'sound/misc/compiler-failure.ogg', 25, TRUE)
 		return UI_CLOSE
 	if(!songs.len && !isobserver(user))
 		to_chat(user,"<span class='warning'>Error: No music tracks have been authorized for your station. Petition Central Command to resolve this issue.</span>")
@@ -144,10 +139,6 @@
 			if(QDELETED(src))
 				return
 			if(!active)
-				if(stop > world.time)
-					to_chat(usr, "<span class='warning'>Error: The device is still resetting from the last activation, it will be ready again in [DisplayTimeText(stop-world.time)].</span>")
-					playsound(src, 'sound/misc/compiler-failure.ogg', 50, TRUE)
-					return
 				activate_music()
 				START_PROCESSING(SSobj, src)
 				return TRUE
@@ -493,7 +484,6 @@
 		dance_over()
 		playsound(src,'sound/machines/terminal_off.ogg',50,1)
 		update_icon()
-		stop = world.time + 100
 
 
 /obj/machinery/jukebox/disco/process()
