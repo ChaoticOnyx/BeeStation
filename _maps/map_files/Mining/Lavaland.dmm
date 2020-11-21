@@ -3315,11 +3315,11 @@
 	dir = 8
 	},
 /obj/structure/barricade/wooden/crude,
-/obj/machinery/door/airlock/research{
-	name = "Testing Lab";
-	req_access_txt = "47"
-	},
 /obj/effect/decal/cleanable/oil/slippery,
+/obj/machinery/door/airlock/research/glass{
+	name = "Research Division Atrium";
+	req_one_access_txt = "47,54"
+	},
 /turf/open/floor/plasteel,
 /area/mine/science)
 "pi" = (
@@ -3716,7 +3716,7 @@
 /area/mine/science)
 "tJ" = (
 /obj/effect/turf_decal/tile/brown{
-	dir = 4
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
@@ -4510,7 +4510,7 @@
 "Ef" = (
 /obj/machinery/door/airlock/research/glass{
 	name = "Research Division Atrium";
-	req_access_txt = "47"
+	req_one_access_txt = "47,54"
 	},
 /obj/structure/barricade/wooden/crude,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -5448,11 +5448,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/door/airlock/research{
-	name = "Outpost Transport Dock";
-	req_access_txt = "47"
-	},
 /obj/effect/decal/cleanable/oil/slippery,
+/obj/machinery/door/airlock/research/glass{
+	name = "Research Division Atrium";
+	req_one_access_txt = "47,54"
+	},
 /turf/open/floor/plasteel,
 /area/mine/science)
 "Pd" = (
