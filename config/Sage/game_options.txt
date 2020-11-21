@@ -137,6 +137,11 @@ CONTINUOUS WIZARD
 #CONTINUOUS MONKEY
 CONTINUOUS HIVEMIND
 CONTINUOUS CLOCKCULT
+CONTINUOUS HERESY
+
+#Prevents the death of round-ending antagonist rulesets ending the round immediately.
+
+CONTINUOUS DYNAMIC
 
 #Prevents the death of round-ending antagonist rulesets ending the round immediately.
 
