@@ -8,11 +8,11 @@
 		#include "map_files\debug\runtimestation.dmm"
 		#include "map_files\Deltastation\DeltaStation2.dmm"
 		#include "map_files\MetaStation\MetaStation.dmm"
-		#include "map_files\BR_MetaStation\BR_MetaStation.dmm"
+		#include "map_files\Green_MetaStation\Green_MetaStation.dmm"
 		#include "map_files\PubbyStation\PubbyStation.dmm"
 		#include "map_files\BR_PubbyStation\BR_PubbyStation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
-		#include "map_files\BR_BoxStation\BR_BoxStation.dmm"
+		#include "map_files\Onyx_BoxStation\Onyx_BoxStation.dmm"
 		#include "map_files\Donutstation\Donutstation.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"
 
