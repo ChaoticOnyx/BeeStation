@@ -1,7 +1,7 @@
 {
-    "map_name": "BR MetaStation",
-    "map_path": "map_files/BR_MetaStation",
-    "map_file": "BR_MetaStation.dmm",
+    "map_name": "Green MetaStation",
+    "map_path": "map_files/Green_MetaStation",
+    "map_file": "Green_MetaStation.dmm",
     "shuttles": {
 	    "cargo": "cargo_box",
 	    "ferry": "ferry_fancy",
