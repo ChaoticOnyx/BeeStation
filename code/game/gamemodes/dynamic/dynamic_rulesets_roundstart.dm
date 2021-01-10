@@ -692,7 +692,7 @@
 	flags = HIGHLANDER_RULESET
 	var/datum/team/clock_cult/main_cult
 	var/list/selected_servants = list()
-
+	
 /datum/dynamic_ruleset/roundstart/clockcult/pre_execute()
 	//Load Reebe
 	var/list/errorList = list()

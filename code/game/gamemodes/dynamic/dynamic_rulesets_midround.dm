@@ -450,7 +450,7 @@
 	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Nightmare by the midround ruleset.")
 	log_game("DYNAMIC: [key_name(S)] was spawned as a Nightmare by the midround ruleset.")
 	return S
-
+	
 //////////////////////////////////////////////
 //                                          //
 //           ABDUCTORS    (GHOST)           //
