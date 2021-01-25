@@ -12,7 +12,7 @@
 /datum/keybinding/mob/say/down(client/user)
 	if(!user.mob) return
 	var/mob/M = user.mob
-	M.say_verb(input("", "Say \"text\"") as text|null)
+	M.get_say()
 	return TRUE
 
 
@@ -25,7 +25,7 @@
 /datum/keybinding/mob/me/down(client/user)
 	if(!user.mob) return
 	var/mob/M = user.mob
-	M.me_verb(input("", "Me \"text\"") as text)
+	M.get_me()
 	return TRUE
 
 
