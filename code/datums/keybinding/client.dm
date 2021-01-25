@@ -14,8 +14,19 @@
     return TRUE
 
 
-/datum/keybinding/client/screenshot
+/datum/keybinding/client/ooc
     key = "F2"
+    name = "ooc"
+    full_name = "OOC"
+    description = "Talk in OOC."
+
+/datum/keybinding/client/ooc/down(client/user)
+    user.get_ooc_say()
+    return TRUE
+
+
+/datum/keybinding/client/screenshot
+    key = "F9"
     name = "screenshot"
     full_name = "Screenshot"
     description = "Take a screenshot."
