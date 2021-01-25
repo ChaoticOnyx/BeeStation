@@ -3,32 +3,6 @@
 		weight = WEIGHT_MOB
 
 
-/datum/keybinding/mob/say
-	key = "F3"
-	name = "say"
-	full_name = "Say"
-	description = ""
-
-/datum/keybinding/mob/say/down(client/user)
-	if(!user.mob) return
-	var/mob/M = user.mob
-	M.get_say()
-	return TRUE
-
-
-/datum/keybinding/mob/me
-	key = "F4"
-	name = "me"
-	full_name = "Me"
-	description = ""
-
-/datum/keybinding/mob/me/down(client/user)
-	if(!user.mob) return
-	var/mob/M = user.mob
-	M.get_me()
-	return TRUE
-
-
 /datum/keybinding/mob/face_north
 	key = "Ctrl-W"
 	name = "face_north"

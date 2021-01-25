@@ -4,7 +4,7 @@
 
 
 /datum/keybinding/admin/admin_say
-	key = "F5"
+	key = "F3"
 	name = "admin_say"
 	full_name = "Admin say"
 	description = "Talk with other admins."
@@ -12,6 +12,30 @@
 /datum/keybinding/admin/admin_say/down(client/user)
 	if (!user.holder) return
 	user.get_admin_say()
+	return TRUE
+
+
+/datum/keybinding/admin/mentor_say
+	key = "F4"
+	name = "mentor_say"
+	full_name = "Mentor say"
+	description = "Speak with other mentors."
+
+/datum/keybinding/admin/mentor_say/down(client/user)
+	if (!user.holder) return
+	user.get_mentor_say()
+	return TRUE
+
+
+/datum/keybinding/admin/admin_ghost
+	key = "F5"
+	name = "admin_ghost"
+	full_name = "Admin Ghost"
+	description = "Toggle your admin ghost status."
+
+/datum/keybinding/admin/admin_ghost/down(client/user)
+	if (!user.holder) return
+	user.admin_ghost()
 	return TRUE
 
 

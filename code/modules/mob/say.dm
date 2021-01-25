@@ -10,10 +10,6 @@
 	if(message)
 		say(message)
 
-/mob/proc/get_say()
-	var/msg = capped_input(src, null, "say \"text\"")
-	say_verb(msg)
-
 ///Whisper verb
 /mob/verb/whisper_verb(message as text)
 	set name = "Whisper"
@@ -39,11 +35,6 @@
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
 	usr.emote("me",1,message,TRUE)
-
-/mob/proc/get_me()
-	var/msg = capped_input(src, null, "me \"text\"")
-	me_verb(msg)
-
 
 ///Speak as a dead person (ghost etc)
 /mob/proc/say_dead(var/message)
