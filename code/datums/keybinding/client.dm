@@ -21,7 +21,7 @@
     description = "Talk in OOC."
 
 /datum/keybinding/client/ooc/down(client/user)
-    user.get_ooc_say()
+    user.ooc(input("", "OOC \"text\"") as text|null)
     return TRUE
 
 
