@@ -45,6 +45,17 @@ GLOBAL_LIST_INIT(valid_keys, list(
 
 	if(input_sanity_check(src, _key))
 		return
+	
+	switch(_key)
+		if ("T")
+			mob.say_verb(input("", "Say \"text\"") as text|null)
+			return
+		if ("O")
+			ooc(input("", "OOC \"text\"") as text|null)
+			return
+		if ("M")
+			mob.me_verb(input("", "Me \"text\"") as text)
+			return
 
 	keys_held[_key] = world.time
 	var/movement = SSinput.movement_keys[_key]
