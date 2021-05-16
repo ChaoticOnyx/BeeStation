@@ -1121,9 +1121,9 @@ eg2: `center_image(I, 96,96)`
 /proc/get_random_station_turf()
 	return safepick(get_area_turfs(pick(GLOB.the_station_areas)))
 
-/proc/get_safe_random_station_turf()
+/proc/get_safe_random_station_turf(list/areas_to_pick_from = GLOB.the_station_areas) //excludes dense turfs (like walls) and areas that have valid_territory set to FALSE
 	for (var/i in 1 to 5)
-		var/list/L = get_area_turfs(pick(GLOB.the_station_areas))
+		var/list/L = get_area_turfs(pick(areas_to_pick_from))
 		var/turf/target
 		while (L.len && !target)
 			var/I = rand(1, L.len)
@@ -1159,7 +1159,7 @@ eg2: `center_image(I, 96,96)`
 	return closest_atom
 
 
-proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
+/proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if (value == FALSE) //nothing should be calling us with a number, so this is safe
 		value = input("Enter type to find (blank for all, cancel to cancel)", "Search for type") as null|text
 		if (isnull(value))
@@ -1635,3 +1635,16 @@ config_setting should be one of the following:
 		var/list/servers = CONFIG_GET(keyed_list/insecure_cross_server)
 		for(var/I in servers)
 			world.Export("[servers[I]]?[list2params(message)]")
+
+/proc/drop_shadow_filter(x, y, size, offset, color)
+	. = list("type" = "drop_shadow")
+	if(!isnull(x))
+		.["x"] = x
+	if(!isnull(y))
+		.["y"] = y
+	if(!isnull(size))
+		.["size"] = size
+	if(!isnull(offset))
+		.["offset"] = offset
+	if(!isnull(color))
+		.["color"] = color

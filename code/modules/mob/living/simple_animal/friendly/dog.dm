@@ -14,7 +14,7 @@
 	speak_chance = 1
 	turns_per_move = 10
 	can_be_held = TRUE
-	mobsay_color = "#ECDA88"
+	chat_color = "#ECDA88"
 	mobchatspan = "corgi"
 
 	do_footstep = TRUE
@@ -105,8 +105,7 @@
 	. = ..()
 	var/dog_area = get_area(src)
 	for(var/obj/structure/bed/dogbed/D in dog_area)
-		if(!D.owner)
-			D.update_owner(src)
+		if(D.update_owner(src)) //No muscling in on my turf you fucking parrot
 			break
 
 /mob/living/simple_animal/pet/dog/corgi/Initialize()
@@ -169,7 +168,7 @@
 			shaved = TRUE
 			icon_living = "[initial(icon_living)]_shaved"
 			icon_dead = "[initial(icon_living)]_shaved_dead"
-			if(stat == CONSCIOUS)
+			if(is_conscious())
 				icon_state = icon_living
 			else
 				icon_state = icon_dead
@@ -373,11 +372,7 @@
 	if(age == 0)
 		var/turf/target = get_turf(loc)
 		if(target)
-			var/mob/living/simple_animal/pet/dog/corgi/puppy/P = new /mob/living/simple_animal/pet/dog/corgi/puppy(target)
-			P.name = "Ian"
-			P.real_name = "Ian"
-			P.gender = MALE
-			P.desc = "It's the HoP's beloved corgi puppy."
+			new /mob/living/simple_animal/pet/dog/corgi/puppy/Ian(target)
 			Write_Memory(FALSE)
 			return INITIALIZE_HINT_QDEL
 	else if(age == record_age)
@@ -605,6 +600,12 @@
 		to_chat(usr, "<span class='warning'>You can't fit this on [src]!</span>")
 		return
 	..()
+
+/mob/living/simple_animal/pet/dog/corgi/puppy/Ian
+	name = "Ian"
+	real_name = "Ian"
+	gender = MALE
+	desc = "It's the HoP's beloved corgi puppy."
 
 
 /mob/living/simple_animal/pet/dog/corgi/puppy/void		//Tribute to the corgis born in nullspace
