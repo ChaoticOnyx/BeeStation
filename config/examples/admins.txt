@@ -10,7 +10,6 @@
 # and will override any duplicate entries in the database.									  #
 ###############################################################################################
 Ike709 = Host
-Crossedfall = Host
 CthulhuOnIce = Host
 
 # the rest are in the db
