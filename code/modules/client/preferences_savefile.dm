@@ -183,6 +183,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	READ_FILE(S["default_slot"], default_slot)
 	READ_FILE(S["chat_toggles"], chat_toggles)
+	READ_FILE(S["spell_checking"], spell_checking)
 	READ_FILE(S["toggles"], toggles)
 	READ_FILE(S["ghost_form"], ghost_form)
 	READ_FILE(S["ghost_orbit"], ghost_orbit)
@@ -288,6 +289,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["crew_objectives"], crew_objectives)
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["toggles"], toggles)
+	WRITE_FILE(S["spell_checking"], spell_checking)
 	WRITE_FILE(S["chat_toggles"], chat_toggles)
 	WRITE_FILE(S["ghost_form"], ghost_form)
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)

@@ -92,6 +92,9 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		to_chat(src, "<span class='warning'>That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span></span>")
 		return
 
+	if(client && client?.prefs?.spell_checking)
+		to_chat(client, null, "external/spell_check", message)
+
 	var/list/message_mods = list()
 	var/original_message = message
 	message = get_message_mods(message, message_mods)

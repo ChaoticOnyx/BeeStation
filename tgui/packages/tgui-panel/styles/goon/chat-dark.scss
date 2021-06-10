@@ -307,6 +307,16 @@ em						{font-style: normal;	font-weight: bold;}
 .disarm					{color: #b42525;}
 .passive				{color: #a00f0f;}
 
+.spellcheckPopup {padding: 10px; text-align: center; color: white;}
+.spellcheckPopup input[type=text] {width: 90%; text-align: center; margin-top: 5px;}
+.spellcheckPopup input.spellcheckSubmit {margin-top: 5px;}
+
+.spellChecker {color: white; border-left: 2px solid red; padding-left: 5px; font-weight: bold;}
+
+.line-good {border-bottom: 2px solid green;}
+.line-sugg {border-bottom: 2px solid orange;}
+.line-bad {border-bottom: 2px solid red;}
+
 .userdanger				{color: #c51e1e;	font-weight: bold; font-size: 24px;}
 .danger					{color: #c51e1e;}
 .warning				{color: #c51e1e;	font-style: italic;}

@@ -116,6 +116,8 @@ export const chatMiddleware = store => {
     if (type === updateSettings.type || type === loadSettings.type) {
       next(action);
       const settings = selectSettings(store.getState());
+      chatRenderer.spellCheckPanel(
+        settings.spellCheckTerms);
       chatRenderer.setHighlight(
         settings.highlightText,
         settings.highlightColor);

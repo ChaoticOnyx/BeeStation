@@ -328,6 +328,16 @@ h1.alert, h2.alert		{color: #000000;}
 .shadowling				{color: #3b2769;}
 .cult					{color: #960000;}
 
+.spellcheckPopup {padding: 10px; text-align: center; color: black;}
+.spellcheckPopup input[type=text] {width: 90%; text-align: center; margin-top: 5px;}
+.spellcheckPopup input.spellcheckSubmit {margin-top: 5px;}
+
+.spellChecker {color: black; border-left: 2px solid red; padding-left: 5px; font-weight: bold;}
+
+.line-good {border-bottom: 2px solid green;}
+.line-sugg {border-bottom: 2px solid orange;}
+.line-bad {border-bottom: 2px solid red;}
+
 .cultitalic				{color: #960000;	font-style: italic;}
 .cultbold				{color: #960000; font-style: italic; font-weight: bold;}
 .cultboldtalic				{color: #960000; font-weight: bold; font-size: 24px;}
