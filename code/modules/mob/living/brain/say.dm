@@ -6,6 +6,8 @@
 			if(prob(10))//10% chane to drop the message entirely
 				return
 			else
+				if(client && client?.prefs?.spell_checking)
+					to_chat(client, null, "external/spell_check", message)
 				message = Gibberish(message, emp_damage >= 12)//scrambles the message, gets worse when emp_damage is higher
 
 		..()

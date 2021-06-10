@@ -231,6 +231,9 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
+	if(client && client?.prefs?.spell_checking)
+		to_chat(client, null, "external/spell_check", message)
+
 	if (!message)
 		return
 

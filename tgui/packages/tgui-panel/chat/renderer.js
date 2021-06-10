@@ -348,15 +348,15 @@ class ChatRenderer {
       if (decodeURIComponent) {
         message = decodeURIComponent(message);
       } else {
-        throw new Error("Easiest way to trigger the fallback")
+        throw new Error("Easiest way to trigger the fallback");
       }
     } catch (err) {
       message = unescape(message);
-    };
+    }
     return message;
   }
   spellCheck(text) {
-    if(!text) return;
+    if (!text) return;
 
     text = this.filterText(text);
 
@@ -378,8 +378,8 @@ class ChatRenderer {
     let uniqueWords = [];
 
     for (let i=0; i < words.length; i++) {
-      if(words[i].length <= 3) continue;
-      if(uniqueWords.indexOf(words[i]) > -1) continue;
+      if (words[i].length <= 3) continue;
+      if (uniqueWords.indexOf(words[i]) > -1) continue;
 
       uniqueWords.push(words[i]);
     }
@@ -392,8 +392,8 @@ class ChatRenderer {
     let xhr = new XMLHttpRequest();
     let fired = false;
     xhr.onreadystatechange = () => {
-      if (xhr.readyState == 4) {
-        if (xhr.status == 200) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
           if (!fired) {
             fired = true;
             let data = JSON.parse(xhr.responseText);
@@ -401,7 +401,7 @@ class ChatRenderer {
           }
         }
       }
-    }
+    };
     xhr.open("GET", "http://speller.yandex.net/services/spellservice.json/checkText?options=512&lang=ru&text=" + text, true);
     xhr.send();
   }
@@ -416,7 +416,7 @@ class ChatRenderer {
       let replacement = '';
       if (ToShow.length) replacement += ', ';
 
-      if(subst.s.length === 1) {
+      if (subst.s.length === 1) {
         replacement += '<span class="line-good">'+subst.s[0]+'</span>';
       } else {
         replacement += '<span class="line-sugg">'+subst.s.join(', ')+'</span>';
@@ -429,7 +429,7 @@ class ChatRenderer {
       ToShow = '<span class="spellChecker">Возможные орфографические ошибки: '+ToShow+'</span>';
       let super_batch = [
         createMessage({
-          html: ToShow
+          html: ToShow,
         }),
       ];
       this.processBatch(super_batch);
@@ -473,7 +473,7 @@ class ChatRenderer {
         node = createReconnectedNode();
       }
       else if (message.type === 'external/spell_check') {
-        if(message.text) {
+        if (message.text) {
           let message_text = message.text;
           this.spellCheck(message_text);
         }

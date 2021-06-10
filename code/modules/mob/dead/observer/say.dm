@@ -1,5 +1,7 @@
 /mob/dead/observer/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
+	if(client && client?.prefs?.spell_checking)
+		to_chat(client, null, "external/spell_check", message)
 	if (!message)
 		return
 
