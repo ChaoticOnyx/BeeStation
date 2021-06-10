@@ -48,6 +48,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/crew_objectives = TRUE
 	var/toggles = TOGGLES_DEFAULT
 	var/db_flags
+	var/spell_checking = FALSE
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
 	var/ghost_form = "ghost"
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
@@ -551,6 +552,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br>"
 			dat += "<b>Crew Objectives:</b> <a href='?_src_=prefs;preference=crewobj'>[(crew_objectives) ? "Yes" : "No"]</a><br>"
 			dat += "<br>"
+			dat += "<b>Spell Checker:</b> <a href='?_src_=prefs;preference=spell_check'>[spell_checking ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Ghost Ears:</b> <a href='?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</a><br>"
 			dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'>[(chat_toggles & CHAT_GHOSTRADIO) ? "All Messages":"No Messages"]</a><br>"
 			dat += "<b>Ghost Sight:</b> <a href='?_src_=prefs;preference=ghost_sight'>[(chat_toggles & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</a><br>"
@@ -1760,6 +1762,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						user.client.playtitlemusic()
 					else
 						user.stop_sound_channel(CHANNEL_LOBBYMUSIC)
+
+				if("spell_check")
+					spell_checking = !spell_checking
 
 				if("ghost_ears")
 					chat_toggles ^= CHAT_GHOSTEARS

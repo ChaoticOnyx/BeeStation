@@ -14,6 +14,15 @@
 	prefs.save_preferences()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Ghost Ears", "[prefs.chat_toggles & CHAT_GHOSTEARS ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/verb/toggle_spell_checking()
+	set name = "Toggle Spell Checking"
+	set category = "Preferences"
+	set desc = "Toggles Yandex Spell Checking"
+	prefs.spell_checking = !prefs.spell_checking
+	to_chat(usr, "The spell checker servise is now [prefs.spell_checking ? "enabled" : "disabled"]!")
+	prefs.save_preferences()
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Spell Checking", "[prefs.spell_checking ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/verb/toggle_ghost_sight()
 	set name = "Show/Hide GhostSight"
 	set category = "Preferences"

@@ -164,6 +164,8 @@
 	if(!message)
 		return
 	src.log_talk(message, LOG_SAY)
+	if(client && client?.prefs?.spell_checking)
+		to_chat(client, null, "external/spell_check", message)
 	var/rendered = "<span class='revennotice'><b>[src]</b> says, \"[message]\"</span>"
 	for(var/mob/M in GLOB.mob_list)
 		if(isrevenant(M))

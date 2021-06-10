@@ -16,6 +16,7 @@ const initialState = {
   statSize: 40,
   adminMusicVolume: 0.5,
   highlightText: '',
+  spellCheckTerms: '',
   highlightColor: '#ffdd44',
   highContrast: false,
   view: {

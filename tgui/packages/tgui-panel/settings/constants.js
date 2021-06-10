@@ -21,6 +21,10 @@ export const SETTINGS_TABS = [
     id: 'statPanelpage',
     name: 'Stat Panel',
   },
+  {
+    id: 'statSpellCheckerTerms',
+    name: 'Spell Checker Terms',
+  },
 ];
 
 export const FONTS_DISABLED = "Default";

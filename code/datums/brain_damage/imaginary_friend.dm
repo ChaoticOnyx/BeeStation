@@ -161,6 +161,9 @@
 	if(!message)
 		return
 
+	if(client && client?.prefs?.spell_checking)
+		to_chat(client, null, "external/spell_check", message)
+
 	src.log_talk(message, LOG_SAY, tag="imaginary friend")
 
 	var/rendered = "<span class='game say'><span class='name'>[name]</span> <span class='message'>[say_quote(message)]</span></span>"

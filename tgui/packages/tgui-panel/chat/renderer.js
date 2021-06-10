@@ -317,7 +317,124 @@ class ChatRenderer {
     }
     return null;
   }
+  spellCheckPanel(text) {
+    if (!text) {
+      this.spellCheckblacklist = null;
+      return;
+    }
+    text = text.trim();
+    if (text === '') {
+      this.spellCheckblacklist = null;
+      return;
+    }
+    text = text.toLowerCase().replace(/[^а-яА-ЯёЁ ]/g, ' ').trim().split(' ');
+    let exceps = [];
+    for (let i = 0, len = text.length; i < len; i++) {
+      if (exceps.indexOf(text[i]) > -1) continue;
+      if (text[i].length >= 3) exceps.push(text[i]);
+    }
+    text = exceps.join(', ');
+    let blackListt = text.replace(new RegExp(/,\s*/g), '|');
+    let regex = '(?:\\s|^)(?:' + blackListt + ')\\S*';
+    this.spellCheckblacklist = new RegExp(regex, 'g');
+    logger.log(regex);
+  }
 
+
+
+  byondDecode(message) {
+    message = message.replace(/\+/g, "%20");
+    try {
+      if (decodeURIComponent) {
+        message = decodeURIComponent(message);
+      } else {
+        throw new Error("Easiest way to trigger the fallback");
+      }
+    } catch (err) {
+      message = unescape(message);
+    }
+    return message;
+  }
+  spellCheck(text) {
+    if (!text) return;
+
+    text = this.filterText(text);
+
+    if (text.length > 3) {
+      this.sendYandexSpellerRequest(encodeURIComponent(text));
+    }
+  }
+  filterText(text) {
+    text = this.byondDecode(text);
+    text = text.toLowerCase();
+    text = text.replace(/[^а-яА-ЯёЁ ]/g, ' ');
+    text = text.replace(/\s+/g, ' ');
+    text = this.removeBlacklistedWords(text);
+    text = this.getUniqueWords(text);
+    return text;
+  }
+  getUniqueWords(text) {
+    let words = text.split(' ');
+    let uniqueWords = [];
+
+    for (let i=0; i < words.length; i++) {
+      if (words[i].length <= 3) continue;
+      if (uniqueWords.indexOf(words[i]) > -1) continue;
+
+      uniqueWords.push(words[i]);
+    }
+    return uniqueWords.join(' ');
+  }
+  removeBlacklistedWords(text) {
+    return text.replace(this.spellCheckblacklist, '');
+  }
+  sendYandexSpellerRequest(text) {
+    let xhr = new XMLHttpRequest();
+    let fired = false;
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          if (!fired) {
+            fired = true;
+            let data = JSON.parse(xhr.responseText);
+            this.markWords(data);
+          }
+        }
+      }
+    };
+    xhr.open("GET", "http://speller.yandex.net/services/spellservice.json/checkText?options=512&lang=ru&text=" + text, true);
+    xhr.send();
+  }
+  markWords(data) {
+    if (!data || data === '[]') return;
+    let ToShow = '';
+
+    for (let i = 0, len = data.length; i < len; i++) {
+      let subst = data[i];
+      if (subst.s.length === 0) continue;
+
+      let replacement = '';
+      if (ToShow.length) replacement += ', ';
+
+      if (subst.s.length === 1) {
+        replacement += '<span class="line-good">'+subst.s[0]+'</span>';
+      } else {
+        replacement += '<span class="line-sugg">'+subst.s.join(', ')+'</span>';
+      }
+
+      ToShow += replacement+' - <span class="line-bad">'+subst.word+'</span>';
+    }
+
+    if (ToShow.length) {
+      ToShow = '<span class="spellChecker">Возможные орфографические ошибки: '+ToShow+'</span>';
+      let super_batch = [
+        createMessage({
+          html: ToShow,
+        }),
+      ];
+      this.processBatch(super_batch);
+    }
+  }
   processBatch(batch, options = {}) {
     const {
       prepend,
@@ -354,6 +471,14 @@ class ChatRenderer {
       // Reconnected
       else if (message.type === 'internal/reconnected') {
         node = createReconnectedNode();
+      }
+      else if (message.type === 'external/spell_check') {
+        if (message.text) {
+          let message_text = message.text;
+          this.spellCheck(message_text);
+        }
+        // hack to fuck off spell checking message twice
+        message.text = null;
       }
       // Create message node
       else {
@@ -530,6 +655,7 @@ class ChatRenderer {
     const pageHtml = '<!doctype html>\n'
       + '<html>\n'
       + '<head>\n'
+      + '<meta charset="UTF-8">\n'
       + '<title>SS13 Chat Log</title>\n'
       + '<style>\n' + cssText + '</style>\n'
       + '</head>\n'

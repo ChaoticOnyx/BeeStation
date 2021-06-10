@@ -36,6 +36,7 @@ export const MESSAGE_TYPE_EVENTCHAT = 'eventchat';
 export const MESSAGE_TYPE_ADMINLOG = 'adminlog';
 export const MESSAGE_TYPE_ATTACKLOG = 'attacklog';
 export const MESSAGE_TYPE_DEBUG = 'debug';
+export const MESSAGE_TYPE_SPELLCHECK = "spellcheck";
 
 // Metadata for each message type
 export const MESSAGE_TYPES = [
@@ -95,6 +96,12 @@ export const MESSAGE_TYPES = [
     name: 'Combat Log',
     description: 'Urist McTraitor has stabbed you with a knife!',
     selector: '.danger',
+  },
+  {
+    type: MESSAGE_TYPE_SPELLCHECK,
+    name: 'Spell Check Messages',
+    description: 'Йа креведко!',
+    selector: '.spellChecker, .line-bad, .line-sugg, .line-good',
   },
   {
     type: MESSAGE_TYPE_UNKNOWN,

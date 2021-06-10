@@ -50,6 +50,9 @@ export const SettingsPanel = (props, context) => {
         {activeTab === 'statPanelpage' && (
           <SettingsStat />
         )}
+        {activeTab === 'statSpellCheckerTerms' && (
+          <SpellCheckerTerms />
+        )}
       </Flex.Item>
     </Flex>
   );
@@ -151,6 +154,35 @@ export const SettingsGeneral = (props, context) => {
         onClick={() => dispatch(saveChatToDisk())}>
         Save chat log
       </Button>
+    </Section>
+  );
+};
+
+export const SpellCheckerTerms = (props, context) => {
+  const {
+    spellCheckTerms,
+  } = useSelector(context, selectSettings);
+  const dispatch = useDispatch(context);
+  return (
+    <Section fill>
+      <Box>
+        <Flex bold>
+          Spell Checker Terms
+        </Flex>
+        <Divider />
+        <Flex mb={1} color="label" align="baseline">
+          <Flex.Item grow={1}>
+            Spell Checker Terms (comma separated):
+          </Flex.Item>
+        </Flex>
+        <TextArea
+          height="3em"
+          value={spellCheckTerms}
+          onChange={(e, value) => dispatch(updateSettings({
+            spellCheckTerms: value,
+          }))} />
+      </Box>
+      <Divider />
     </Section>
   );
 };
