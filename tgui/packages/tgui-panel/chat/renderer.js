@@ -323,17 +323,17 @@ class ChatRenderer {
       return;
     }
     text = text.trim();
-    if(text === '') {
+    if (text === '') {
       this.spellCheckblacklist = null;
       return;
     }
     text = text.toLowerCase().replace(/[^а-яА-ЯёЁ ]/g, ' ').trim().split(' ');
     let exceps = [];
-    for (var i = 0, len = text.length; i < len; i++) {
-      if(exceps.indexOf(text[i]) > -1) continue;
-      if(text[i].length >= 3) exceps.push(text[i]);
+    for (let i = 0, len = text.length; i < len; i++) {
+      if (exceps.indexOf(text[i]) > -1) continue;
+      if (text[i].length >= 3) exceps.push(text[i]);
     }
-    text = exceps.join(', ')
+    text = exceps.join(', ');
     let blackListt = text.replace(new RegExp(/,\s*/g), '|');
     let regex = '(?:\\s|^)(?:' + blackListt + ')\\S*';
     this.spellCheckblacklist = new RegExp(regex, 'g');
@@ -343,12 +343,8 @@ class ChatRenderer {
 
 
   byondDecode(message) {
-    // Basically we url_encode twice server side so we can manually read the encoded version and actually do UTF-8.
-    // The replace for + is because FOR SOME REASON, BYOND replaces spaces with a + instead of %20, and a plus with %2b.
-    // Marvelous.
     message = message.replace(/\+/g, "%20");
     try {
-      // This is a workaround for the above not always working when BYOND's shitty url encoding breaks. (byond bug id:2399401)
       if (decodeURIComponent) {
         message = decodeURIComponent(message);
       } else {
@@ -356,7 +352,7 @@ class ChatRenderer {
       }
     } catch (err) {
       message = unescape(message);
-    }
+    };
     return message;
   }
   spellCheck(text) {
@@ -364,7 +360,7 @@ class ChatRenderer {
 
     text = this.filterText(text);
 
-    if(text.length > 3) {
+    if (text.length > 3) {
       this.sendYandexSpellerRequest(encodeURIComponent(text));
     }
   }
@@ -381,7 +377,7 @@ class ChatRenderer {
     let words = text.split(' ');
     let uniqueWords = [];
 
-    for (let i=0; i < words.length; i++){
+    for (let i=0; i < words.length; i++) {
       if(words[i].length <= 3) continue;
       if(uniqueWords.indexOf(words[i]) > -1) continue;
 
@@ -398,10 +394,9 @@ class ChatRenderer {
     xhr.onreadystatechange = () => {
       if (xhr.readyState == 4) {
         if (xhr.status == 200) {
-          if(!fired) {
+          if (!fired) {
             fired = true;
             let data = JSON.parse(xhr.responseText);
-            logger.log("ARE YOU READ THAT TWICE?")
             this.markWords(data);
           }
         }
@@ -432,7 +427,6 @@ class ChatRenderer {
 
     if (ToShow.length) {
       ToShow = '<span class="spellChecker">Возможные орфографические ошибки: '+ToShow+'</span>';
-      logger.log(ToShow);
       let super_batch = [
         createMessage({
           html: ToShow
