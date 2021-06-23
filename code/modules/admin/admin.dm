@@ -42,6 +42,12 @@
 
 	if(M.client)
 		body += "<br><br><b>First Seen:</b> [M.client.player_join_date]<br><b>Byond account registered on:</b> [M.client.account_join_date]"
+
+		if(M.client?.tgui_panel)
+			body += M.client.tgui_panel.show_notices() //The datum holds a reference to the client already, no need to pass it.
+		else //This should never happen in practice.
+			body += "<br><b>Telemetry Status:</b> <span class='bad'>USER CHAT NOT LOADED, CALL A CODER MAYBE?</span>"
+
 		body += "<br><br><b>CentCom Galactic Ban DB: </b> "
 		if(CONFIG_GET(string/centcom_ban_db))
 			body += "<a href='?_src_=holder;[HrefToken()];centcomlookup=[M.client.ckey]'>Search</a>"
@@ -65,6 +71,10 @@
 		body += "<a href='?_src_=holder;[HrefToken()];modantagtokens=zero;mob=[REF(M)]'>0</a>"
 		var/metabalance = M.client.get_metabalance()
 		body += "<br><b>[CONFIG_GET(string/metacurrency_name)]s</b>: [metabalance] "
+		body += "<a href='?_src_=holder;[HrefToken()];metabalance=add;mob=[REF(M)]'>+</a> "
+		body += "<a href='?_src_=holder;[HrefToken()];metabalance=subtract;mob=[REF(M)]'>-</a> "
+		body += "<a href='?_src_=holder;[HrefToken()];metabalance=set;mob=[REF(M)]'>=</a> "
+		body += "<a href='?_src_=holder;[HrefToken()];metabalance=zero;mob=[REF(M)]'>0</a>"
 		var/full_version = "Unknown"
 		if(M.client.byond_version)
 			full_version = "[M.client.byond_version].[M.client.byond_build ? M.client.byond_build : "xxx"]"

@@ -416,7 +416,7 @@
 		death()
 
 /mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, ignore_stasis = FALSE)
-	if((stat > SOFT_CRIT) || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)) || (!ignore_stasis && IsInStasis()))
+	if((stat >= SOFT_CRIT) || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)) || (!ignore_stasis && IsInStasis()))
 		return TRUE
 
 /mob/living/canUseStorage()
@@ -749,9 +749,9 @@
 		resist_buckle()
 
 	//Breaking out of a container (Locker, sleeper, cryo...)
-	else if(isobj(loc))
-		var/obj/C = loc
-		C.container_resist(src)
+	else if(istype(loc, /atom/movable))
+		var/atom/movable/M = loc
+		M.container_resist(src)
 
 	else if(mobility_flags & MOBILITY_MOVE)
 		if(on_fire)
@@ -944,7 +944,7 @@
 		return 0
 	if(invisibility || alpha == 0)//cloaked
 		return 0
-	if(digitalcamo || digitalinvis)
+	if(HAS_TRAIT(src, TRAIT_DIGICAMO) || HAS_TRAIT(src, TRAIT_DIGINVIS))
 		return 0
 
 	// Now, are they viewable by a camera? (This is last because it's the most intensive check)

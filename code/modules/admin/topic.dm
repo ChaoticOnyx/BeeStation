@@ -2051,6 +2051,15 @@
 		usr.client.cmd_admin_mod_antag_tokens(C, href_list["modantagtokens"])
 		show_player_panel(M)
 
+	else if(href_list["metabalance"])
+		if(!check_rights(R_PERMISSIONS))
+			return
+
+		var/mob/M = locate(href_list["mob"]) in GLOB.mob_list
+		var/client/C = M.client
+		usr.client.mod_metabalance(C, href_list["metabalance"])
+		show_player_panel(M)
+
 
 	else if(href_list["retrieveboh"])
 		var/obj/singularity/boh_tear/tear = locate(href_list["retrieveboh"])
