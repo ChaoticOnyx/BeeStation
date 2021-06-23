@@ -2847,3 +2847,11 @@
 					/obj/item/toner,
 					/obj/item/toner)
 	crate_name = "toner crate"
+
+/datum/supply_pack/misc/toner
+	name = "Vinyl Crate"
+	desc = "Allow yourself to enjoy your music."
+	cost = 4000
+	contains = list(/obj/item/vinyl/custom)
+	crate_type = /obj/structure/closet/crate/wooden
+	crate_name = "vinyl crate"
