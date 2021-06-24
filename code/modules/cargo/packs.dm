@@ -2848,10 +2848,20 @@
 					/obj/item/toner)
 	crate_name = "toner crate"
 
-/datum/supply_pack/misc/toner
+/datum/supply_pack/misc/vinyl
 	name = "Vinyl Crate"
-	desc = "Allow yourself to enjoy your music."
-	cost = 4000
-	contains = list(/obj/item/vinyl/custom)
+	desc = "Allow yourself to enjoy YOUR music."
+	cost = 12000
+	contains = list(/obj/item/vinyl/custom,
+					/obj/item/vinyl/custom,
+					/obj/item/vinyl/custom)
 	crate_type = /obj/structure/closet/crate/wooden
 	crate_name = "vinyl crate"
+
+/datum/supply_pack/misc/jukebox
+	name = "Jukebox Crate"
+	desc = "Allow enjoy music."
+	cost = 5000
+	contains = list(/obj/machinery/jukebox)
+	crate_type = /obj/structure/closet/crate
+	crate_name = "jukebox crate"
