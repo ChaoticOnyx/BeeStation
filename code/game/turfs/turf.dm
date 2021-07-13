@@ -595,3 +595,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	. = ..()
 	if(. != BULLET_ACT_FORCE_PIERCE)
 		. =  BULLET_ACT_TURF
+
+/turf/setDir()
+	. = ..()
+	SSdemo.mark_turf(src)
