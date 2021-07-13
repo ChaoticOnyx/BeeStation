@@ -202,6 +202,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	///////////
 
 /client/New(TopicData)
+	SSdemo.write_event_line("login [ckey]")
 	var/tdata = TopicData //save this for later use
 	TopicData = null							//Prevent calls to client.Topic from connect
 
@@ -550,6 +551,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
 	seen_messages = null
 	Master.UpdateTickRate()
+	SSdemo.write_event_line("logout [ckey]")
 	return ..()
 
 /client/Destroy()

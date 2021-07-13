@@ -14,7 +14,8 @@
 		allow_linkify = FALSE,
 		// FIXME: These flags are now pointless and have no effect
 		handle_whitespace = TRUE,
-		trailing_newline = TRUE)
+		trailing_newline = TRUE,
+		confidential = FALSE)
 	if(!target || (!html && !text))
 		return
 	if(target == world)
@@ -44,6 +45,8 @@
 		// Send to old chat
 		SEND_TEXT(client, message_html)
 
+	if(!confidential)
+		SSdemo.write_chat(target, message["text"])
 /**
  * Sends the message to the recipient (target).
  *
@@ -59,9 +62,10 @@
 		allow_linkify = FALSE,
 		// FIXME: These flags are now pointless and have no effect
 		handle_whitespace = TRUE,
-		trailing_newline = TRUE)
+		trailing_newline = TRUE,
+		confidential = FALSE)
 	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.initialized)
-		to_chat_immediate(target, html, type, text)
+		to_chat_immediate(target, html, type, text, confidential)
 		return
 	if(!target || (!html && !text))
 		return
@@ -74,4 +78,5 @@
 	if(html) message["html"] = html
 	if(avoid_highlighting) message["avoidHighlighting"] = avoid_highlighting
 	if(allow_linkify) message["allowLinkify"] = allow_linkify
-	SSchat.queue(target, message)
+	SSchat.queue(target, message, confidential)
+

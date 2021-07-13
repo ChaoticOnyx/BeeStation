@@ -262,7 +262,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 				message_admins("[key_name_admin(usr)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 				log_admin("[key_name(usr)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 			else
-				to_chat(usr, "<span class='admin'>There is no arrivals shuttle</span>")
+				to_chat(usr, "<span class='admin'>There is no arrivals shuttle</span>", confidential = TRUE)
 		if("showailaws")
 			if(!check_rights(R_ADMIN))
 				return
@@ -417,10 +417,10 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 				A.objectives += new_objective
 				log_objective(A, new_objective.explanation_text, usr)
 				var/obj_count = 1
-				to_chat(T.owner, "<span class='alertsyndie'>Your contractors have updated your objectives.</span>")
+				to_chat(T.owner, "<span class='alertsyndie'>Your contractors have updated your objectives.</span>", confidential = TRUE)
 				for(var/objective in A.objectives)
 					var/datum/objective/O = objective
-					to_chat(T.owner, "<B>Objective #[obj_count]</B>: [O.explanation_text]")
+					to_chat(T.owner, "<B>Objective #[obj_count]</B>: [O.explanation_text]", confidential = TRUE)
 					obj_count++
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] used mass antag secret. Objective is: [objective_explanation]</span>")
 			log_admin("[key_name(usr)] used mass antag secret. Objective is: [objective_explanation]")
@@ -483,7 +483,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 						if(droptype == "Yes")
 							ADD_TRAIT(I, TRAIT_NODROP, ADMIN_TRAIT)
 				else
-					to_chat(H, "You're not kawaii enough for this.")
+					to_chat(H, "You're not kawaii enough for this.", confidential = TRUE)
 
 		if("whiteout")
 			if(!check_rights(R_FUN))
@@ -516,7 +516,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Mass Braindamage"))
 			for(var/mob/living/carbon/human/H in GLOB.player_list)
-				to_chat(H, "<span class='boldannounce'>You suddenly feel stupid.</span>")
+				to_chat(H, "<span class='boldannounce'>You suddenly feel stupid.</span>", confidential = TRUE)
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60, 80)
 			message_admins("[key_name_admin(usr)] gave everybody intellectual disability")
 
@@ -526,7 +526,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Mass Australian"))
 			var/s = sound('sound/misc/downunder.ogg')
 			for(var/mob/living/carbon/human/H in GLOB.player_list)
-				to_chat(H, "<span class='boldannounce'>You suddenly feel crikey.</span>")
+				to_chat(H, "<span class='boldannounce'>You suddenly feel crikey.</span>", confidential = TRUE)
 				var/matrix/M = H.transform
 				H.transform = M.Scale(1,-1) //flip em upside down
 				SEND_SOUND(H, s)
@@ -775,7 +775,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 				var/list/prefs = settings["mainsettings"]
 
 				if (prefs["amount"]["value"] < 1 || prefs["portalnum"]["value"] < 1)
-					to_chat(usr, "Number of portals and mobs to spawn must be at least 1")
+					to_chat(usr, "Number of portals and mobs to spawn must be at least 1", confidential = TRUE)
 					return
 
 				var/mob/pathToSpawn = prefs["typepath"]["value"]
@@ -783,7 +783,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 					pathToSpawn = text2path(pathToSpawn)
 
 				if (!ispath(pathToSpawn))
-					to_chat(usr, "Invalid path [pathToSpawn]")
+					to_chat(usr, "Invalid path [pathToSpawn]", confidential = TRUE)
 					return
 
 				var/list/candidates = list()
@@ -826,7 +826,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 	if (usr)
 		log_admin("[key_name(usr)] used secret [action]")
 		if (ok)
-			to_chat(world, text("<B>A secret has been activated by []!</B>", usr.key))
+			to_chat(world, text("<B>A secret has been activated by []!</B>", usr.key), confidential = TRUE)
 
 /proc/portalAnnounce(announcement, playlightning)
 	set waitfor = 0

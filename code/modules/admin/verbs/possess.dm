@@ -3,7 +3,7 @@
 	set category = "Object"
 
 	if((O.obj_flags & DANGEROUS_POSSESSION) && CONFIG_GET(flag/forbid_singulo_possession))
-		to_chat(usr, "[O] is too powerful for you to possess.")
+		to_chat(usr, "[O] is too powerful for you to possess.", confidential = TRUE)
 		return
 
 	var/turf/T = get_turf(O)
@@ -29,9 +29,9 @@
 	set name = "Release Obj"
 	set category = "Object"
 	//usr.loc = get_turf(usr)
-	
+
 	if(isnull(usr.control_object))
-		to_chat(usr, "<span class='warning'>You do not seem to be possessing an object!</span>")
+		to_chat(usr, "<span class='warning'>You do not seem to be possessing an object!</span>", confidential = TRUE)
 		return
 
 	if(usr.control_object && usr.name_archive) //if you have a name archived and if you are actually relassing an object

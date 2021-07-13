@@ -117,13 +117,13 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	set name = "Battle Royale"
 	set category = "Fun"
 	if(!check_rights(R_FUN))
-		to_chat(src, "<span class='warning'>You do not have permission to do that!</span>")
+		to_chat(src, "<span class='warning'>You do not have permission to do that!</span>", confidential = TRUE)
 		return
 	if(GLOB.battle_royale)
-		to_chat(src, "<span class='warning'>A game is already in progress!</span>")
+		to_chat(src, "<span class='warning'>A game is already in progress!</span>", confidential = TRUE)
 		return
 	if(alert(src, "ARE YOU SURE YOU ARE SURE YOU WANT TO START BATTLE ROYALE?",,"Yes","No") != "Yes")
-		to_chat(src, "<span class='notice'>oh.. ok then.. I see how it is.. :(</span>")
+		to_chat(src, "<span class='notice'>oh.. ok then.. I see how it is.. :(</span>", confidential = TRUE)
 		return
 	log_admin("[key_name(usr)] HAS TRIGGERED BATTLE ROYALE")
 	message_admins("[key_name(usr)] HAS TRIGGERED BATTLE ROYALE")
@@ -139,10 +139,10 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	set name = "Battle Royale - Change wall speed"
 	set category = "Event"
 	if(!check_rights(R_FUN))
-		to_chat(src, "<span class='warning'>You do not have permission to do that!</span>")
+		to_chat(src, "<span class='warning'>You do not have permission to do that!</span>", confidential = TRUE)
 		return
 	if(!GLOB.battle_royale)
-		to_chat(src, "<span class='warning'>No game is in progress.</span>")
+		to_chat(src, "<span class='warning'>No game is in progress.</span>", confidential = TRUE)
 		return
 	var/new_speed = input(src, "New wall delay (seconds)") as num
 	if(new_speed > 0)
@@ -154,10 +154,10 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	set name = "Battle Royale - Variable Edit"
 	set category = "Event"
 	if(!check_rights(R_FUN))
-		to_chat(src, "<span class='warning'>You do not have permission to do that!</span>")
+		to_chat(src, "<span class='warning'>You do not have permission to do that!</span>", confidential = TRUE)
 		return
 	if(!GLOB.battle_royale)
-		to_chat(src, "<span class='warning'>No game is in progress.</span>")
+		to_chat(src, "<span class='warning'>No game is in progress.</span>", confidential = TRUE)
 		return
 	debug_variables(GLOB.battle_royale)
 
@@ -165,10 +165,10 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	set name = "Battle Royale - Spawn Loot Drop (Minor)"
 	set category = "Event"
 	if(!check_rights(R_FUN))
-		to_chat(src, "<span class='warning'>You do not have permission to do that!</span>")
+		to_chat(src, "<span class='warning'>You do not have permission to do that!</span>", confidential = TRUE)
 		return
 	if(!GLOB.battle_royale)
-		to_chat(src, "<span class='warning'>No game is in progress.</span>")
+		to_chat(src, "<span class='warning'>No game is in progress.</span>", confidential = TRUE)
 		return
 	GLOB.battle_royale.generate_good_drop()
 	log_admin("[key_name(usr)] generated a battle royale drop.")
@@ -178,10 +178,10 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	set name = "Battle Royale - Spawn Loot Drop (Major)"
 	set category = "Event"
 	if(!check_rights(R_FUN))
-		to_chat(src, "<span class='warning'>You do not have permission to do that!</span>")
+		to_chat(src, "<span class='warning'>You do not have permission to do that!</span>", confidential = TRUE)
 		return
 	if(!GLOB.battle_royale)
-		to_chat(src, "<span class='warning'>No game is in progress.</span>")
+		to_chat(src, "<span class='warning'>No game is in progress.</span>", confidential = TRUE)
 		return
 	GLOB.battle_royale.generate_endgame_drop()
 	log_admin("[key_name(usr)] generated a good battle royale drop.")
@@ -224,10 +224,10 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 			continue
 		var/turf/T = get_turf(M)
 		if(T.x > 128 + radius || T.x < 128 - radius || T.y > 128 + radius || T.y < 128 - radius)
-			to_chat(M, "<span class='warning'>You have left the zone!</span>")
+			to_chat(M, "<span class='warning'>You have left the zone!</span>", confidential = TRUE)
 			M.gib()
 		if(!SSmapping.level_trait(T.z, ZTRAIT_STATION) && !SSmapping.level_trait(T.z, ZTRAIT_RESERVED))
-			to_chat(M, "<span class='warning'>You have left the z-level!</span>")
+			to_chat(M, "<span class='warning'>You have left the z-level!</span>", confidential = TRUE)
 			M.gib()
 		living_victims++
 		winner = M
