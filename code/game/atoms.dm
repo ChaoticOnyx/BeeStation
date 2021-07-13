@@ -95,6 +95,8 @@
 	/// Last appearance of the atom for demo saving purposes
 	var/image/demo_last_appearance
 
+	///AI controller that controls this atom. type on init, then turned into an instance during runtime
+	var/datum/ai_controller/ai_controller
 
 /**
   * Called when an atom is created in byond (built in engine proc)
