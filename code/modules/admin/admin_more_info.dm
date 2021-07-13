@@ -1,6 +1,6 @@
 /datum/admins/proc/admin_more_info(mob/M)
 	if(!ismob(M))
-		to_chat(usr, "This can only be used on instances of type /mob.")
+		to_chat(usr, "This can only be used on instances of type /mob.", confidential = TRUE)
 		return
 
 	var/location_description = ""
@@ -47,9 +47,9 @@
 		else
 			gender_description = "<font color='red'><b>[M.gender]</b></font>"
 
-	to_chat(src.owner, "<b>Info about [M.name]:</b> ")
-	to_chat(src.owner, "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]")
-	to_chat(src.owner, "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;")
-	to_chat(src.owner, "Location = [location_description];")
-	to_chat(src.owner, "[special_role_description]")
-	to_chat(src.owner, ADMIN_FULLMONTY_NONAME(M))
+	to_chat(src.owner, "<b>Info about [M.name]:</b> ", confidential = TRUE)
+	to_chat(src.owner, "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]", confidential = TRUE)
+	to_chat(src.owner, "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;", confidential = TRUE)
+	to_chat(src.owner, "Location = [location_description];", confidential = TRUE)
+	to_chat(src.owner, "[special_role_description]", confidential = TRUE)
+	to_chat(src.owner, ADMIN_FULLMONTY_NONAME(M), confidential = TRUE)

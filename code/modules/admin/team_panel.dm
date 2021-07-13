@@ -131,7 +131,7 @@
 				A.objectives.Insert(objective_pos, new_objective)
 				break
 		if(!objective_pos)
-			to_chat(user, "<span class='warning'>It seems like [M.current] does not have this objective despite being part of the team. If this is not intentional, consider removing and re-adding the objective.</span>")
+			to_chat(user, "<span class='warning'>It seems like [M.current] does not have this objective despite being part of the team. If this is not intentional, consider removing and re-adding the objective.</span>", confidential = TRUE)
 
 	message_admins("[key_name_admin(usr)] edited team [src.name]'s objective to [new_objective.explanation_text]")
 	log_admin("[key_name(usr)] edited team [src.name]'s objective to [new_objective.explanation_text]")
@@ -169,7 +169,7 @@
 //After a bit of consideration i block team deletion if there's any members left until unified objective handling is in.
 /datum/team/proc/admin_delete(mob/user)
 	if(members.len > 0)
-		to_chat(user,"Team has members left, remove them first and make sure you know what you're doing.")
+		to_chat(user,"Team has members left, remove them first and make sure you know what you're doing.", confidential = TRUE)
 		return
 	qdel(src)
 
