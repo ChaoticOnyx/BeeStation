@@ -92,6 +92,9 @@
 	///Mobs that are currently do_after'ing this atom, to be cleared from on Destroy()
 	var/list/targeted_by
 
+	/// Last appearance of the atom for demo saving purposes
+	var/image/demo_last_appearance
+
 	///AI controller that controls this atom. type on init, then turned into an instance during runtime
 	var/datum/ai_controller/ai_controller
 
