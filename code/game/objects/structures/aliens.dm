@@ -81,7 +81,7 @@
 	resintype = "wall"
 	canSmoothWith = list(/obj/structure/alien/resin/wall, /obj/structure/alien/resin/membrane)
 
-/obj/structure/alien/resin/wall/BlockSuperconductivity()
+/obj/structure/alien/resin/wall/BlockThermalConductivity()
 	return 1
 
 /obj/structure/alien/resin/membrane
@@ -316,7 +316,7 @@
 			return
 
 		var/mob/living/carbon/C = AM
-		if(C.is_conscious() && C.getorgan(/obj/item/organ/body_egg/alien_embryo))
+		if(C.stat == CONSCIOUS && C.getorgan(/obj/item/organ/body_egg/alien_embryo))
 			return
 
 		Burst(kill=FALSE)
