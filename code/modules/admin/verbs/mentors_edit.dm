@@ -8,24 +8,24 @@ its mentors, not actual dangerous perms
 	set name = "Mentor Panel"
 	set desc = "Edit mentors"
 
-    if(!check_rights(R_PERMISSIONS))
-        return
-    if(!SSdbcore.IsConnected())
-        to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential = TRUE)
-        return
+	if(!check_rights(R_PERMISSIONS))
+		return
+	if(!SSdbcore.IsConnected())
+		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential = TRUE)
+		return
 
 	var/html = "<h1>Mentor Panel</h1>\n"
 	html += "<A HREF='?mentor_edit=add'>Add a Mentor</A>\n"
 	html += "<table style='width: 100%' border=1>\n"
 	html += "<tr><th>Mentor Ckey</th><th>Remove</th></tr>\n"
 
-    var/datum/DBQuery/query_mentor_list = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("mentor")]")
-    if(!query_mentor_list.warn_execute())
-        to_chat(src, "<span class='danger'>Unable to pull the mentor list from the database.</span>", confidential = TRUE)
-        qdel(query_mentor_list)
-    query_mentor_list.Execute()
-    while(query_mentor_list.NextRow())
-        html += "<tr><td>[query_mentor_list.item[1]]</td><td><A HREF='?mentor_edit=remove;mentor_ckey=[query_mentor_list.item[1]]'>X</A></td></tr>\n"
+	var/datum/DBQuery/query_mentor_list = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("mentor")]")
+	if(!query_mentor_list.warn_execute())
+		to_chat(src, "<span class='danger'>Unable to pull the mentor list from the database.</span>", confidential = TRUE)
+		qdel(query_mentor_list)
+	query_mentor_list.Execute()
+	while(query_mentor_list.NextRow())
+		html += "<tr><td>[query_mentor_list.item[1]]</td><td><A HREF='?mentor_edit=remove;mentor_ckey=[query_mentor_list.item[1]]'>X</A></td></tr>\n"
 
 	html += "</table>"
 
@@ -33,15 +33,15 @@ its mentors, not actual dangerous perms
 	qdel(query_mentor_list)
 
 /client/Topic(href, href_list)
-    ..()
-    if(href_list["mentor_edit"])
-        if(!check_rights(R_PERMISSIONS))
-            message_admins("[key_name_admin(usr)] attempted to edit mentor permissions without sufficient rights.")
-            log_admin("[key_name(usr)] attempted to edit mentor permissions without sufficient rights.")
-            return
-        if(IsAdminAdvancedProcCall())
-            to_chat(usr, "<span class='admin prefix'>Mentor Edit blocked: Advanced ProcCall detected.</span>", confidential = TRUE)
-            return
+	..()
+	if(href_list["mentor_edit"])
+		if(!check_rights(R_PERMISSIONS))
+			message_admins("[key_name_admin(usr)] attempted to edit mentor permissions without sufficient rights.")
+			log_admin("[key_name(usr)] attempted to edit mentor permissions without sufficient rights.")
+			return
+		if(IsAdminAdvancedProcCall())
+			to_chat(usr, "<span class='admin prefix'>Mentor Edit blocked: Advanced ProcCall detected.</span>", confidential = TRUE)
+			return
 
 		if(href_list["mentor_edit"] == "add")
 			var/newguy = input("Enter the key of the mentor you wish to add.", "")
