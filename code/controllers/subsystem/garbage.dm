@@ -211,11 +211,12 @@ SUBSYSTEM_DEF(garbage)
 		return
 	var/gctime = world.time
 	var/refid = "\ref[D]"
-
+	SSdemo.mark_destroyed(D)
 	D.gc_destroyed = gctime
 	var/list/queue = queues[level]
 
 	queue[++queue.len] = list(gctime, refid) // not += for byond reasons
+
 
 //this is mainly to separate things profile wise.
 /datum/controller/subsystem/garbage/proc/HardDelete(datum/D)

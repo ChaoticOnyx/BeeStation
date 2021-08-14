@@ -47,6 +47,7 @@
 		icon_state = "closed"
 	else
 		icon_state = "open"
+	SSdemo.mark_dirty(src)
 
 /obj/machinery/door/password/do_animate(animation)
 	switch(animation)

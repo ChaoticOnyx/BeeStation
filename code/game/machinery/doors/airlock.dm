@@ -545,7 +545,6 @@
 		if(AIRLOCK_DENY, AIRLOCK_OPENING, AIRLOCK_CLOSING, AIRLOCK_EMAG)
 			icon_state = "nonexistenticonstate" //MADNESS
 	set_airlock_overlays(state)
-	SSdemo.mark_dirty(src)
 
 /obj/machinery/door/airlock/proc/set_side_overlays(obj/effect/overlay/airlock_part/base, show_lights = FALSE)
 	var/side = base.side_id
@@ -608,6 +607,9 @@
 					part.pixel_y = 0
 					animate(part, pixel_x = 0, pixel_y = 0, time = part.move_start_time)
 					animate(pixel_x = part.open_px, pixel_y = part.open_py, time = part.move_end_time - part.move_start_time)
+
+		src.add_overlay(part)
+		SSdemo.mark_dirty(src)
 
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 
