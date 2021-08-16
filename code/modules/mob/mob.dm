@@ -670,7 +670,7 @@
 			to_chat(src, "<span class='boldnotice'>Your non-dead body prevents you from respawning.</span>")
 		return FALSE
 	var/timedifference = world.time - timeofdeath
-	to_chat(client, "Respawn_time is [respawn_time], timeofdeath is [timeofdeath], timedif is [timedifference].")
+
 	if(!client.holder && respawn_time && timeofdeath && timedifference < respawn_time MINUTES)
 		var/timedifference_text = time2text(respawn_time MINUTES - timedifference,"mm:ss")
 		to_chat(src, "<span class='boldnotice'>You must have been dead for [respawn_time] minute\s to respawn. You have [timedifference_text] left.</span>")
