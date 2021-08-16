@@ -332,6 +332,40 @@
 	admin_ticket_log(new_xeno, msg)
 	return 1
 
+/client/proc/allow_character_respawn()
+	set category = "Adminbus"
+	set name = "Allow player to respawn"
+	set desc = "Allows the player bypass the wait to respawn or allow them to re-enter their corpse."
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/input = ckey(input(src, "Please specify which key will be able to respawn.", "Key", ""))
+	if(!input)
+		return
+
+	var/mob/dead/observer/G
+	for(var/mob/dead/observer/Gh in GLOB.player_list)
+		if(Gh.ckey == input)
+			G = Gh
+			break
+
+	if(!istype(G))
+		to_chat(src, "<span class='warning'>[input] no longer has an associated ghost.</span>")
+		return
+
+	var/response = alert(src, "Are you sure you wish to allow [input] to respawn?","Allow respawn","No","Yes")
+	if(response == "No")
+		return
+
+	G.timeofdeath = -19999			/* time of death is checked in /mob/verb/abandon_mob() which is the Respawn verb.
+									   timeofdeath is used for bodies on autopsy but since we're messing with a ghost I'm pretty sure
+									   there won't be an autopsy.
+									*/
+
+	G.show_message("<span class=notice><b>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</b></span>", 1)
+	message_admins("has allowed [key_name(G)] to bypass the [CONFIG_GET(number/respawn_delay)] minute respawn limit.")
+
 /*
 If a guy was gibbed and you want to revive him, this is a good way to do so.
 Works kind of like entering the game with a new character. Character receives a new mind if they didn't have one.
