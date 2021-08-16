@@ -661,6 +661,23 @@
   *
   * Only works if flag/norespawn is allowed in config
   */
+
+/mob/proc/MayRespawn(feedback = FALSE, respawn_time = 0)
+	if(!client)
+		return FALSE
+	if(mind?.current.stat != DEAD)
+		if(feedback)
+			to_chat(src, "<span class='boldnotice'>Your non-dead body prevents you from respawning.</span>")
+		return FALSE
+	var/timedifference = world.time - timeofdeath
+	to_chat(client, "Respawn_time is [respawn_time], timeofdeath is [timeofdeath], timedif is [timedifference].")
+	if(!client.holder && respawn_time && timeofdeath && timedifference < respawn_time MINUTES)
+		var/timedifference_text = time2text(respawn_time MINUTES - timedifference,"mm:ss")
+		to_chat(src, "<span class='boldnotice'>You must have been dead for [respawn_time] minute\s to respawn. You have [timedifference_text] left.</span>")
+		return FALSE
+
+	return TRUE
+
 /mob/verb/abandon_mob()
 	set name = "Respawn"
 	set category = "OOC"
@@ -669,6 +686,8 @@
 		return
 	if ((stat != DEAD || !( SSticker )))
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
+		return
+	if(!MayRespawn(TRUE, CONFIG_GET(number/respawn_delay)))
 		return
 
 	log_game("[key_name(usr)] used abandon mob.")
