@@ -11,7 +11,7 @@ its mentors, not actual dangerous perms
 	if(!check_rights(R_PERMISSIONS))
 		return
 	if(!SSdbcore.IsConnected())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential = TRUE)
 		return
 
 	var/html = "<h1>Mentor Panel</h1>\n"
@@ -21,7 +21,7 @@ its mentors, not actual dangerous perms
 
 	var/datum/DBQuery/query_mentor_list = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("mentor")]")
 	if(!query_mentor_list.warn_execute())
-		to_chat(src, "<span class='danger'>Unable to pull the mentor list from the database.</span>")
+		to_chat(src, "<span class='danger'>Unable to pull the mentor list from the database.</span>", confidential = TRUE)
 		qdel(query_mentor_list)
 	query_mentor_list.Execute()
 	while(query_mentor_list.NextRow())
@@ -40,7 +40,7 @@ its mentors, not actual dangerous perms
 			log_admin("[key_name(usr)] attempted to edit mentor permissions without sufficient rights.")
 			return
 		if(IsAdminAdvancedProcCall())
-			to_chat(usr, "<span class='admin prefix'>Mentor Edit blocked: Advanced ProcCall detected.</span>")
+			to_chat(usr, "<span class='admin prefix'>Mentor Edit blocked: Advanced ProcCall detected.</span>", confidential = TRUE)
 			return
 
 		if(href_list["mentor_edit"] == "add")

@@ -92,6 +92,9 @@
 	///Mobs that are currently do_after'ing this atom, to be cleared from on Destroy()
 	var/list/targeted_by
 
+	/// Last appearance of the atom for demo saving purposes
+	var/image/demo_last_appearance
+
 	///AI controller that controls this atom. type on init, then turned into an instance during runtime
 	var/datum/ai_controller/ai_controller
 
@@ -119,6 +122,7 @@
 		if(SSatoms.InitAtom(src, FALSE, args))
 			//we were deleted
 			return
+	SSdemo.mark_new(src)
 
 /**
   * The primary method that objects are setup in SS13 with
@@ -547,6 +551,8 @@
 			managed_overlays = new_overlays
 			add_overlay(new_overlays)
 
+	SSdemo.mark_dirty(src)
+
 /// Updates the icon state of the atom
 /atom/proc/update_icon_state()
 
@@ -858,6 +864,7 @@
 /atom/proc/setDir(newdir)
 	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
 	dir = newdir
+	SSdemo.mark_dirty(src)
 
 ///Handle melee attack by a mech
 /atom/proc/mech_melee_attack(obj/mecha/M)

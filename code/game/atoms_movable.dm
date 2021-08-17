@@ -41,6 +41,8 @@
 
 	var/zfalling = FALSE
 
+	///Last location of the atom for demo recording purposes
+	var/atom/demo_last_loc
 	/// Either FALSE, [EMISSIVE_BLOCK_GENERIC], or [EMISSIVE_BLOCK_UNIQUE]
 	var/blocks_emissive = FALSE
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
@@ -403,7 +405,7 @@
 		newtonian_move(Dir)
 	if (length(client_mobs_in_contents))
 		update_parallax_contents()
-
+	SSdemo.mark_dirty(src)
 	return TRUE
 
 /atom/movable/Destroy(force)

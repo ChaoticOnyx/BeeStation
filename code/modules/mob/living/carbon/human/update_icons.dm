@@ -94,6 +94,7 @@ There are several things that need to be remembered:
 		//damage overlays
 		update_damage_overlays()
 
+	SSdemo.mark_dirty(src)
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
 
@@ -126,10 +127,12 @@ There are several things that need to be remembered:
 
 		var/mutable_appearance/uniform_overlay
 
-		if(dna && dna.species.sexes)
+		//That's is not even needed becouse it does NOTHING
+		//TODO: purge it out or understand for what this thing needed
+		/*if(dna && dna.species.sexes)
 			var/G = (gender == FEMALE) ? "f" : "m"
 			if(G == "f" && U.fitted != NO_FEMALE_UNIFORM)
-				uniform_overlay = U.build_worn_icon(state = "[t_color]", default_layer = UNIFORM_LAYER, default_icon_file = 'icons/mob/uniform.dmi', isinhands = FALSE, femaleuniform = U.fitted)
+				uniform_overlay = U.build_worn_icon(state = "[t_color]", default_layer = UNIFORM_LAYER, default_icon_file = 'icons/mob/uniform.dmi', isinhands = FALSE, femaleuniform = U.fitted)*/
 
 		if(!uniform_overlay)
 			uniform_overlay = U.build_worn_icon(state = "[t_color]", default_layer = UNIFORM_LAYER, default_icon_file = 'icons/mob/uniform.dmi', isinhands = FALSE)

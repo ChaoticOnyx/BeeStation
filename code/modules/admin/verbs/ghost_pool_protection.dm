@@ -73,7 +73,7 @@
 		if("no_roles")
 			new_role_flags = NONE
 		if("apply_settings")
-			to_chat(usr, "Settings Applied!")
+			to_chat(usr, "Settings Applied!", confidential = TRUE)
 			var/msg
 			switch(new_role_flags)
 				if(ALL)

@@ -608,6 +608,9 @@
 					animate(part, pixel_x = 0, pixel_y = 0, time = part.move_start_time)
 					animate(pixel_x = part.open_px, pixel_y = part.open_py, time = part.move_end_time - part.move_start_time)
 
+		src.add_overlay(part)
+		SSdemo.mark_dirty(src)
+
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 
 	SSvis_overlays.add_vis_overlay(src, overlays_file, "frame", FLOAT_LAYER, FLOAT_PLANE, dir)

@@ -35,7 +35,7 @@
 			log_text = "Subtracted [num2text(msg)]"
 			C.inc_antag_token_count(-msg)
 		else
-			to_chat(src, "Invalid operation for antag token modification: [operation] by user [key_name(usr)]")
+			to_chat(src, "Invalid operation for antag token modification: [operation] by user [key_name(usr)]", confidential = TRUE)
 			return
 
 

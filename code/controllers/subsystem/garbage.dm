@@ -130,7 +130,7 @@ SUBSYSTEM_DEF(garbage)
 		if(GCd_at_time > cut_off_time)
 			break // Everything else is newer, skip them
 		count++
-		
+
 		var/refID = L[2]
 		var/datum/D
 		D = locate(refID)
@@ -211,11 +211,12 @@ SUBSYSTEM_DEF(garbage)
 		return
 	var/gctime = world.time
 	var/refid = "\ref[D]"
-
+	SSdemo.mark_destroyed(D)
 	D.gc_destroyed = gctime
 	var/list/queue = queues[level]
-	
+
 	queue[++queue.len] = list(gctime, refid) // not += for byond reasons
+
 
 //this is mainly to separate things profile wise.
 /datum/controller/subsystem/garbage/proc/HardDelete(datum/D)
@@ -307,6 +308,7 @@ SUBSYSTEM_DEF(garbage)
 				SSgarbage.Queue(D)
 			if (QDEL_HINT_IWILLGC)
 				D.gc_destroyed = world.time
+				SSdemo.mark_destroyed(D)
 				return
 			if (QDEL_HINT_LETMELIVE)	//qdel should let the object live after calling destory.
 				if(!force)
@@ -326,6 +328,7 @@ SUBSYSTEM_DEF(garbage)
 
 				SSgarbage.Queue(D)
 			if (QDEL_HINT_HARDDEL)		//qdel should assume this object won't gc, and queue a hard delete
+				SSdemo.mark_destroyed(D)
 				SSgarbage.Queue(D, GC_QUEUE_HARDDELETE)
 			if (QDEL_HINT_HARDDEL_NOW)	//qdel should assume this object won't gc, and hard del it post haste.
 				SSgarbage.HardDelete(D)
