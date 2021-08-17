@@ -37,6 +37,11 @@
 	integer = FALSE
 	min_val = 0
 
+/datum/config_entry/number/respawn_delay
+	config_entry_value = 30
+	integer = FALSE
+	min_val = 0
+
 /datum/config_entry/flag/hub	// if the game appears on the hub or not
 
 /datum/config_entry/flag/log_ooc	// log OOC channel

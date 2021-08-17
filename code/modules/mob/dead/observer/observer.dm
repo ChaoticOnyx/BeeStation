@@ -83,6 +83,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(ismob(body))
 		T = get_turf(body)				//Where is the body located?
 
+		timeofdeath = body.timeofdeath
+
 		gender = body.gender
 		if(body.mind && body.mind.name)
 			if(body.mind.ghostname)

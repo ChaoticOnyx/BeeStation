@@ -200,7 +200,11 @@
 
 	var/this_is_like_playing_right = "Yes"
 	if(!force_observe)
-		this_is_like_playing_right = alert(src,"Are you sure you wish to observe? You will not be able to play this round!","Player Setup","Yes","No")
+		var/warning_message = "You will not be able to play this round!"
+		var/respawn_delay = CONFIG_GET(number/respawn_delay)
+		if(respawn_delay)
+			warning_message = "You will have to wait [respawn_delay] minute\s before being able to respawn!"
+		this_is_like_playing_right = alert(src,"Are you sure you wish to observe? [warning_message]","Player Setup","Yes","No")
 
 	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Yes")
 		ready = PLAYER_NOT_READY
@@ -223,6 +227,7 @@
 	observer.key = key
 	observer.client = client
 	observer.set_ghost_appearance()
+	observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 	if(observer.client && observer.client.prefs)
 		observer.real_name = observer.client.prefs.real_name
 		observer.name = observer.real_name
