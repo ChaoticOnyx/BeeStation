@@ -35,7 +35,6 @@
 /area/shuttle/escape/arena)
 "l" = (
 /obj/structure/closet/crate/necropolis/tendril,
-/obj/item/skeleton_key,
 /turf/open/indestructible/necropolis/air,
 /area/shuttle/escape/arena)
 "m" = (
