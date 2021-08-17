@@ -1,6 +1,6 @@
 //The chests dropped by mob spawner tendrils. Also contains associated loot.
 
-#define HIEROPHANT_CLUB_CARDINAL_DAMAGE 15
+#define HIEROPHANT_CLUB_CARDINAL_DAMAGE 30
 
 
 /obj/structure/closet/crate/necropolis
@@ -21,39 +21,51 @@
 	. = ..()
 	RegisterSignal(src, COMSIG_PARENT_ATTACKBY, .proc/try_spawn_loot)
 
-/obj/structure/closet/crate/necropolis/tendril/proc/try_spawn_loot(datum/source, obj/item/item, mob/user, params) ///proc that handles key checking and generating loot
+/obj/structure/closet/crate/necropolis/tendril/proc/try_spawn_loot(datum/source, obj/item/item, mob/user, params) ///proc that handles generating loot
 	SIGNAL_HANDLER
 
-	if(!istype(item, /obj/item/skeleton_key) || spawned_loot)
-		return FALSE
-	var/loot = rand(1,25)
+	var/loot = rand(1,30)
 	switch(loot)
-		if(1 to 2)
-			new /obj/item/disk/design_disk/modkit_disc/resonator_blast(src)  //Doubled chance to receive upgrade disk that is directly relevant to mining
-		if(3 to 4)
-			new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
-		if(5 to 6)
-			new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
-		if(7 to 8)
-			new /obj/item/disk/design_disk/modkit_disc/bounty(src)
-		if(9)
-			new /obj/item/borg/upgrade/modkit/lifesteal(src)
-		if(10)
+		if(1)
 			new /obj/item/shared_storage/red(src)
-		if(11)
+		if(2)
+			new /obj/item/clothing/suit/space/hardsuit/cult(src)
+		if(3)
+			new /obj/item/soulstone/anybody(src)
+		if(4)
+			new /obj/item/katana/cursed(src)
+		if(5)
 			new /obj/item/clothing/glasses/godeye(src)
-		if(12)
+		if(6)
 			new /obj/item/reagent_containers/glass/bottle/potion/flight(src)
-		if(13)
-			new /obj/item/pickaxe/diamond(src) //Ashwalkers exist. This is actually a great drop for them
-		if(14)
+		if(7)
+			new /obj/item/pickaxe/diamond(src)
+		if(8)
+			if(prob(50))
+				new /obj/item/disk/design_disk/modkit_disc/resonator_blast(src)
+			else
+				new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
+		if(9)
 			new /obj/item/rod_of_asclepius(src)
-		if(15)
+		if(10)
 			new /obj/item/organ/heart/cursed/wizard(src)
-		if(16)
+		if(11)
 			new /obj/item/ship_in_a_bottle(src)
-		if(17)
+		if(12)
+			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/lavaland/beserker(src)
+		if(13)
 			new /obj/item/jacobs_ladder(src)
+		if(14)
+			new /obj/item/nullrod/scythe/talking(src)
+		if(15)
+			new /obj/item/nullrod/armblade(src)
+		if(16)
+			new /obj/item/guardiancreator/hive(src)
+		if(17)
+			if(prob(50))
+				new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
+			else
+				new /obj/item/disk/design_disk/modkit_disc/bounty(src)
 		if(18)
 			new /obj/item/warp_cube/red(src)
 		if(19)
@@ -63,16 +75,26 @@
 		if(21)
 			new /obj/item/gun/magic/hook(src)
 		if(22)
-			new /obj/item/book_of_babel(src)
+			new /obj/item/voodoo(src)
 		if(23)
-			new /obj/item/clothing/neck/necklace/memento_mori(src)
+			new /obj/item/grenade/clusterbuster/inferno(src)
 		if(24)
-			new /obj/item/reagent_containers/glass/waterbottle/relic(src)
+			new /obj/item/reagent_containers/food/drinks/bottle/holywater/hell(src)
+			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/lavaland/inquisitor(src)
 		if(25)
+			new /obj/item/book/granter/spell/summonitem(src)
+		if(26)
+			new /obj/item/book_of_babel(src)
+		if(27)
+			new /obj/item/borg/upgrade/modkit/lifesteal(src)
+			new /obj/item/bedsheet/cult(src)
+		if(28)
+			new /obj/item/clothing/neck/necklace/memento_mori(src)
+		if(29)
+			new /obj/item/reagent_containers/glass/waterbottle/relic(src)
+		if(30)
 			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
 	spawned_loot = TRUE
-	qdel(item)
-	to_chat(user, "<span class='notice'>You disable the magic lock, revealing the loot.</span>")
 	return TRUE
 
 /obj/structure/closet/crate/necropolis/tendril/can_open(mob/living/user, force = FALSE)
@@ -436,8 +458,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	fire_sound = 'sound/weapons/batonextend.ogg'
 	max_charges = 1
-	item_flags = NEEDS_PERMIT
-	force = 15
+	item_flags = NEEDS_PERMIT | NOBLUDGEON
+	force = 18
 	attack_weight = 2
 
 /obj/item/ammo_casing/magic/hook
@@ -452,11 +474,11 @@
 	icon_state = "hook"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	pass_flags = PASSTABLE
-	damage = 10
+	damage = 25
 	armour_penetration = 100
 	damage_type = BRUTE
 	hitsound = 'sound/effects/splat.ogg'
-	knockdown = 30
+	paralyze = 30
 	var/chain
 
 /obj/item/projectile/hook/fire(setAngle)
@@ -717,6 +739,7 @@
 	var/random_crystal = pick(choices)
 	new random_crystal(src)
 	new /obj/effect/spawner/lootdrop/megafaunaore(src)
+	new /obj/item/staff/storm(src)
 
 //Miniboss Miner
 
@@ -726,12 +749,13 @@
 /obj/structure/closet/crate/necropolis/bdm/PopulateContents()
 	new /obj/item/melee/transforming/cleaving_saw(src)
 	new /obj/effect/spawner/lootdrop/megafaunaore(src)
+	new /obj/item/gun/energy/kinetic_accelerator(src)
 
 /obj/item/melee/transforming/cleaving_saw
 	name = "cleaving saw"
 	desc = "This saw, effective at drawing the blood of beasts, transforms into a long cleaver that makes use of centrifugal force."
-	force = 8
-	force_on = 15 //force when active
+	force = 12
+	force_on = 20 //force when active
 	throwforce = 20
 	throwforce_on = 20
 	icon = 'icons/obj/lavaland/artefacts.dmi'
@@ -749,7 +773,7 @@
 	block_upgrade_walk = 1
 	w_class = WEIGHT_CLASS_BULKY
 	sharpness = IS_SHARP
-	faction_bonus_force = 45
+	faction_bonus_force = 30
 	nemesis_factions = list("mining", "boss")
 	var/transform_cooldown
 	var/swiping = FALSE
@@ -825,10 +849,24 @@
 	name = "dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
-	new /obj/effect/spawner/lootdrop/megafaunaore(src)
-	new /obj/item/dragons_blood(src)
+	var/loot = rand(1,4)
+	switch(loot)
+		if(1)
+			new /obj/item/melee/ghost_sword(src)
+		if(2)
+			new /obj/item/lava_staff(src)
+		if(3)
+			new /obj/item/book/granter/spell/sacredflame(src)
+			new /obj/item/gun/magic/wand/fireball(src)
+		if(4)
+			new /obj/item/dragons_blood(src)
 
-// Ghost Sword - left in for other references and admin shenanigans
+/obj/structure/closet/crate/necropolis/dragon/crusher
+	name = "firey dragon chest"
+
+/obj/structure/closet/crate/necropolis/dragon/crusher/PopulateContents()
+	..()
+	new /obj/item/crusher_trophy/tail_spike(src)
 
 /obj/item/melee/ghost_sword
 	name = "\improper spectral blade"
@@ -938,7 +976,7 @@
 		return
 
 	var/mob/living/carbon/human/H = user
-	var/random = rand(1,3)
+	var/random = rand(1,4)
 
 	switch(random)
 		if(1)
@@ -950,6 +988,11 @@
 			to_chat(user, "<span class='danger'>Your flesh begins to melt! Miraculously, you seem fine otherwise.</span>")
 			H.set_species(/datum/species/skeleton)
 		if(3)
+			to_chat(user, "<span class='danger'>Power courses through you! You can now shift your form at will.</span>")
+			if(user.mind)
+				var/obj/effect/proc_holder/spell/targeted/shapeshift/dragon/D = new
+				user.mind.AddSpell(D)
+		if(4)
 			to_chat(user, "<span class='danger'>You feel like you could walk straight through lava now.</span>")
 			H.weather_immunities |= "lava"
 
@@ -1047,7 +1090,21 @@
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
-	new /obj/effect/spawner/lootdrop/megafaunaore(src)
+	var/loot = rand(1,3)
+	switch(loot)
+		if(1)
+			new /obj/item/mayhem(src)
+		if(2)
+			new /obj/item/blood_contract(src)
+		if(3)
+			new /obj/item/gun/magic/staff/spellblade(src)
+
+/obj/structure/closet/crate/necropolis/bubblegum/crusher
+	name = "bloody bubblegum chest"
+
+/obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
+	..()
+	new /obj/item/crusher_trophy/demon_claws(src)
 
 /obj/item/mayhem
 	name = "mayhem in a bottle"
@@ -1119,11 +1176,17 @@
 	return ..()
 
 /obj/structure/closet/crate/necropolis/colossus/PopulateContents()
+	var/list/choices = subtypesof(/obj/machinery/anomalous_crystal)
+	var/random_crystal = pick(choices)
+	new random_crystal(src)
 	new /obj/item/organ/vocal_cords/colossus(src)
-	new /obj/effect/spawner/lootdrop/megafaunaore(src)
 
+/obj/structure/closet/crate/necropolis/colossus/crusher
+	name = "angelic colossus chest"
 
-//Hierophant
+/obj/structure/closet/crate/necropolis/colossus/crusher/PopulateContents()
+	..()
+	new /obj/item/crusher_trophy/blaster_tubes(src)
 
 /obj/structure/closet/crate/necropolis/hierophant
 	name = "hierophant chest"
@@ -1144,7 +1207,7 @@
 	inhand_y_dimension = 64
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	force = 5 //Melee attacks also invoke a 15 burn damage AoE, for a total of 20 damage
+	force = 15
 	attack_verb = list("clubbed", "beat", "pummeled")
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
 	actions_types = list(/datum/action/item_action/vortex_recall, /datum/action/item_action/toggle_unfriendly_fire)
@@ -1196,7 +1259,7 @@
 			if(isliving(target) && chaser_timer <= world.time) //living and chasers off cooldown? fire one!
 				chaser_timer = world.time + chaser_cooldown
 				var/obj/effect/temp_visual/hierophant/chaser/C = new(get_turf(user), user, target, chaser_speed, friendly_fire_check)
-				C.damage = 15
+				C.damage = 30
 				C.monster_damage_boost = FALSE
 				log_combat(user, target, "fired a chaser at", src)
 			else
@@ -1399,6 +1462,7 @@
 		var/obj/effect/temp_visual/hierophant/blast/B = new(t, user, friendly_fire_check)
 		B.damage = 15 //keeps monster damage boost due to lower damage
 
+
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle
 	name = "puzzling chest"
@@ -1407,19 +1471,12 @@
 	var/loot = rand(1,5)
 	switch(loot)
 		if(1)
-			new /obj/item/disk/design_disk/modkit_disc/resonator_blast(src)
+			new /obj/item/soulstone/anybody(src)
 		if(2)
-			new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
+			new /obj/item/wisp_lantern(src)
 		if(3)
 			new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
 		if(4)
 			new /obj/item/disk/design_disk/modkit_disc/bounty(src)
 		if(5)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
-
-/obj/item/skeleton_key
-	name = "skeleton key"
-	desc = "An artifact usually found in the hands of the natives of lavaland, which NT now holds a monopoly on."
-	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "skeleton_key"
-	w_class = WEIGHT_CLASS_SMALL
