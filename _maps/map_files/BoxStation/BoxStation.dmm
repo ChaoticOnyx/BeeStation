@@ -7716,6 +7716,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "aug" = (
@@ -19769,6 +19772,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bdu" = (
@@ -22720,7 +22726,7 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "blK" = (
-/obj/machinery/component_printer,
+/obj/machinery/modular_fabricator/component_printer,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -59383,6 +59389,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
