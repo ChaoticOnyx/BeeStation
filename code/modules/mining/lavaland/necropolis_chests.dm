@@ -12,18 +12,8 @@
 
 /obj/structure/closet/crate/necropolis/tendril
 	desc = "It's watching you suspiciously."
-	///prevents bust_open to fire
-	integrity_failure = 0
-	/// var to check if it got opened by a key
-	var/spawned_loot = FALSE
 
-/obj/structure/closet/crate/necropolis/tendril/Initialize()
-	. = ..()
-	RegisterSignal(src, COMSIG_PARENT_ATTACKBY, .proc/try_spawn_loot)
-
-/obj/structure/closet/crate/necropolis/tendril/proc/try_spawn_loot(datum/source, obj/item/item, mob/user, params) ///proc that handles generating loot
-	SIGNAL_HANDLER
-
+/obj/structure/closet/crate/necropolis/tendril/PopulateContents()
 	var/loot = rand(1,30)
 	switch(loot)
 		if(1)
@@ -94,19 +84,6 @@
 			new /obj/item/reagent_containers/glass/waterbottle/relic(src)
 		if(30)
 			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
-	spawned_loot = TRUE
-	return TRUE
-
-/obj/structure/closet/crate/necropolis/tendril/can_open(mob/living/user, force = FALSE)
-	if(!spawned_loot)
-		return FALSE
-	return ..()
-
-/obj/structure/closet/crate/necropolis/tendril/examine(mob/user)
-	. = ..()
-	if(!spawned_loot)
-		. += "<span class='notice'>You need a skeleton key to open it.</span>"
-
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
