@@ -678,7 +678,7 @@
 /mob/proc/MayRespawn(feedback = FALSE, respawn_time = 0)
 	if(!client)
 		return FALSE
-	if(mind?.current.stat != DEAD)
+	if(mind && mind.current && mind.current.stat != DEAD)
 		if(feedback)
 			to_chat(src, "<span class='boldnotice'>Your non-dead body prevents you from respawning.</span>")
 		return FALSE
