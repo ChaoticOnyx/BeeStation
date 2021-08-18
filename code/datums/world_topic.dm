@@ -228,8 +228,9 @@
 	data["vote"] = CONFIG_GET(flag/allow_vote_mode)
 	data["ai"] = CONFIG_GET(flag/allow_ai)
 	data["host"] = world.host ? world.host : null
-	data["round_id"] = GLOB.round_id
+	// This is dumb, but spacestation13.com's banners break if player count isn't the 8th field of the reply, so... this has to go here.
 	data["players"] = GLOB.clients.len
+	data["round_id"] = GLOB.round_id
 	data["revision"] = GLOB.revdata.commit
 	data["revision_date"] = GLOB.revdata.date
 	data["hub"] = GLOB.hub_visibility
