@@ -165,6 +165,46 @@ GLOBAL_VAR(restart_counter)
 		response["response"] = "Rate limited"
 		return json_encode(response)
 
+	var/input[] = params2list(T)
+	if (copytext(T,1,7) == "status")
+		var/list/data = list()
+		data["version"] = GLOB.game_version
+		data["mode"] = GLOB.master_mode
+		data["respawn"] = config ? !CONFIG_GET(flag/norespawn) : FALSE
+		data["enter"] = GLOB.enter_allowed
+		data["vote"] = CONFIG_GET(flag/allow_vote_mode)
+		data["ai"] = CONFIG_GET(flag/allow_ai)
+		data["host"] = world.host ? world.host : null
+
+		// This is dumb, but spacestation13.com's banners break if player count isn't the 8th field of the reply, so... this has to go here.
+		data["players"] = GLOB.clients.len
+		data["stationtime"] = station_time_timestamp()
+		data["roundduration"] = SSticker ? round((world.time-SSticker.round_start_time)/10) : 0
+		data["map"] = SSmapping.config?.map_name || "Loading..."
+
+		var/active = 0
+		var/list/players = list()
+		var/list/admins = list()
+		var/legacy = input["status"] != "2"
+		for(var/client/C in GLOB.clients)
+			if(C.holder)
+				if(C.holder.fakekey)
+					continue	//so stealthmins aren't revealed by the hub
+				admins[C.key] = C.holder.rank
+			if(legacy)
+				data["player[players.len]"] = C.key
+			players += C.key
+			if(istype(C.mob, /mob/living))
+				active++
+
+		data["admins"] = admins.len
+		if(!legacy)
+			data["playerlist"] = list2params(players)
+			data["adminlist"] = list2params(admins)
+			data["active_players"] = active
+
+		return list2params(data)
+
 	var/list/params[] = json_decode(rustg_url_decode(T))
 	params["addr"] = addr
 	var/query = params["query"]
