@@ -158,6 +158,7 @@
 #include "code\__HELPERS\radio.dm"
 #include "code\__HELPERS\records.dm"
 #include "code\__HELPERS\roundend.dm"
+#include "code\__HELPERS\russian.dm"
 #include "code\__HELPERS\sanitize_values.dm"
 #include "code\__HELPERS\shell.dm"
 #include "code\__HELPERS\stat_helpers.dm"
