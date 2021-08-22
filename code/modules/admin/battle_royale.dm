@@ -1,4 +1,5 @@
 //Global lists so they can be editted by admins
+/obj/item/storage/box/medsprays
 GLOBAL_LIST_INIT(battle_royale_basic_loot, list(
 		/obj/item/soap,
 		/obj/item/kitchen/knife,
@@ -13,7 +14,7 @@ GLOBAL_LIST_INIT(battle_royale_basic_loot, list(
 		/obj/item/storage/box/gorillacubes,
 		/obj/item/storage/box/teargas,
 		/obj/item/storage/box/security/radio,
-		/obj/item/storage/box/medsprays,
+		/obj/item/storage/box/med_synthflesh,
 		/obj/item/storage/toolbox/syndicate,
 		/obj/item/storage/box/syndie_kit/bee_grenades,
 		/obj/item/storage/box/syndie_kit/centcom_costume,
@@ -72,7 +73,6 @@ GLOBAL_LIST_INIT(battle_royale_basic_loot, list(
 		/obj/item/gun/energy/ionrifle,
 		/obj/item/organ/regenerative_core/battle_royale
 	))
-
 GLOBAL_LIST_INIT(battle_royale_good_loot, list(
 		/obj/item/hand_tele,
 		/obj/item/gun/ballistic/bow/clockbolt,
@@ -133,7 +133,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 			admin.tgui_panel.clear_br_popup()
 
 	GLOB.battle_royale = new()
-	if(alert(src, "ARE YOU SURE YOU THAT PEOPLE WILL SPAWN RANDOMLY?",,"Yes","No") != "No")
+	if(alert(src, "ARE YOU SURE YOU THAT PEOPLE WILL SPAWN RANDOMLY?",,"Yes","No") != "Yes")
 		GLOB.battle_royale.random_spawn = FALSE
 	GLOB.battle_royale.start()
 
@@ -344,8 +344,6 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 			H.underwear_color = H.client.prefs.underwear_color
 			H.undershirt = H.client.prefs.undershirt
 			H.socks = H.client.prefs.socks
-			H.backbag = H.client.prefs.backbag
-			H.jumpsuit_style = H.client.prefs.jumpsuit_style
 			H.hair_style = H.client.prefs.hair_style
 			H.hair_color = H.client.prefs.hair_color
 			H.facial_hair_style = H.client.prefs.facial_hair_style

@@ -278,6 +278,14 @@
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/medspray( src )
 
+/obj/item/storage/box/med_synthflesh
+	name = "box of medical sprayers"
+	desc = "A box full of medical sprayers, with unscrewable caps and precision spray heads."
+
+/obj/item/storage/box/medsprays/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/medspray/synthflesh(src)
+
 /obj/item/storage/box/injectors
 	name = "box of DNA injectors"
 	desc = "This box contains injectors, it seems."
@@ -1261,4 +1269,4 @@
 	for(var/i in 1 to 4)
 		new /obj/item/clothing/accessory/armband/deputy(src)
 		new /obj/item/card/id/pass/deputy(src)
-		
+
