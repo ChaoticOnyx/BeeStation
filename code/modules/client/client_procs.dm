@@ -191,6 +191,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
+	//Admin Authorisation
+	holder = GLOB.admin_datums[ckey]
+	if(holder)
+		to_chat(src, "<font color='red'> Клиент оказался педалькой. Пропускаем проверку.</font>")
+		return 1
 	if(filelength > UPLOAD_LIMIT)
 		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>")
 		return 0
