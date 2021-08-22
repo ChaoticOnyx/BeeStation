@@ -125,7 +125,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	if(alert(src, "ARE YOU SURE YOU ARE SURE YOU WANT TO START BATTLE ROYALE?",,"Yes","No") != "Yes")
 		to_chat(src, "<span class='notice'>oh.. ok then.. I see how it is.. :(</span>", confidential = TRUE)
 		return
-	if(alert(src, "ARE YOU SURE YOU THAT PEOPLE WILL SPAWN RANDOMLY?",,"Yes","No") != "YES")
+	if(alert(src, "ARE YOU SURE YOU THAT PEOPLE WILL SPAWN RANDOMLY?",,"Yes","No") != "Yes")
 		GLOB.battle_royale.random_spawn = FALSE
 	log_admin("[key_name(usr)] HAS TRIGGERED BATTLE ROYALE")
 	message_admins("[key_name(usr)] HAS TRIGGERED BATTLE ROYALE")
