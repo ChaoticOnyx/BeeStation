@@ -125,8 +125,6 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	if(alert(src, "ARE YOU SURE YOU ARE SURE YOU WANT TO START BATTLE ROYALE?",,"Yes","No") != "Yes")
 		to_chat(src, "<span class='notice'>oh.. ok then.. I see how it is.. :(</span>", confidential = TRUE)
 		return
-	if(alert(src, "ARE YOU SURE YOU THAT PEOPLE WILL SPAWN RANDOMLY?",,"Yes","No") != "Yes")
-		GLOB.battle_royale.random_spawn = FALSE
 	log_admin("[key_name(usr)] HAS TRIGGERED BATTLE ROYALE")
 	message_admins("[key_name(usr)] HAS TRIGGERED BATTLE ROYALE")
 
@@ -135,6 +133,8 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 			admin.tgui_panel.clear_br_popup()
 
 	GLOB.battle_royale = new()
+	if(alert(src, "ARE YOU SURE YOU THAT PEOPLE WILL SPAWN RANDOMLY?",,"Yes","No") != "No")
+		GLOB.battle_royale.random_spawn = FALSE
 	GLOB.battle_royale.start()
 
 /client/proc/battle_royale_speed()
@@ -352,7 +352,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 			H.facial_hair_color = H.client.prefs.facial_hair_color
 			H.skin_tone = H.client.prefs.skin_tone
 			H.eye_color = H.client.prefs.eye_color
-			H.update_icon()
+			H.regenerate_icons()
 			//Give weapons key
 			var/obj/item/implant/weapons_auth/W = new
 			W.implant(H)
