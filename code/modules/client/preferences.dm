@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/crew_objectives = TRUE
 	var/toggles = TOGGLES_DEFAULT
 	var/db_flags
-	var/spell_checking = FALSE
+	var/spell_checking = TRUE
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
 	var/ghost_form = "ghost"
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
