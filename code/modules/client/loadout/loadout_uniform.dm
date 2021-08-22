@@ -256,6 +256,11 @@
 	path = /obj/item/clothing/under/costume/swagoutfit
 	cost = 69000
 
+/datum/gear/uniform/misc/kilt
+	display_name = "kilt"
+	path = /obj/item/clothing/under/costume/kilt
+	cost = 5000
+
 //RANK SUBTYPE
 
 /datum/gear/uniform/rank
