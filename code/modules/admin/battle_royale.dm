@@ -368,8 +368,6 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 			var/mob/living/carbon/human/H = new(pod)
 			ADD_TRAIT(H, TRAIT_PACIFISM, BATTLE_ROYALE_TRAIT)
 			H.status_flags |= GODMODE
-			//Assistant gang
-			H.equipOutfit(/datum/outfit/job/assistant)
 			//Give them a spell
 			H.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock)
 			H.key = key
@@ -389,6 +387,8 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 			H.facial_hair_color = H.client.prefs.facial_hair_color
 			H.skin_tone = H.client.prefs.skin_tone
 			H.eye_color = H.client.prefs.eye_color
+			//Assistant gang
+			H.equipOutfit(/datum/outfit/job/assistant)
 			H.update_icon()
 			//Give weapons key
 			var/obj/item/implant/weapons_auth/W = new
