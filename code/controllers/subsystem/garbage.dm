@@ -28,6 +28,19 @@ SUBSYSTEM_DEF(garbage)
 	var/list/reference_find_on_fail = list()
 	#endif
 
+/datum/controller/subsystem/garbage/get_metrics()
+	. = ..()
+	var/list/cust = list()
+	// You can calculate TGCR in kibana
+	cust["total_harddels"] = totaldels
+	cust["total_softdels"] = totalgcs
+	var/i = 0
+	for(var/list/L in queues)
+		i++
+		cust["queue_[i]"] = length(L)
+
+	.["custom"] = cust
+
 
 /datum/controller/subsystem/garbage/PreInit()
 	queues = new(GC_QUEUE_COUNT)
