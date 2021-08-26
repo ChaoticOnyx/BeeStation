@@ -218,7 +218,7 @@ var/world_topic_spam_protect_time = world.timeofday
 					continue
 			result += "\t [C]\n"
 			num++
-		result += "Total players: [num]"
+		result += "Total players: [GLOB.clients.len]"
 		return result
 
 	else if("adminwho" in input)
