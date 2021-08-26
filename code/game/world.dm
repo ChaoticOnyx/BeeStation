@@ -150,6 +150,8 @@ GLOBAL_VAR(restart_counter)
 	// log which is ultimately public.
 	log_runtime(GLOB.revdata.get_log_message())
 
+var/world_topic_spam_protect_time = world.timeofday
+
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC	//*THIS NEEDS TO BE AT THE TOP OF /world/Topic()* - Redirect to server tools if necessary
 
@@ -167,6 +169,7 @@ GLOBAL_VAR(restart_counter)
 		return json_encode(response)
 
 	var/input[] = params2list(T)
+	var/key_valid = CONFIG_GET(string/comms_password) && input["key"] == CONFIG_GET(string/comms_password)
 	if (copytext(T,1,7) == "status")
 		var/list/data = list()
 		data["version"] = GLOB.game_version
@@ -237,6 +240,106 @@ GLOBAL_VAR(restart_counter)
 		response["statuscode"] = 501
 		response["response"] = "Not Implemented"
 		return json_encode(response)
+
+	if("who" in input)
+		var/result = "Current players:\n"
+		var/num = 0
+		for(var/client/C in GLOB.clients)
+			if(C.holder)
+				if(C.holder.fakekey && !key_valid)
+					continue
+			result += "\t [C]\n"
+			num++
+		result += "Total players: [num]"
+		return result
+
+	else if("adminwho" in input)
+		var/result = "Current admins:\n"
+		for(var/client/C in GLOB.clients)
+			if(C.holder)
+				if(!C.holder.fakekey)
+					result += "\t [C], [C.holder.rank]\n"
+		return result
+
+	else if ("ooc" in input)
+		if(!key_valid)
+			if(abs(world_topic_spam_protect_time - world.time) < 50)
+				sleep(50)
+				world_topic_spam_protect_time = world.time
+				return "Bad Key (Throttled)"
+			world_topic_spam_protect_time = world.time
+			return "Bad Key"
+		var/ckey = input["ckey"]
+		var/message
+		if(!input["isadmin"])  // le costil, remove when discord-bot will be fixed ~HonkyDonky
+			message = html_encode(input["ooc"])
+		else
+			message = "<font color='#39034f'>" + strip_html_properly(input["ooc"]) + "</font>"
+		if(!ckey||!message)
+			return
+		if(!config.vars["ooc_allowed"]&&!input["isadmin"])
+			return "globally muted"
+		var/sent_message = "<span class='text-tag text-tag-dooc'>Discord</span><EM>[ckey]:</EM> <span class='message linkify'>[message]</span>"
+		for(var/client/target in GLOB.clients)
+			if(!target)
+				continue //sanity
+			if(!input["isadmin"]) // If we're ignored by this person, then do nothing.
+				continue //if it shouldn't see then it doesn't
+			to_chat(target, "<span class='ooc dooc'><span class='everyone'>[sent_message]</span></span>", type = MESSAGE_TYPE_DOOC)
+
+	else if ("asay" in input)
+		return "not supported" //simply no asay on bay
+
+	else if("adminhelp" in input)
+		if(!key_valid)
+			if(abs(world_topic_spam_protect_time - world.time) < 50)
+				sleep(50)
+				world_topic_spam_protect_time = world.time
+				return "Bad Key (Throttled)"
+			world_topic_spam_protect_time = world.time
+			return "Bad Key"
+
+		var/client/C
+		var/req_ckey = ckey(input["ckey"])
+
+		for(var/client/K in GLOB.clients)
+			if(K.ckey == req_ckey)
+				C = K
+				break
+		if(!C)
+			return "No client with that name on server"
+
+		var/rank = "Discord Admin"
+		var/response_ = html_encode(input["response"])
+
+		var/message = "<font color='red'>[rank] PM from <b>[input["admin"]]</b>: [response_]</font>"
+		var/amessage =  "<span class='info'>[rank] PM from [input["admin"]] to <b>[key_name(C)]</b> : [response_])]</span>"
+		webhook_send_ahelp("[input["admin"]] -> [req_ckey]", response_)
+
+		playsound(C, sound('sound/effects/adminhelp.ogg'))
+		to_chat(C, message)
+
+		for(var/client/A in GLOB.admins)
+			if(A != C)
+				to_chat(A, amessage)
+		return "Message Successful"
+
+	else if("OOC" in input)
+		if(!key_valid)
+			if(abs(world_topic_spam_protect_time - world.time) < 50)
+				sleep(50)
+				world_topic_spam_protect_time = world.time
+				return "Bad Key (Throttled)"
+			world_topic_spam_protect_time = world.time
+			return "Bad Key"
+		GLOB.ooc_allowed = !(GLOB.ooc_allowed)
+		if (GLOB.ooc_allowed)
+			to_chat(world, "<B>The OOC channel has been globally enabled!</B>")
+		else
+			to_chat(world, "<B>The OOC channel has been globally disabled!</B>")
+		log_admin("discord toggled OOC.")
+		message_admins("discord toggled OOC.")
+		return GLOB.ooc_allowed ? "ON" : "OFF"
 
 	if(command.CheckParams(params))
 		response["statuscode"] = command.statuscode

@@ -668,7 +668,7 @@
     discordmsg += "Escapees: [escapees]\n"
     discordmsg += "Integrity: [integrity]\n"
     discordmsg += "Gamemode: [SSticker.mode.name]\n"
-    discordsendmsg("ooc", discordmsg)
+    webhook_send_ooc("ooc", discordmsg)
     discordmsg = ""
     var/list/ded = SSblackbox.first_death
     if(ded)
@@ -678,4 +678,4 @@
     else
         discordmsg += "Nobody died!\n"
     discordmsg += "--------------------------------------\n"
-    discordsendmsg("ooc", discordmsg)
+    webhook_send_ooc("ooc", discordmsg)

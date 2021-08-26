@@ -346,7 +346,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	bwoink = is_bwoink
 	if(!bwoink)
-		discordsendmsg("ahelp", "**ADMINHELP: (#[id]) [C.key]: ** \"[msg]\" [heard_by_no_admins ? "**(NO ADMINS)**" : "" ]")
+		webhook_send_ahelp("", "**ADMINHELP: (#[id]) [C.key]: ** \"[msg]\" [heard_by_no_admins ? "**(NO ADMINS)**" : "" ]")
 
 /datum/admin_help/Destroy()
 	RemoveActive()
@@ -595,7 +595,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		log_admin_private(msg)
 
 	if(!bwoink && !silent && !updated)
-		discordsendmsg("ahelp", "Ticket #[id] is being investigated by [key_name(usr, include_link=0)]")
+		webhook_send_ahelp("", "Ticket #[id] is being investigated by [key_name(usr, include_link=0)]")
 
 //Mark open ticket as closed/meme
 /datum/admin_help/proc/Close(key_name = key_name_admin(usr), silent = FALSE)
@@ -612,7 +612,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		log_admin_private(msg)
 
 	if(!bwoink && !silent)
-		discordsendmsg("ahelp", "Ticket #[id] closed by [key_name(usr, include_link=0)]")
+		webhook_send_ahelp("", "Ticket #[id] closed by [key_name(usr, include_link=0)]")
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
 /datum/admin_help/proc/Resolve(key_name = key_name_admin(usr), silent = FALSE)
@@ -633,7 +633,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		log_admin_private(msg)
 
 	if(!bwoink)
-		discordsendmsg("ahelp", "Ticket #[id] resolved by [key_name(usr, include_link=0)]")
+		webhook_send_ahelp("", "Ticket #[id] resolved by [key_name(usr, include_link=0)]")
 
 //Close and return ahelp verb, use if ticket is incoherent
 /datum/admin_help/proc/Reject(key_name = key_name_admin(usr))
@@ -657,7 +657,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	Close(silent = TRUE)
 
 	if(!bwoink)
-		discordsendmsg("ahelp", "Ticket #[id] rejected by [key_name(usr, include_link=0)]")
+		webhook_send_ahelp("", "Ticket #[id] rejected by [key_name(usr, include_link=0)]")
 
 //Resolve ticket with IC Issue message
 /datum/admin_help/proc/ICIssue(key_name = key_name_admin(usr))
@@ -678,7 +678,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	Resolve(silent = TRUE)
 
 	if(!bwoink)
-		discordsendmsg("ahelp", "Ticket #[id] marked as IC by [key_name(usr, include_link=0)]")
+		webhook_send_ahelp("", "Ticket #[id] marked as IC by [key_name(usr, include_link=0)]")
 
 /datum/admin_help/proc/MHelpThis(key_name = key_name_admin(usr))
 	if(state > AHELP_ACTIVE)
@@ -698,7 +698,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	log_admin_private(msg)
 	AddInteraction("red", "Told to mentorhelp by [key_name].")
 	if(!bwoink)
-		discordsendmsg("ahelp", "Ticket #[id] told to mentorhelp by [key_name(usr, include_link=0)]")
+		webhook_send_ahelp("", "Ticket #[id] told to mentorhelp by [key_name(usr, include_link=0)]")
 	Close(silent = TRUE)
 
 /datum/admin_help/proc/Retitle()
