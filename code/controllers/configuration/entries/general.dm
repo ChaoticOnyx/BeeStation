@@ -227,6 +227,8 @@
 /datum/config_entry/string/discordurl
 	config_entry_value = "https://discord.gg/zUe34rs"
 
+/datum/config_entry/string/comms_password
+
 /datum/config_entry/string/roundstatsurl
 
 /datum/config_entry/string/gamelogurl
