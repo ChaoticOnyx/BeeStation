@@ -36,6 +36,8 @@
 /proc/webhook_send(method, data)
 	if(!CONFIG_GET(string/webhook_address) || !CONFIG_GET(string/webhook_key))
 		return
-	var/query = "[CONFIG_GET(string/webhook_address)]?key=[CONFIG_GET(string/webhook_key)]&method=[method]&data=[url_encode(list2json(data))]"
+	var/datum/http_request/request = new()
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/discord_webhook)]&method=[method]&data=[url_encode(list2json(data))]")
+	request.begin_async()
 	spawn(-1)
 		world.Export(query)
