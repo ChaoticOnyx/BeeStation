@@ -209,39 +209,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		return list2params(data)
 
-	var/list/params[] = json_decode(rustg_url_decode(T))
-	params["addr"] = addr
-	var/query = params["query"]
-	var/auth = params["auth"]
-	var/source = params["source"]
-
-	if(CONFIG_GET(flag/log_world_topic))
-		var/list/censored_params = params.Copy()
-		censored_params["auth"] = "***[copytext(params["auth"], -4)]"
-		log_topic("\"[json_encode(censored_params)]\", from:[addr], master:[master], auth:[censored_params["auth"]], key:[key], source:[source]")
-
-	if(!source)
-		response["statuscode"] = 400
-		response["response"] = "Bad Request - No source specified"
-		return json_encode(response)
-
-	if(!query)
-		response["statuscode"] = 400
-		response["response"] = "Bad Request - No endpoint specified"
-		return json_encode(response)
-
-	if(!LAZYACCESS(GLOB.topic_tokens[auth], query))
-		response["statuscode"] = 401
-		response["response"] = "Unauthorized - Bad auth"
-		return json_encode(response)
-
-	var/datum/world_topic/command = GLOB.topic_commands[query]
-	if(!command)
-		response["statuscode"] = 501
-		response["response"] = "Not Implemented"
-		return json_encode(response)
-
-	if("who" in input)
+	else if("who" in input)
 		var/result = "Current players:\n"
 		var/num = 0
 		for(var/client/C in GLOB.clients)
@@ -340,6 +308,39 @@ var/world_topic_spam_protect_time = world.timeofday
 		log_admin("discord toggled OOC.")
 		message_admins("discord toggled OOC.")
 		return GLOB.ooc_allowed ? "ON" : "OFF"
+
+	var/list/params[] = json_decode(rustg_url_decode(T))
+	params["addr"] = addr
+	var/query = params["query"]
+	var/auth = params["auth"]
+	var/source = params["source"]
+
+	if(CONFIG_GET(flag/log_world_topic))
+		var/list/censored_params = params.Copy()
+		censored_params["auth"] = "***[copytext(params["auth"], -4)]"
+		log_topic("\"[json_encode(censored_params)]\", from:[addr], master:[master], auth:[censored_params["auth"]], key:[key], source:[source]")
+
+	if(!source)
+		response["statuscode"] = 400
+		response["response"] = "Bad Request - No source specified"
+		return json_encode(response)
+
+	if(!query)
+		response["statuscode"] = 400
+		response["response"] = "Bad Request - No endpoint specified"
+		return json_encode(response)
+
+	if(!LAZYACCESS(GLOB.topic_tokens[auth], query))
+		response["statuscode"] = 401
+		response["response"] = "Unauthorized - Bad auth"
+		return json_encode(response)
+
+	var/datum/world_topic/command = GLOB.topic_commands[query]
+	if(!command)
+		response["statuscode"] = 501
+		response["response"] = "Not Implemented"
+		return json_encode(response)
+
 
 	if(command.CheckParams(params))
 		response["statuscode"] = command.statuscode
