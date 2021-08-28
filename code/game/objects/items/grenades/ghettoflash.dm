@@ -1,5 +1,7 @@
 /obj/item/grenade/flashbang/beer_keg
 	name = "Beer Keg Grenade"
+	desc = "Looks like it's going to explode"
+	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Crimson Dragon/beer_keg.dmi'
 	icon_state = "beer_keg_grenade"
 	item_state = "beer_keg"
