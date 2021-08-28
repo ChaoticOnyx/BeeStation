@@ -175,10 +175,10 @@
 				return
 
 		//Prevents people rejoining as same character.
-		for (var/mob/living/carbon/human/C in GLOB.mob_list)
+		for(var/mob/living/carbon/human/C in GLOB.mob_list)
 			var/char_name = client.prefs.real_name
 			if(char_name == C.real_name)
-				to_chat (usr, "<span class='danger'>There is a character that already exists with the same name: <b>[C.real_name]</b>, please join with a different one.</span>")
+				to_chat(usr, "<span class='danger'>There is a character that already exists with the same name: <b>[C.real_name]</b>, please join with a different one.</span>")
 				return
 
 		AttemptLateSpawn(href_list["SelectedJob"])
