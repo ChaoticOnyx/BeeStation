@@ -150,7 +150,7 @@ GLOBAL_VAR(restart_counter)
 	// log which is ultimately public.
 	log_runtime(GLOB.revdata.get_log_message())
 
-var/world_topic_spam_protect_time = world.timeofday
+GLOBAL_VAR(world_topic_spam_protect_time, world.timeofday)
 
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC	//*THIS NEEDS TO BE AT THE TOP OF /world/Topic()* - Redirect to server tools if necessary
