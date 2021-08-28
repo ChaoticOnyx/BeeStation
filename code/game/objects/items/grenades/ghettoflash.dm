@@ -7,6 +7,23 @@
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	flashbang_range = 7 //how many tiles away the mob will be stunned.
 
+/obj/item/grenade/flashbang/beer_keg/preprime(mob/user, delayoverride, msg = TRUE, volume = 60)
+	det_time = rand(30,60)
+	var/turf/T = get_turf(src)
+	log_grenade(user, T) //Inbuilt admin procs already handle null users
+	if(user)
+		add_fingerprint(user)
+		if(msg)
+			to_chat(user, "<span class='warning'>You prime [src]! It will explode in a random amount of time! </span>")
+	if(shrapnel_type && shrapnel_radius)
+		shrapnel_initialized = TRUE
+		AddComponent(/datum/component/pellet_cloud, projectile_type=shrapnel_type, magnitude=shrapnel_radius)
+	playsound(src, 'sound/effects/zzzt.ogg', volume, 1)
+	active = TRUE
+	icon_state = initial(icon_state) + "_active"
+	SEND_SIGNAL(src, COMSIG_GRENADE_ARMED, det_time, delayoverride)
+	addtimer(CALLBACK(src, .proc/prime), isnull(delayoverride)? det_time : delayoverride)
+
 /obj/item/grenade/flashbang/bang(turf/T , mob/living/M)
 	if(M.stat == DEAD)	//They're dead!
 		return
