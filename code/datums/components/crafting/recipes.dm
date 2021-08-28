@@ -958,3 +958,21 @@
 				/obj/item/clothing/gloves/color/yellow = 1)
 
 	category = CAT_CLOTHING
+
+/datum/crafting_recipe/beer_keg_grenade
+	name = "Beer Keg Grenade"
+	time = 30
+	result = /obj/item/grenade/flashbang/beer_keg
+	reqs = list(/datum/reagent/consumable/ethanol/beer = 40,
+				/obj/item/tank/internals/oxygen = 1,
+				/datum/reagent/consumable/enzyme = 5,
+				/obj/item/reagent_containers/food/drinks/beer_keg = 1)
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/beer_keg
+	name = "Beer Keg"
+	result = /obj/item/reagent_containers/food/drinks/beer_keg
+	time = 10
+	reqs = list(/obj/item/stack/sheet/plastic = 3)
+	category = CAT_MISC
