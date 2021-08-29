@@ -49,7 +49,7 @@
 	. += "]"
 
 /json_writer/proc/write_string(txt)
-	var/list/rus_unicode_conversion = list(
+	var/static/list/rus_unicode_conversion = list(
 	"À" = "\\u0410", "à" = "\\u0430",
 	"Á" = "\\u0411", "á" = "\\u0431",
 	"Â" = "\\u0412", "â" = "\\u0432",
@@ -84,10 +84,10 @@
 	"ß" = "\\u042f", "ÿ" = "\\u044f",
 	"&#255;" = "\\u044f",
 	"&#x044f;" = "\\u044f",
-
-	"¨" = "\\u0401", "¸" = "\\u0451"
+	"¨" = "\\u0401",
+	"¸" = "\\u0451"
 	)
-	var/static/list/json_escape = list("\\" = "\\\\", "\"" = "\\\"", "\n" = "\\n")+rus_unicode_conversion
+	var/static/list/json_escape = list("\\" = "\\\\", "\"" = "\\\"", "\n" = "\\n") + rus_unicode_conversion
 	for(var/targ in json_escape)
 		var/start = 1
 		while(start <= length(txt))

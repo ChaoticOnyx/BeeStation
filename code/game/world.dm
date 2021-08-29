@@ -211,13 +211,11 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 
 	else if("who" in input)
 		var/result = "Current players:\n"
-		var/num = 0
 		for(var/client/C in GLOB.clients)
 			if(C.holder)
 				if(C.holder.fakekey && !key_valid)
 					continue
 			result += "\t [C]\n"
-			num++
 		result += "Total players: [GLOB.clients.len]"
 		return result
 
@@ -231,11 +229,11 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 
 	else if ("ooc" in input)
 		if(!key_valid)
-			if(abs(world_topic_spam_protect_time - world.time) < 50)
+			if(abs(GLOB.world_topic_spam_protect_time - world.time) < 50)
 				sleep(50)
-				world_topic_spam_protect_time = world.time
+				GLOB.world_topic_spam_protect_time = world.time
 				return "Bad Key (Throttled)"
-			world_topic_spam_protect_time = world.time
+			GLOB.world_topic_spam_protect_time = world.time
 			return "Bad Key"
 		var/ckey = input["ckey"]
 		var/message
@@ -260,11 +258,11 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 
 	else if("adminhelp" in input)
 		if(!key_valid)
-			if(abs(world_topic_spam_protect_time - world.time) < 50)
+			if(abs(GLOB.world_topic_spam_protect_time - world.time) < 50)
 				sleep(50)
-				world_topic_spam_protect_time = world.time
+				GLOB.world_topic_spam_protect_time = world.time
 				return "Bad Key (Throttled)"
-			world_topic_spam_protect_time = world.time
+			GLOB.world_topic_spam_protect_time = world.time
 			return "Bad Key"
 
 		var/client/C
@@ -294,11 +292,11 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 
 	else if("OOC" in input)
 		if(!key_valid)
-			if(abs(world_topic_spam_protect_time - world.time) < 50)
+			if(abs(GLOB.world_topic_spam_protect_time - world.time) < 50)
 				sleep(50)
-				world_topic_spam_protect_time = world.time
+				GLOB.world_topic_spam_protect_time = world.time
 				return "Bad Key (Throttled)"
-			world_topic_spam_protect_time = world.time
+			GLOB.world_topic_spam_protect_time = world.time
 			return "Bad Key"
 		GLOB.ooc_allowed = !(GLOB.ooc_allowed)
 		if (GLOB.ooc_allowed)
