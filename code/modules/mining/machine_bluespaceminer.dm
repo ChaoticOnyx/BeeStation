@@ -12,6 +12,7 @@
 /obj/machinery/mineral/bluespace_miner/Initialize(mapload)
 	. = ..()
 	materials = AddComponent(/datum/component/remote_materials, "bsm", mapload)
+	START_PROCESSING(SSmachines, src)
 
 /obj/machinery/mineral/bluespace_miner/Destroy()
 	materials = null
