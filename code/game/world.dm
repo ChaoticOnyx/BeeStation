@@ -243,7 +243,7 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 			message = "<font color='#39034f'>" + strip_html_properly(input["ooc"]) + "</font>"
 		if(!ckey||!message)
 			return
-		if(!config.vars["ooc_allowed"]&&!input["isadmin"])
+		if(!GLOB.ooc_allowed && !input["isadmin"])
 			return "globally muted"
 		var/sent_message = "<span class='text-tag text-tag-dooc'>Discord</span><EM>[ckey]:</EM> <span class='message linkify'>[message]</span>"
 		for(var/client/target in GLOB.clients)
@@ -251,7 +251,7 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 				continue //sanity
 			if(!input["isadmin"]) // If we're ignored by this person, then do nothing.
 				continue //if it shouldn't see then it doesn't
-			to_chat(target, "<span class='ooc dooc'><span class='everyone'>[sent_message]</span></span>", type = MESSAGE_TYPE_DOOC)
+			to_chat(target, "<span class='dooc'><span class='everyone'>[sent_message]</span></span>", type = MESSAGE_TYPE_DOOC)
 
 	else if ("asay" in input)
 		return "not supported" //simply no asay on bay
