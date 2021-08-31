@@ -1,4 +1,4 @@
-#define RESTART_COUNTER_PATH "data/round_counter.txt"
+	#define RESTART_COUNTER_PATH "data/round_counter.txt"
 
 GLOBAL_VAR(restart_counter)
 
@@ -243,14 +243,12 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 			message = "<font color='#39034f'>" + strip_html_properly(input["ooc"]) + "</font>"
 		if(!ckey||!message)
 			return
-		if(!GLOB.ooc_allowed && !input["isadmin"])
+		if(!GLOB.ooc_allowed)
 			return "globally muted"
-		var/sent_message = "<span class='text-tag text-tag-dooc'>Discord</span><EM>[ckey]:</EM> <span class='message linkify'>[message]</span>"
+		var/sent_message = "<span class='text-tag-dooc'>DOOC:</span><EM>[ckey]:</EM> <span class='message linkify'>[message]</span>"
 		for(var/client/target in GLOB.clients)
 			if(!target)
 				continue //sanity
-			if(!input["isadmin"]) // If we're ignored by this person, then do nothing.
-				continue //if it shouldn't see then it doesn't
 			to_chat(target, "<span class='dooc'><span class='everyone'>[sent_message]</span></span>", type = MESSAGE_TYPE_DOOC)
 
 	else if ("asay" in input)
@@ -307,50 +305,52 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 		message_admins("discord toggled OOC.")
 		return GLOB.ooc_allowed ? "ON" : "OFF"
 
-	var/list/params[] = json_decode(rustg_url_decode(T))
-	params["addr"] = addr
-	var/query = params["query"]
-	var/auth = params["auth"]
-	var/source = params["source"]
-
-	if(CONFIG_GET(flag/log_world_topic))
-		var/list/censored_params = params.Copy()
-		censored_params["auth"] = "***[copytext(params["auth"], -4)]"
-		log_topic("\"[json_encode(censored_params)]\", from:[addr], master:[master], auth:[censored_params["auth"]], key:[key], source:[source]")
-
-	if(!source)
-		response["statuscode"] = 400
-		response["response"] = "Bad Request - No source specified"
-		return json_encode(response)
-
-	if(!query)
-		response["statuscode"] = 400
-		response["response"] = "Bad Request - No endpoint specified"
-		return json_encode(response)
-
-	if(!LAZYACCESS(GLOB.topic_tokens[auth], query))
-		response["statuscode"] = 401
-		response["response"] = "Unauthorized - Bad auth"
-		return json_encode(response)
-
-	var/datum/world_topic/command = GLOB.topic_commands[query]
-	if(!command)
-		response["statuscode"] = 501
-		response["response"] = "Not Implemented"
-		return json_encode(response)
-
-
-	if(command.CheckParams(params))
-		response["statuscode"] = command.statuscode
-		response["response"] = command.response
-		response["data"] = command.data
-		return json_encode(response)
 	else
-		command.Run(params)
-		response["statuscode"] = command.statuscode
-		response["response"] = command.response
-		response["data"] = command.data
-		return json_encode(response)
+
+		var/list/params[] = json_decode(rustg_url_decode(T))
+		params["addr"] = addr
+		var/query = params["query"]
+		var/auth = params["auth"]
+		var/source = params["source"]
+
+		if(CONFIG_GET(flag/log_world_topic))
+			var/list/censored_params = params.Copy()
+			censored_params["auth"] = "***[copytext(params["auth"], -4)]"
+			log_topic("\"[json_encode(censored_params)]\", from:[addr], master:[master], auth:[censored_params["auth"]], key:[key], source:[source]")
+
+		if(!source)
+			response["statuscode"] = 400
+			response["response"] = "Bad Request - No source specified"
+			return json_encode(response)
+
+		if(!query)
+			response["statuscode"] = 400
+			response["response"] = "Bad Request - No endpoint specified"
+			return json_encode(response)
+
+		if(!LAZYACCESS(GLOB.topic_tokens[auth], query))
+			response["statuscode"] = 401
+			response["response"] = "Unauthorized - Bad auth"
+			return json_encode(response)
+
+		var/datum/world_topic/command = GLOB.topic_commands[query]
+		if(!command)
+			response["statuscode"] = 501
+			response["response"] = "Not Implemented"
+			return json_encode(response)
+
+
+		if(command.CheckParams(params))
+			response["statuscode"] = command.statuscode
+			response["response"] = command.response
+			response["data"] = command.data
+			return json_encode(response)
+		else
+			command.Run(params)
+			response["statuscode"] = command.statuscode
+			response["response"] = command.response
+			response["data"] = command.data
+			return json_encode(response)
 
 /world/proc/AnnouncePR(announcement, list/payload)
 	var/static/list/PRcounts = list()	//PR id -> number of times announced this round
