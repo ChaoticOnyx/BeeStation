@@ -660,7 +660,7 @@
 
 /datum/controller/subsystem/ticker/proc/sendtodiscord(var/survivors, var/escapees, var/integrity)
     var/discordmsg = ""
-    discordmsg += "--------------ROUND END--------------\n"
+    discordmsg += "\n--------------ROUND END--------------\n"
     discordmsg += "Round Number: [GLOB.round_id]\n"
     discordmsg += "Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]\n"
     discordmsg += "Players: [GLOB.player_list.len]\n"
@@ -668,8 +668,6 @@
     discordmsg += "Escapees: [escapees]\n"
     discordmsg += "Integrity: [integrity]\n"
     discordmsg += "Gamemode: [SSticker.mode.name]\n"
-    webhook_send_ooc("ooc", discordmsg)
-    discordmsg = ""
     var/list/ded = SSblackbox.first_death
     if(ded)
         discordmsg += "First Death: [ded["name"]], [ded["role"]], at [ded["area"]]\n"
@@ -678,4 +676,4 @@
     else
         discordmsg += "Nobody died!\n"
     discordmsg += "--------------------------------------\n"
-    webhook_send_ooc("ooc", discordmsg)
+    webhook_send_ooc("", discordmsg)
