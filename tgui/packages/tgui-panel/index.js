@@ -23,6 +23,7 @@ import { pingMiddleware, pingReducer } from './ping';
 import { settingsMiddleware, settingsReducer } from './settings';
 import { statMiddleware, statReducer } from './stat';
 import { telemetryMiddleware } from './telemetry';
+import { KEY_F5, KEY_R } from 'common/keycodes';
 
 perf.mark('inception', window.performance?.timing?.navigationStart);
 perf.mark('init');
@@ -70,6 +71,13 @@ const setupApp = () => {
   });
   setupPanelFocusHacks();
   captureExternalLinks();
+
+  // Prevent refreshing
+  window.addEventListener('keydown', (event) => {
+    if (event.keyCode === KEY_F5 || event.keyCode === KEY_R) {
+      event.preventDefault();
+    }
+  });
 
   // Subscribe for Redux state updates
   store.subscribe(renderApp);
