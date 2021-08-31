@@ -65,3 +65,7 @@ $border-color: color.scale(colors.fg(colors.$primary), $lightness: 75%) !default
 .StatTabBackground {
   border-bottom: (1em / 6) solid #666666;
 }
+
+.Stat__tab {
+  margin: 0;
+}
