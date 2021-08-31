@@ -87,12 +87,6 @@ export const MESSAGE_TYPES = [
     selector: '.ooc, .adminooc',
   },
   {
-    type: MESSAGE_TYPE_DOOC,
-    name: 'DOOC',
-    description: 'The purplewall of global DOOC messages',
-    selector: '.dooc',
-  },
-  {
     type: MESSAGE_TYPE_ADMINPM,
     name: 'Admin PMs',
     description: 'Messages to/from admins (adminhelp)',
