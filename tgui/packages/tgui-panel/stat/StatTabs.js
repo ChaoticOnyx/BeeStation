@@ -101,7 +101,7 @@ export const StatTabWrap = (props, context) => {
       overflowX="auto">
       {statTabs.map(tab => (
         <Button
-          className="Stat__tab"
+          m={0}
           key={tab}
           color="transparent"
           pr={1}
