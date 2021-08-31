@@ -249,7 +249,7 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 		for(var/client/target in GLOB.clients)
 			if(!target)
 				continue //sanity
-			to_chat(target, "<span class='dooc'><span class='everyone'>[sent_message]</span></span>", type = MESSAGE_TYPE_DOOC)
+			to_chat(target, "<span class='dooc'><span class='everyone'>[sent_message]</span></span>", type = MESSAGE_TYPE_OOC)
 
 	else if ("asay" in input)
 		return "not supported" //simply no asay on bay
