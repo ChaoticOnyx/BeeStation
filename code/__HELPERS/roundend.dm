@@ -668,7 +668,7 @@
     discordmsg += "Escapees: [escapees]\n"
     discordmsg += "Integrity: [integrity]\n"
     discordmsg += "Gamemode: [SSticker.mode.name]\n"
-	if(istype(SSticker.mode, /datum/game_mode/dynamic))
+    if(istype(SSticker.mode, /datum/game_mode/dynamic))
         var/datum/game_mode/dynamic/mode = SSticker.mode
         discordmsg += "Threat level: [mode.threat_level]\n"
         discordmsg += "Threat left: [mode.mid_round_budget]\n"

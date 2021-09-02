@@ -134,7 +134,6 @@
 		new /datum/data/vendor_equipment("30 Marker Beacons",			/obj/item/stack/marker_beacon/thirty,								150),
 		new /datum/data/vendor_equipment("Shelter Capsule",				/obj/item/survivalcapsule,											400),
 		new /datum/data/vendor_equipment("Regen. Core Stabilizer",		/obj/item/hivelordstabilizer,										400),
-		new /datum/data/vendor_equipment("Skeleton Key",				/obj/item/skeleton_key,												750),
 		new /datum/data/vendor_equipment("Survival Medipen",			/obj/item/reagent_containers/hypospray/medipen/survival,			500),
 		new /datum/data/vendor_equipment("Brute Healing Kit",			/obj/item/storage/firstaid/brute,									600),
 		new /datum/data/vendor_equipment("Burn Healing Kit",			/obj/item/storage/firstaid/fire,									600),
