@@ -91,9 +91,9 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 					to_chat(C, "[badge_data]<span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")
 	// beestation, send to discord
 	if(holder?.fakekey)
-		webhook_send_ooc(holder.fakekey, msg)
+		webhook_send_ooc(holder.fakekey, raw_msg)
 	else
-		webhook_send_ooc(key, msg)
+		webhook_send_ooc(key, raw_msg)
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
