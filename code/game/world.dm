@@ -55,6 +55,7 @@ GLOBAL_VAR(restart_counter)
 		return
 
 	Master.Initialize(10, FALSE, TRUE)
+	webhook_send_roundstatus("lobby")
 
 	#ifdef UNIT_TESTS
 	HandleTestRun()
