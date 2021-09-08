@@ -101,10 +101,11 @@ export const StatTabWrap = (props, context) => {
       overflowX="auto">
       {statTabs.map(tab => (
         <Button
+          m={0}
           key={tab}
           color="transparent"
-          pr={1.5}
-          pl={1.5}
+          pr={1}
+          pl={1}
           selected={tab === stat.selectedTab}
           onClick={() => dispatch({
             type: 'stat/setTab',

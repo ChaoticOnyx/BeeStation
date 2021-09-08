@@ -193,6 +193,7 @@ export const StatTextVerb = (props, context) => {
       inline
       width="200px">
       <Button
+        compact
         content={title}
         onClick={() => sendMessage({
           type: 'stat/pressed',

@@ -362,7 +362,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 
 /client/proc/admin_ghost()
-	set category = "Adminbus"
+	set category = "Admin"
 	set name = "Aghost"
 	if(!holder)
 		return
@@ -449,14 +449,14 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/game_panel()
 	set name = "Game Panel"
-	set category = "Adminbus"
+	set category = "Admin"
 	if(holder)
 		holder.Game()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Game Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/secrets()
 	set name = "Secrets"
-	set category = "Adminbus"
+	set category = "Admin"
 	if (holder)
 		GLOB.admin_secrets.ui_interact(usr)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Secrets Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -658,7 +658,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] gave [key_name_admin(T)] the disease [D].</span>")
 
 /client/proc/object_say(obj/O in world)
-	set category = "Adminbus"
+	set category = "Admin"
 	set name = "OSay"
 	set desc = "Makes an object say something."
 	var/message = capped_input(usr, "What do you want the message to be?", "Make Sound")
@@ -671,7 +671,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
-	set category = "Adminbus"
+	set category = "Admin"
 	if (!(holder.rank.rights & R_BUILD))
 		return
 	if(src.mob)
@@ -763,7 +763,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/toggle_AI_interact()
 	set name = "Toggle Admin AI Interact"
-	set category = "Adminbus"
+	set category = "Admin"
 	set desc = "Allows you to interact with most machines as an AI would as a ghost"
 
 	AI_Interact = !AI_Interact
@@ -777,7 +777,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/stabilize_atmos()
 	set name = "Stabilize Atmos"
-	set category = "Adminbus"
+	set category = "Admin"
 	set desc = "Resets the air contents of every turf in view to normal. Closes all canisters in view."
 
 	if(!check_rights(R_ADMIN))
