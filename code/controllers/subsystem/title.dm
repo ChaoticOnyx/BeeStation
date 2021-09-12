@@ -30,6 +30,7 @@ SUBSYSTEM_DEF(title)
 	icon = new(fcopy_rsc(file_path))
 
 	if(splash_turf)
+		splash_turf.pixel_x -= 61
 		splash_turf.icon = icon
 
 	return ..()
