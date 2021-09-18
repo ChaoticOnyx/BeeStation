@@ -22,7 +22,7 @@
 config/*
 !config/jukebox_music/
 !config/title_music/
-!config/screens_music/
+!config/title_screens/
 !config/examples/
 
 ### https://raw.github.com/github/gitignore/cc542de017c606138a87ee4880e5f06b3a306def/Global/Linux.gitignore
