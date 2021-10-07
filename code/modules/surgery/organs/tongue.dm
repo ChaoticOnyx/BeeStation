@@ -65,10 +65,22 @@
 /obj/item/organ/tongue/lizard/handle_speech(datum/source, list/speech_args)
 	var/static/regex/lizard_hiss = new("s+", "g")
 	var/static/regex/lizard_hiSS = new("S+", "g")
+	var/static/regex/lizard_hiss = new("с+", "g")
+	var/static/regex/lizard_hiSS = new("С+", "g")
+	var/static/regex/lizard_hiss = new("ш+", "g")
+	var/static/regex/lizard_hiSS = new("Ш+", "g")
+	var/static/regex/lizard_hiss = new("щ+", "g")
+	var/static/regex/lizard_hiSS = new("Щ+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = lizard_hiss.Replace(message, "sss")
 		message = lizard_hiSS.Replace(message, "SSS")
+		message = lizard_hiss.Replace(message, "ссс")
+		message = lizard_hiSS.Replace(message, "ССС")
+		message = lizard_hiss.Replace(message, "шшш")
+		message = lizard_hiSS.Replace(message, "ШШШ")
+		message = lizard_hiss.Replace(message, "щщщ")
+		message = lizard_hiSS.Replace(message, "ЩЩЩ")
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/fly
@@ -82,10 +94,18 @@
 /obj/item/organ/tongue/fly/handle_speech(datum/source, list/speech_args)
 	var/static/regex/fly_buzz = new("z+", "g")
 	var/static/regex/fly_buZZ = new("Z+", "g")
+	var/static/regex/fly_buzz = new("з+", "g")
+	var/static/regex/fly_buZZ = new("З+", "g")
+	var/static/regex/fly_buzz = new("ж+", "g")
+	var/static/regex/fly_buZZ = new("Ж+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = fly_buzz.Replace(message, "zzz")
 		message = fly_buZZ.Replace(message, "ZZZ")
+		message = fly_buzz.Replace(message, "ззз")
+		message = fly_buZZ.Replace(message, "ЗЗЗ")
+		message = fly_buzz.Replace(message, "жжж")
+		message = fly_buZZ.Replace(message, "ЖЖЖ")
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/abductor
@@ -253,7 +273,7 @@
 	var/new_message
 	var/message = speech_args[SPEECH_MESSAGE]
 	for(var/i in 1 to length(message))
-		if(findtext("ABCDEFGHIJKLMNOPWRSTUVWXYZabcdefghijklmnopqrstuvwxyz", message[i])) //Im open to suggestions
+		if(findtext("ABCDEFGHIJKLMNOPWRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя", message[i])) //Im open to suggestions
 			new_message += message[i] + message[i] + message[i] //aaalllsssooo ooopppeeennn tttooo sssuuuggggggeeessstttiiiooonsss
 		else
 			new_message += message[i]
