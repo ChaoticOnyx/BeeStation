@@ -665,6 +665,7 @@
 
 	if(pulledby)
 		pulledby.stop_pulling()
+	movement_type |= THROWN
 
 	throwing = TT
 	if(spin)

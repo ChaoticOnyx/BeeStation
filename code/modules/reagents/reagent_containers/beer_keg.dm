@@ -9,4 +9,4 @@
 	righthand_file = 'icons/Crimson Dragon/items_righthand.dmi'
 	possible_transfer_amounts = list(5,10,15,25,30)
 	volume = 100
-
+	isGlass = FALSE
