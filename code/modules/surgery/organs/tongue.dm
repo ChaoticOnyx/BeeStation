@@ -98,6 +98,12 @@
 	var/static/regex/fly_buZZ1 = new("З+", "g")
 	var/static/regex/fly_buzz2 = new("ж+", "g")
 	var/static/regex/fly_buZZ2 = new("Ж+", "g")
+	var/static/regex/fly_buzz11 = new("с+", "g")
+	var/static/regex/fly_buZZ11 = new("С+", "g")
+	var/static/regex/fly_buzz22 = new("ш+", "g")
+	var/static/regex/fly_buZZ22 = new("Ш+", "g")
+	var/static/regex/fly_buzz33 = new("щ+", "g")
+	var/static/regex/fly_buZZ33 = new("Щ+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = fly_buzz.Replace(message, "zzz")
@@ -106,6 +112,12 @@
 		message = fly_buZZ1.Replace(message, "ЗЗЗ")
 		message = fly_buzz2.Replace(message, "жжж")
 		message = fly_buZZ2.Replace(message, "ЖЖЖ")
+		message = fly_buzz11.Replace(message, "ззз")
+		message = fly_buZZ11.Replace(message, "ЗЗЗ")
+		message = fly_buzz22.Replace(message, "жжж")
+		message = fly_buZZ22.Replace(message, "ЖЖЖ")
+		message = fly_buzz33.Replace(message, "жжж")
+		message = fly_buZZ33.Replace(message, "ЖЖЖ")
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/abductor
