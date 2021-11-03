@@ -134,6 +134,14 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	GLOB.battle_royale = new()
 	if(alert(src, "ARE YOU SURE YOU THAT PEOPLE WILL SPAWN RANDOMLY?",,"Yes","No") != "Yes")
 		GLOB.battle_royale.random_spawn = FALSE
+
+	if(alert(src, "LOOKING TO CHOOSE CLOTHES FOR PLAYERS?",,"Yes","No") != "No")
+		var/datum/outfit/outfit = robust_dress_shop()
+		while (!isnull(outfit))
+			GLOB.battle_royale.outfit_list[initial(outfit.name)] = outfit
+			outfit = robust_dress_shop()
+
+
 	GLOB.battle_royale.start()
 
 /client/proc/battle_royale_speed()
@@ -197,6 +205,8 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	var/field_delay = 15
 	var/debug_mode = FALSE
 	var/random_spawn = TRUE
+	var/list/outfit_list = list()
+	var/list/chosen_outfit = list()
 
 /datum/battle_royale_controller/Destroy(force, ...)
 	QDEL_LIST(death_wall)
@@ -301,6 +311,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	sleep(50)
 	to_chat(world, "<span class='boldannounce'>Battle Royale: Starting game.</span>")
 	titanfall()
+	sleep(700)
 	death_wall = list()
 	var/z_level = SSmapping.station_start
 	var/turf/center = SSmapping.get_station_center()
@@ -316,8 +327,16 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 		CHECK_TICK
 	START_PROCESSING(SSprocessing, src)
 
+/mob/proc/choose_outfit()
+	var/mob/M = src
+	GLOB.battle_royale.chosen_outfit[M.key] = input(M, "Select outfit", "Battle royal quick dress shop") as anything in GLOB.battle_royale.outfit_list
+
 /datum/battle_royale_controller/proc/titanfall()
+	set waitfor = 0
 	var/list/participants = pollGhostCandidates("Would you like to partake in BATTLE ROYALE?")
+	for(var/mob/M in participants)
+		addtimer(CALLBACK(M, /mob/proc/choose_outfit), 0 SECONDS)
+	sleep(100)
 	players = list()
 	if(!random_spawn)
 		var/turf/spawn_turf = get_safe_random_station_turfs()
@@ -330,8 +349,6 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 			var/mob/living/carbon/human/H = new(pod)
 			ADD_TRAIT(H, TRAIT_PACIFISM, BATTLE_ROYALE_TRAIT)
 			H.status_flags |= GODMODE
-			//Assistant gang
-			H.equipOutfit(/datum/outfit/job/assistant)
 			//Give them a spell
 			H.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock)
 			H.key = key
@@ -350,6 +367,9 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 			H.skin_tone = H.client.prefs.skin_tone
 			H.eye_color = H.client.prefs.eye_color
 			H.regenerate_icons()
+			//Equip Outfit
+			H.equipOutfit(outfit_list[chosen_outfit[H.key]]?outfit_list[chosen_outfit[H.key]]:/datum/outfit/job/assistant)
+			H.update_icon()
 			//Give weapons key
 			var/obj/item/implant/weapons_auth/W = new
 			W.implant(H)
@@ -387,8 +407,8 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 			H.facial_hair_color = H.client.prefs.facial_hair_color
 			H.skin_tone = H.client.prefs.skin_tone
 			H.eye_color = H.client.prefs.eye_color
-			//Assistant gang
-			H.equipOutfit(/datum/outfit/job/assistant)
+			//Equip outfit
+			H.equipOutfit(outfit_list[chosen_outfit[H.key]]?outfit_list[chosen_outfit[H.key]]:/datum/outfit/job/assistant)
 			H.update_icon()
 			//Give weapons key
 			var/obj/item/implant/weapons_auth/W = new
