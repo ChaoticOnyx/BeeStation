@@ -960,6 +960,14 @@
 				)
 	category = CAT_MISC
 
+/datum/crafting_recipe/paper_cup
+	name= "Paper Cup"
+	result = /obj/item/reagent_containers/food/drinks/sillycup
+	time = 10
+	reqs = list(/obj/item/paper = 1)
+	category = CAT_MISC
+	tools = list(TOOL_WIRECUTTER)
+
 /datum/crafting_recipe/beer_keg_grenade
 	name = "Beer Keg Grenade"
 	time = 30
