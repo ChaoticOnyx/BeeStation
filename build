@@ -1,0 +1,5 @@
+#!/bin/sh
+if test -f "secret/secret.dme"; then
+	cp secret/secret.dme secret.dme
+fi
+source tools/build/build

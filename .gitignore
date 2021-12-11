@@ -190,3 +190,6 @@ Temporary Items
 
 # Common build tooling, C B T
 !/tools/build
+
+secret/
+secret.dme

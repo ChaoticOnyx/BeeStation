@@ -34,7 +34,10 @@ const Juke = require('./juke');
 const { yarn } = require('./cbt/yarn');
 const { dm } = require('./cbt/dm');
 
-const DME_NAME = 'beestation';
+let DME_NAME = 'beestation';
+if (fs.existsSync("secret.dme")) {
+  DME_NAME = "secret"
+}
 
 const YarnTarget = Juke.createTarget({
   name: 'yarn',
