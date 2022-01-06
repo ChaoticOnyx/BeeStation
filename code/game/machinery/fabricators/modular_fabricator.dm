@@ -16,7 +16,7 @@
 
 	var/busy = FALSE
 	///the multiplier for how much materials the created object takes from this machines stored materials
-	var/creation_efficiency = 1.6
+	var/creation_efficiency = 1
 
 	var/can_sync = FALSE
 	var/can_be_hacked_or_unlocked = FALSE
@@ -96,10 +96,10 @@
 		var/datum/component/material_container/container = GetComponent(/datum/component/material_container)
 		container.max_amount = mat_capacity
 
-	var/efficiency = 1.8
+	var/efficiency = 1.2
 	for(var/obj/item/stock_parts/manipulator/new_manipulator in component_parts)
 		efficiency -= new_manipulator.rating*0.2
-	creation_efficiency = max(1,efficiency) // creation_efficiency goes 1.6 -> 1.4 -> 1.2 -> 1 per level of manipulator efficiency
+	creation_efficiency = max(1,efficiency) // creation_efficiency goes  1 -> 0,8 -> 0,6 -> 0,4 per level of manipulator efficiency
 
 /obj/machinery/modular_fabricator/examine(mob/user)
 	. += ..()
