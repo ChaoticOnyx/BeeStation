@@ -232,8 +232,6 @@ we use a hook instead
 	return set_temperature(new_temp)
 /datum/gas_mixture/proc/vv_set_volume(new_volume)
 	return set_volume(new_volume)
-/datum/gas_mixture/proc/vv_react(datum/holder)
-	return react(holder)
 
 /datum/gas_mixture/proc/__remove()
 /datum/gas_mixture/remove(amount)
@@ -311,3 +309,6 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 		output_air.merge(removed)
 		return TRUE
 	return FALSE
+
+/datum/gas_mixture/proc/vv_react(datum/holder)
+	return react(holder)

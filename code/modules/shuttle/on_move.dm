@@ -108,8 +108,10 @@ All ShuttleMove procs go here
 	if(loc != oldT) // This is for multi tile objects
 		return
 
-	loc = newT
+	abstract_move(newT)
+
 	SSdemo.mark_dirty(src)
+
 	return TRUE
 
 // Called on atoms after everything has been moved

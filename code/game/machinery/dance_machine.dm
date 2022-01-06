@@ -100,7 +100,7 @@
 		return UI_CLOSE
 	if(!songs.len && !isobserver(user))
 		to_chat(user,"<span class='warning'>Error: No music tracks have been authorized for your station. Petition Central Command to resolve this issue.</span>")
-		user.playsound_local(src, 'sound/misc/compiler-failure.ogg', 25, TRUE)
+		playsound(src, 'sound/misc/compiler-failure.ogg', 25, TRUE)
 		return UI_CLOSE
 	return ..()
 
@@ -140,8 +140,9 @@
 				return
 			if(!active)
 				activate_music()
-				START_PROCESSING(SSmachines, src)
-			else if(active)
+				START_PROCESSING(SSobj, src)
+				return TRUE
+			else
 				stop = 0
 				return TRUE
 		if("select_track")
@@ -176,6 +177,7 @@
 	update_icon()
 	START_PROCESSING(SSmachines, src)
 	stop = world.time + selection.song_length
+	ui_update()
 
 /obj/machinery/jukebox/disco/activate_music()
 	..()
@@ -189,56 +191,56 @@
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
 			L.light_color = LIGHT_COLOR_RED
 			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
+			L.light_range  = 1+get_dist(src, L)
 			spotlights+=L
 			continue
 		if(t.x == cen.x && t.y < cen.y)
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
 			L.light_color = LIGHT_COLOR_PURPLE
 			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
+			L.light_range  = 1+get_dist(src, L)
 			spotlights+=L
 			continue
 		if(t.x > cen.x && t.y == cen.y)
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
 			L.light_color = LIGHT_COLOR_YELLOW
 			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
+			L.light_range = 1+get_dist(src, L)
 			spotlights+=L
 			continue
 		if(t.x < cen.x && t.y == cen.y)
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
 			L.light_color = LIGHT_COLOR_GREEN
 			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
+			L.light_range = 1+get_dist(src, L)
 			spotlights+=L
 			continue
 		if((t.x+1 == cen.x && t.y+1 == cen.y) || (t.x+2==cen.x && t.y+2 == cen.y))
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
 			L.light_color = LIGHT_COLOR_ORANGE
 			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
+			L.light_range = 1.4+get_dist(src, L)
 			spotlights+=L
 			continue
 		if((t.x-1 == cen.x && t.y-1 == cen.y) || (t.x-2==cen.x && t.y-2 == cen.y))
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
 			L.light_color = LIGHT_COLOR_CYAN
 			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
+			L.light_range = 1.4+get_dist(src, L)
 			spotlights+=L
 			continue
 		if((t.x-1 == cen.x && t.y+1 == cen.y) || (t.x-2==cen.x && t.y+2 == cen.y))
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
 			L.light_color = LIGHT_COLOR_BLUEGREEN
 			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
+			L.light_range = 1.4+get_dist(src, L)
 			spotlights+=L
 			continue
 		if((t.x+1 == cen.x && t.y-1 == cen.y) || (t.x+2==cen.x && t.y-2 == cen.y))
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
 			L.light_color = LIGHT_COLOR_BLUE
 			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
+			L.light_range = 1.4+get_dist(src, L)
 			spotlights+=L
 			continue
 		continue
@@ -285,7 +287,7 @@
 				continue
 			if(glow.light_color == LIGHT_COLOR_BLUE)
 				glow.light_color = LIGHT_COLOR_GREEN
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
+				glow.light_range = glow.light_range * DISCO_INFENO_RANGE
 				glow.light_power = glow.light_power * 2 // Any changes to power must come in pairs to neutralize it for other colors
 				glow.update_light()
 				continue
@@ -298,7 +300,7 @@
 			if(glow.light_color == LIGHT_COLOR_ORANGE)
 				glow.light_color = LIGHT_COLOR_PURPLE
 				glow.light_power = glow.light_power * 2.27
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
+				glow.light_range = glow.light_range * DISCO_INFENO_RANGE
 				glow.update_light()
 				continue
 			if(glow.light_color == LIGHT_COLOR_PURPLE)
@@ -309,7 +311,7 @@
 				continue
 			if(glow.light_color == LIGHT_COLOR_BLUEGREEN)
 				glow.light_color = LIGHT_COLOR_YELLOW
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
+				glow.light_range = glow.light_range * DISCO_INFENO_RANGE
 				glow.update_light()
 				continue
 			if(glow.light_color == LIGHT_COLOR_YELLOW)
@@ -320,7 +322,7 @@
 			if(glow.light_color == LIGHT_COLOR_CYAN)
 				glow.light_color = LIGHT_COLOR_RED
 				glow.light_power = glow.light_power * 0.68
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
+				glow.light_range = glow.light_range * DISCO_INFENO_RANGE
 				glow.update_light()
 				continue
 		if(prob(2))  // Unique effects for the dance floor that show up randomly to mix things up
@@ -396,7 +398,6 @@
 				animate(M, transform = initial_matrix, time = 1, loop = 0)
 		sleep(1)
 	M.lying_fix()
-
 
 /obj/machinery/jukebox/disco/proc/dance4(var/mob/living/M)
 	var/speed = rand(1,3)
@@ -483,6 +484,7 @@
 		playsound(src,'sound/machines/terminal_off.ogg',50,1)
 		update_icon()
 		stop = world.time + 100
+		ui_update()
 		return PROCESS_KILL
 
 /obj/machinery/jukebox/disco/process(delta_time)

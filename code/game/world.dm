@@ -159,12 +159,12 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 
 	var/list/response[] = list()
 
-	if (length(T) > CONFIG_GET(number/topic_max_size))
+	if(length(T) > CONFIG_GET(number/topic_max_size))
 		response["statuscode"] = 413
 		response["response"] = "Payload too large"
 		return json_encode(response)
 
-	if (SSfail2topic?.IsRateLimited(addr))
+	if(SSfail2topic?.IsRateLimited(addr))
 		response["statuscode"] = 429
 		response["response"] = "Rate limited"
 		return json_encode(response)
@@ -305,41 +305,51 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 		log_admin("discord toggled OOC.")
 		message_admins("discord toggled OOC.")
 		return GLOB.ooc_allowed ? "ON" : "OFF"
+	var/logging = CONFIG_GET(flag/log_world_topic)
+	var/topic_decoded = rustg_url_decode(T)
+	if(!rustg_json_is_valid(topic_decoded))
+		if(logging)
+			log_topic("(NON-JSON) \"[topic_decoded]\", from:[addr], master:[master], key:[key]")
+		// Fallback check for spacestation13.com requests
+		if(topic_decoded == "ping")
+			return length(GLOB.clients)
+		response["statuscode"] = 400
+		response["response"] = "Bad Request - Invalid JSON format"
+		return json_encode(response)
+
+	var/list/params[] = json_decode(topic_decoded)
+	params["addr"] = addr
+	var/query = params["query"]
+	var/auth = params["auth"]
+	var/source = params["source"]
+
+	if(logging)
+		var/list/censored_params = params.Copy()
+		censored_params["auth"] = "***[copytext(params["auth"], -4)]"
+		log_topic("\"[json_encode(censored_params)]\", from:[addr], master:[master], auth:[censored_params["auth"]], key:[key], source:[source]")
+
+	if(!source)
+		response["statuscode"] = 400
+		response["response"] = "Bad Request - No source specified"
+		return json_encode(response)
+
+	if(!query)
+		response["statuscode"] = 400
+		response["response"] = "Bad Request - No endpoint specified"
+		return json_encode(response)
+
+	if(!LAZYACCESS(GLOB.topic_tokens[auth], query))
+		response["statuscode"] = 401
+		response["response"] = "Unauthorized - Bad auth"
+		return json_encode(response)
+
+	var/datum/world_topic/command = GLOB.topic_commands[query]
+	if(!command)
+		response["statuscode"] = 501
+		response["response"] = "Not Implemented"
+		return json_encode(response)
 
 	else
-
-		var/list/params[] = json_decode(rustg_url_decode(T))
-		params["addr"] = addr
-		var/query = params["query"]
-		var/auth = params["auth"]
-		var/source = params["source"]
-
-		if(CONFIG_GET(flag/log_world_topic))
-			var/list/censored_params = params.Copy()
-			censored_params["auth"] = "***[copytext(params["auth"], -4)]"
-			log_topic("\"[json_encode(censored_params)]\", from:[addr], master:[master], auth:[censored_params["auth"]], key:[key], source:[source]")
-
-		if(!source)
-			response["statuscode"] = 400
-			response["response"] = "Bad Request - No source specified"
-			return json_encode(response)
-
-		if(!query)
-			response["statuscode"] = 400
-			response["response"] = "Bad Request - No endpoint specified"
-			return json_encode(response)
-
-		if(!LAZYACCESS(GLOB.topic_tokens[auth], query))
-			response["statuscode"] = 401
-			response["response"] = "Unauthorized - Bad auth"
-			return json_encode(response)
-
-		var/datum/world_topic/command = GLOB.topic_commands[query]
-		if(!command)
-			response["statuscode"] = 501
-			response["response"] = "Not Implemented"
-			return json_encode(response)
-
 
 		if(command.CheckParams(params))
 			response["statuscode"] = command.statuscode
@@ -460,7 +470,8 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 		hostedby = CONFIG_GET(string/hostedby)
 
 	s += "<b>[station_name()]</b>";
-	s += "(<a href='https://discord.gg/z9ttAvA'>Discord</a>|<a href='http://beestation13.com'>Website</a>)"
+	var/discordurl = CONFIG_GET(string/discordurl)
+	s += "(<a href='[discordurl]'>Discord</a>|<a href='http://beestation13.com'>Website</a>))"
 
 	var/players = GLOB.clients.len
 
