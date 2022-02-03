@@ -1148,6 +1148,8 @@
 					/obj/structure/particle_accelerator/power_box,
 					/obj/structure/particle_accelerator/end_cap)
 	crate_name = "particle accelerator crate"
+	crate_type = /obj/structure/closet/crate/secure/engineering
+	dangerous = TRUE
 
 /datum/supply_pack/engine/collector
 	name = "Radiation Collector Crate"
@@ -1164,6 +1166,8 @@
 	cost = 4700
 	contains = list(/obj/machinery/the_singularitygen)
 	crate_name = "singularity generator crate"
+	crate_type = /obj/structure/closet/crate/secure/engineering
+	dangerous = TRUE
 
 /datum/supply_pack/engine/solar
 	name = "Solar Panel Crate"
@@ -1224,6 +1228,8 @@
 	cost = 5000
 	contains = list(/obj/machinery/the_singularitygen/tesla)
 	crate_name = "tesla generator crate"
+	crate_type = /obj/structure/closet/crate/secure/engineering
+	dangerous = TRUE
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////// Canisters & Materials ////////////////////////////////
@@ -2645,16 +2651,6 @@
 	contraband = TRUE
 	contains = list(/obj/item/storage/box/lasertagpins)
 	crate_name = "laser tag crate"
-
-/datum/supply_pack/costumes_toys/mech_suits
-	name = "Mech Pilot's Suit Crate"
-	desc = "Suits for piloting big robots. Contains all three colors!"
-	cost = 1500 //state-of-the-art technology doesn't come cheap
-	contains = list(/obj/item/clothing/under/costume/mech_suit,
-					/obj/item/clothing/under/costume/mech_suit/white,
-					/obj/item/clothing/under/costume/mech_suit/blue)
-	crate_name = "mech pilot's suit crate"
-	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/costume_original
 	name = "Original Costume Crate"

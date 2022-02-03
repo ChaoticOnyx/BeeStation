@@ -220,3 +220,6 @@
 
 	///Override for sound_environments. If this is set the user will always hear a specific type of reverb (Instead of the area defined reverb)
 	var/sound_environment_override = SOUND_ENVIRONMENT_NONE
+
+	///Currently possesses a typing indicator icon
+	var/typing_indicator = FALSE
