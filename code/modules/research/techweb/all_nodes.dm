@@ -80,7 +80,7 @@
 
 /datum/techweb_node/adv_biotech
 	id = "adv_biotech"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Advanced Biotechnology"
 	description = "Advanced Biotechnology"
 	prereq_ids = list("biotech")
@@ -101,7 +101,7 @@
 /////////////////////////Advanced Surgery/////////////////////////
 /datum/techweb_node/imp_wt_surgery
 	id = "imp_wt_surgery"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Improved Wound-Tending Surgery"
 	description = "Who would have known being more gentle with a hemostat decreases patient pain?"
 	prereq_ids = list("adv_biotech")
@@ -112,7 +112,7 @@
 
 /datum/techweb_node/adv_surgery
 	id = "adv_surgery"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Advanced Surgery"
 	description = "When simple medicine doesn't cut it."
 	prereq_ids = list("imp_wt_surgery")
@@ -122,7 +122,7 @@
 
 /datum/techweb_node/exp_surgery
 	id = "exp_surgery"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Experimental Surgery"
 	description = "When evolution isn't fast enough."
 	prereq_ids = list("adv_surgery")
@@ -132,7 +132,7 @@
 
 /datum/techweb_node/alien_surgery
 	id = "alien_surgery"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Alien Surgery"
 	description = "Abductors did nothing wrong."
 	prereq_ids = list("exp_surgery", "alientech")
@@ -166,7 +166,7 @@
 
 /datum/techweb_node/adv_engi
 	id = "adv_engi"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Advanced Engineering"
 	description = "Pushing the boundaries of physics, one chainsaw-fist at a time."
 	prereq_ids = list("engineering", "emp_basic")
@@ -176,7 +176,7 @@
 
 /datum/techweb_node/anomaly
 	id = "anomaly_research"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Anomaly Research"
 	description = "Unlock the potential of the mysterious anomalies that appear on station."
 	prereq_ids = list("adv_engi", "practical_bluespace")
@@ -186,7 +186,7 @@
 
 /datum/techweb_node/high_efficiency
 	id = "high_efficiency"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "High Efficiency Parts"
 	description = "Finely-tooled manufacturing techniques allowing for picometer-perfect precision levels."
 	prereq_ids = list("engineering", "datatheory")
@@ -196,7 +196,7 @@
 
 /datum/techweb_node/adv_power
 	id = "adv_power"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Advanced Power Manipulation"
 	description = "How to get more zap."
 	prereq_ids = list("engineering")
@@ -207,7 +207,7 @@
 /////////////////////////Bluespace tech/////////////////////////
 /datum/techweb_node/bluespace_basic //Bluespace-memery
 	id = "bluespace_basic"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Basic Bluespace Theory"
 	description = "Basic studies into the mysterious alternate dimension known as bluespace."
 	prereq_ids = list("base")
@@ -217,7 +217,7 @@
 
 /datum/techweb_node/bluespace_travel
 	id = "bluespace_travel"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Bluespace Travel"
 	description = "Application of Bluespace for static teleportation technology."
 	prereq_ids = list("practical_bluespace")
@@ -227,7 +227,7 @@
 
 /datum/techweb_node/micro_bluespace
 	id = "micro_bluespace"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Miniaturized Bluespace Research"
 	description = "Extreme reduction in space required for bluespace engines, leading to portable bluespace technology."
 	prereq_ids = list("bluespace_travel", "practical_bluespace", "high_efficiency")
@@ -237,7 +237,7 @@
 
 /datum/techweb_node/bag_of_holding
 	id = "bagofholding"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Bag of Holding"
 	description = "Portable bluespace technology allows the production of backpacks that can store a greater volume of items than the volume of the bag."
 	prereq_ids = list("micro_bluespace")
@@ -248,7 +248,7 @@
 
 /datum/techweb_node/wormhole_gun
 	id = "wormholegun"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Bluespace Wormhole Projector"
 	description = "Develop the research required to create a miniaturized bluespace wormhole projector, allowing you to jump between two places instantly."
 	prereq_ids = list("micro_bluespace")
@@ -259,7 +259,7 @@
 
 /datum/techweb_node/quantum_spin
 	id = "qswapper"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Quantum Spin Inverter"
 	description = "Research the ability to create an experimental device that is able to swap the locations of two entities by switching their particles' spin values. Must be linked to another device to function."
 	prereq_ids = list("micro_bluespace")
@@ -270,7 +270,7 @@
 
 /datum/techweb_node/practical_bluespace
 	id = "practical_bluespace"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Applied Bluespace Research"
 	description = "Using bluespace to make things faster and better."
 	prereq_ids = list("bluespace_basic", "engineering")
@@ -280,7 +280,7 @@
 
 /datum/techweb_node/bluespace_power
 	id = "bluespace_power"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Bluespace Power Technology"
 	description = "Even more powerful.. power!"
 	prereq_ids = list("adv_power", "practical_bluespace")
@@ -290,7 +290,7 @@
 
 /datum/techweb_node/unregulated_bluespace
 	id = "unregulated_bluespace"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Unregulated Bluespace Research"
 	description = "Bluespace technology using unstable or unbalanced procedures, prone to damaging the fabric of bluespace. Outlawed by galactic conventions."
 	prereq_ids = list("bluespace_travel", "syndicate_basic")
@@ -312,7 +312,7 @@
 
 /datum/techweb_node/adv_plasma
 	id = "adv_plasma"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Advanced Plasma Research"
 	description = "Research on how to fully exploit the power of plasma."
 	prereq_ids = list("basic_plasma")
@@ -323,7 +323,7 @@
 /////////////////////////shuttle tech/////////////////////////
 /datum/techweb_node/basic_shuttle_tech
 	id = "basic_shuttle"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Basic Shuttle Research"
 	description = "Research the technology required to create and use basic shuttles."
 	prereq_ids = list("bluespace_travel", "adv_engi")
@@ -342,7 +342,7 @@
 
 /datum/techweb_node/plasma_refiner
 	id = "plasmarefiner"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Plasma Refining"
 	description = "Development of a machine capable of safely and efficently converting plasma from a solid state to a gaseous state."
 	prereq_ids = list("basic_shuttle")
@@ -373,7 +373,7 @@
 
 /datum/techweb_node/adv_shells
 	id = "adv_shells"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Advanced Shell Research"
 	description = "Grants access to more complicated shell designs."
 	prereq_ids = list("basic_circuitry", "engineering")
@@ -382,7 +382,7 @@
 
 /datum/techweb_node/movable_shells_tech
 	id = "movable_shells"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Movable Shell Research"
 	description = "Grants access to movable shells."
 	prereq_ids = list("adv_shells", "robotics")
@@ -391,7 +391,7 @@
 
 /datum/techweb_node/server_shell_tech
 	id = "server_shell"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Server Technology Research"
 	description = "Grants access to a server shell that has a very high capacity for components."
 	prereq_ids = list("adv_shells", "computer_hardware_basic")
@@ -401,7 +401,7 @@
 /////////////////////////robotics tech/////////////////////////
 /datum/techweb_node/robotics
 	id = "robotics"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Basic Robotics Research"
 	description = "Programmable machines that make our lives lazier."
 	prereq_ids = list("base")
@@ -411,7 +411,7 @@
 
 /datum/techweb_node/adv_robotics
 	id = "adv_robotics"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Advanced Robotics Research"
 	description = "It can even do the dishes!"
 	prereq_ids = list("robotics")
@@ -421,7 +421,7 @@
 
 /datum/techweb_node/neural_programming
 	id = "neural_programming"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Neural Programming"
 	description = "Study into networks of processing units that mimic our brains."
 	prereq_ids = list("biotech", "datatheory")
@@ -439,7 +439,7 @@
 
 /datum/techweb_node/cyborg_upg_util
 	id = "cyborg_upg_util"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Cyborg Upgrades: Utility"
 	description = "Utility upgrades for cyborgs."
 	prereq_ids = list("engineering")
@@ -449,7 +449,7 @@
 
 /datum/techweb_node/cyborg_upg_med
 	id = "cyborg_upg_med"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Cyborg Upgrades: Medical"
 	description = "Medical upgrades for cyborgs."
 	prereq_ids = list("adv_biotech")
@@ -459,7 +459,7 @@
 
 /datum/techweb_node/cyborg_upg_combat
 	id = "cyborg_upg_combat"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Cyborg Upgrades: Combat"
 	description = "Military grade upgrades for cyborgs."
 	prereq_ids = list("adv_robotics", "adv_engi" , "weaponry")
@@ -469,7 +469,7 @@
 
 /datum/techweb_node/cyborg_upg_service
 	id = "cyborg_upg_service"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Cyborg Upgrades: Service"
 	description = "Allows service borgs to specialize with various modules."
 	prereq_ids = list("cyborg_upg_util")
@@ -479,7 +479,7 @@
 
 /datum/techweb_node/cyborg_upg_security
 	id = "cyborg_upg_security"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Cyborg Upgrades: Security"
 	description = "Militia grade upgrades for cyborgs."
 	prereq_ids = list("adv_robotics", "adv_engi" , "weaponry")
@@ -493,7 +493,7 @@
 
 /datum/techweb_node/ai
 	id = "ai"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Artificial Intelligence"
 	description = "AI unit research."
 	prereq_ids = list("robotics", "posibrain")
@@ -506,7 +506,7 @@
 /////////////////////////EMP tech/////////////////////////
 /datum/techweb_node/emp_basic //EMP tech for some reason
 	id = "emp_basic"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Electromagnetic Theory"
 	description = "Study into usage of frequencies in the electromagnetic spectrum."
 	prereq_ids = list("base")
@@ -516,7 +516,7 @@
 
 /datum/techweb_node/emp_adv
 	id = "emp_adv"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Advanced Electromagnetic Theory"
 	description = "Determining whether reversing the polarity will actually help in a given situation."
 	prereq_ids = list("emp_basic")
@@ -526,7 +526,7 @@
 
 /datum/techweb_node/emp_super
 	id = "emp_super"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Quantum Electromagnetic Technology"	//bs
 	description = "Even better electromagnetic technology."
 	prereq_ids = list("emp_adv")
@@ -537,7 +537,7 @@
 /////////////////////////Clown tech/////////////////////////
 /datum/techweb_node/clown
 	id = "clown"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Clown Technology"
 	description = "Honk?!"
 	prereq_ids = list("base")
@@ -581,7 +581,7 @@
 
 /datum/techweb_node/comp_recordkeeping
 	id = "comp_recordkeeping"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Computerized Recordkeeping"
 	description = "Organized record databases and how they're used."
 	prereq_ids = list("comptech")
@@ -591,7 +591,7 @@
 
 /datum/techweb_node/telecomms
 	id = "telecomms"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Telecommunications Technology"
 	description = "Subspace transmission technology for near-instant communications devices."
 	prereq_ids = list("comptech", "bluespace_basic")
@@ -602,7 +602,7 @@
 
 /datum/techweb_node/integrated_HUDs
 	id = "integrated_HUDs"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Integrated HUDs"
 	description = "The usefulness of computerized records, projected straight onto your eyepiece!"
 	prereq_ids = list("comp_recordkeeping", "emp_basic")
@@ -612,7 +612,7 @@
 
 /datum/techweb_node/NVGtech
 	id = "NVGtech"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Night Vision Technology"
 	description = "Allows seeing in the dark without actual light!"
 	prereq_ids = list("integrated_HUDs", "adv_engi", "emp_adv")
@@ -623,7 +623,7 @@
 ////////////////////////Medical////////////////////////
 /datum/techweb_node/cloning
 	id = "cloning"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Genetic Engineering"
 	description = "We have the technology to make him."
 	prereq_ids = list("biotech")
@@ -633,7 +633,7 @@
 
 /datum/techweb_node/cryotech
 	id = "cryotech"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Cryostasis Technology"
 	description = "Smart freezing of objects to preserve them!"
 	prereq_ids = list("adv_engi", "biotech")
@@ -643,7 +643,7 @@
 
 /datum/techweb_node/subdermal_implants
 	id = "subdermal_implants"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Subdermal Implants"
 	description = "Electronic implants buried beneath the skin."
 	prereq_ids = list("biotech")
@@ -653,7 +653,7 @@
 
 /datum/techweb_node/cyber_organs
 	id = "cyber_organs"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Cybernetic Organs"
 	description = "We have the technology to rebuild him."
 	prereq_ids = list("adv_biotech")
@@ -663,7 +663,7 @@
 
 /datum/techweb_node/cyber_organs_upgraded
 	id = "cyber_organs_upgraded"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Upgraded Cybernetic Organs"
 	description = "We have the technology to upgrade him."
 	prereq_ids = list("cyber_organs")
@@ -673,7 +673,7 @@
 
 /datum/techweb_node/ipc_organs
 	id = "ipc_organs"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "IPC Parts"
 	description = "We have the technology to replace him."
 	prereq_ids = list("cyber_organs","robotics")
@@ -683,7 +683,7 @@
 
 /datum/techweb_node/cyber_implants
 	id = "cyber_implants"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Cybernetic Implants"
 	description = "Electronic implants that improve humans."
 	prereq_ids = list("adv_biotech", "datatheory")
@@ -693,7 +693,7 @@
 
 /datum/techweb_node/adv_cyber_implants
 	id = "adv_cyber_implants"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Advanced Cybernetic Implants"
 	description = "Upgraded and more powerful cybernetic implants."
 	prereq_ids = list("neural_programming", "cyber_implants","integrated_HUDs")
@@ -703,7 +703,7 @@
 
 /datum/techweb_node/combat_cyber_implants
 	id = "combat_cyber_implants"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Combat Cybernetic Implants"
 	description = "Military grade combat implants to improve performance."
 	prereq_ids = list("adv_cyber_implants","weaponry","NVGtech","high_efficiency")
@@ -714,7 +714,7 @@
 
 /datum/techweb_node/adv_combat_cyber_implants
 	id = "adv_combat_cyber_implants"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Advanced Combat Cybernetic Implants"
 	description = "Experimental military cybernetic weapons."
 	prereq_ids = list("adv_cyber_implants", "syndicate_basic")
@@ -737,7 +737,7 @@
 
 /datum/techweb_node/adv_mining
 	id = "adv_mining"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Advanced Mining Technology"
 	description = "Efficiency Level 127"	//dumb mc references
 	prereq_ids = list("basic_mining", "adv_engi", "adv_power", "adv_plasma")
@@ -783,7 +783,7 @@
 
 /datum/techweb_node/exp_tools
 	id = "exp_tools"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Experimental Tools"
 	description = "Highly advanced tools."
 	design_ids = list("exwelder", "jawsoflife", "handdrill", "laserscalpel", "mechanicalpinches", "searingtool")
@@ -803,7 +803,7 @@
 
 /datum/techweb_node/rcd_upgrade
 	id = "rcd_upgrade"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "RCD designs upgrade"
 	description = "Unlocks new RCD designs."
 	design_ids = list("rcd_upgrade_frames", "rcd_upgrade_simple_circuits")
@@ -813,7 +813,7 @@
 
 /datum/techweb_node/adv_rcd_upgrade
 	id = "adv_rcd_upgrade"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Advanced RCD designs upgrade"
 	description = "Unlocks new RCD designs."
 	design_ids = list("rcd_upgrade_silo_link")
@@ -826,7 +826,7 @@
 
 /datum/techweb_node/landmine
 	id = "nonlethal_mines"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Nonlethal Landmine Technology"
 	description = "Our weapons technicians could perhaps work out methods for the creation of nonlethal landmines for security teams."
 	prereq_ids = list("sec_basic")
@@ -836,7 +836,7 @@
 
 /datum/techweb_node/weaponry
 	id = "weaponry"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Weapon Development Technology"
 	description = "Our researchers have found new ways to weaponize just about everything now."
 	prereq_ids = list("engineering")
@@ -846,7 +846,7 @@
 
 /datum/techweb_node/smartmine
 	id = "smart_mines"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Smart Landmine Technology"
 	description = "Using IFF technology, we could develop smartmines that do not trigger for those who are mindshielded."
 	prereq_ids = list("weaponry", "nonlethal_mines", "engineering")
@@ -856,7 +856,7 @@
 
 /datum/techweb_node/adv_weaponry
 	id = "adv_weaponry"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Advanced Weapon Development Technology"
 	description = "Our weapons are breaking the rules of reality by now."
 	prereq_ids = list("adv_engi", "weaponry")
@@ -866,7 +866,7 @@
 
 /datum/techweb_node/advmine
 	id = "adv_mines"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Advanced Landmine Technology"
 	description = "We can further develop our smartmines to build some extremely capable designs."
 	prereq_ids = list("weaponry", "smart_mines", "adv_engi")
@@ -876,7 +876,7 @@
 
 /datum/techweb_node/electric_weapons
 	id = "electronic_weapons"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Electric Weapons"
 	description = "Weapons using electric technology"
 	prereq_ids = list("weaponry", "adv_power"  , "emp_basic")
@@ -886,7 +886,7 @@
 
 /datum/techweb_node/radioactive_weapons
 	id = "radioactive_weapons"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Radioactive Weaponry"
 	description = "Weapons using radioactive technology."
 	prereq_ids = list("adv_engi", "adv_weaponry")
@@ -897,7 +897,7 @@
 
 /datum/techweb_node/medical_weapons
 	id = "medical_weapons"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Medical Weaponry"
 	description = "Weapons using medical technology."
 	prereq_ids = list("adv_biotech", "weaponry")
@@ -907,7 +907,7 @@
 
 /datum/techweb_node/beam_weapons
 	id = "beam_weapons"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Beam Weaponry"
 	description = "Various basic beam weapons"
 	prereq_ids = list("adv_weaponry")
@@ -918,7 +918,7 @@
 
 /datum/techweb_node/adv_beam_weapons
 	id = "adv_beam_weapons"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Advanced Beam Weaponry"
 	description = "Various advanced beam weapons"
 	prereq_ids = list("adv_weaponry")
@@ -929,7 +929,7 @@
 
 /datum/techweb_node/explosive_weapons
 	id = "explosive_weapons"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Explosive & Pyrotechnical Weaponry"
 	description = "If the light stuff just won't do it."
 	prereq_ids = list("adv_weaponry")
@@ -939,7 +939,7 @@
 
 /datum/techweb_node/ballistic_weapons
 	id = "ballistic_weapons"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Ballistic Weaponry"
 	description = "This isn't research.. This is reverse-engineering!"
 	prereq_ids = list("weaponry")
@@ -949,7 +949,7 @@
 
 /datum/techweb_node/exotic_ammo
 	id = "exotic_ammo"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Exotic Ammunition"
 	description = "They won't know what hit em."
 	prereq_ids = list("adv_weaponry", "medical_weapons")
@@ -960,7 +960,7 @@
 
 /datum/techweb_node/gravity_gun
 	id = "gravity_gun"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "One-point Bluespace-gravitational Manipulator"
 	description = "Fancy wording for gravity gun."
 	prereq_ids = list("adv_weaponry", "bluespace_travel")
@@ -971,7 +971,7 @@
 ////////////////////////mech technology////////////////////////
 /datum/techweb_node/adv_mecha
 	id = "adv_mecha"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Advanced Exosuits"
 	description = "For when you just aren't Gundam enough."
 	prereq_ids = list("adv_robotics")
@@ -981,7 +981,7 @@
 
 /datum/techweb_node/odysseus
 	id = "mecha_odysseus"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "EXOSUIT: Odysseus"
 	description = "Odysseus exosuit designs"
 	prereq_ids = list("base")
@@ -992,7 +992,7 @@
 
 /datum/techweb_node/gygax
 	id = "mech_gygax"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "EXOSUIT: Gygax"
 	description = "Gygax exosuit designs"
 	prereq_ids = list("adv_mecha", "weaponry")
@@ -1003,7 +1003,7 @@
 
 /datum/techweb_node/durand
 	id = "mech_durand"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "EXOSUIT: Durand"
 	description = "Durand exosuit designs"
 	prereq_ids = list("adv_mecha", "adv_weaponry")
@@ -1014,7 +1014,7 @@
 
 /datum/techweb_node/phazon
 	id = "mecha_phazon"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "EXOSUIT: Phazon"
 	description = "Phazon exosuit designs"
 	prereq_ids = list("adv_mecha", "weaponry" , "micro_bluespace")
@@ -1026,7 +1026,7 @@
 
 /datum/techweb_node/adv_mecha_tools
 	id = "adv_mecha_tools"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Advanced Exosuit Equipment"
 	description = "Tools for high level mech suits"
 	prereq_ids = list("adv_mecha")
@@ -1036,7 +1036,7 @@
 
 /datum/techweb_node/med_mech_tools
 	id = "med_mech_tools"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Medical Exosuit Equipment"
 	description = "Tools for high level mech suits"
 	prereq_ids = list("adv_biotech")
@@ -1046,7 +1046,7 @@
 
 /datum/techweb_node/mech_modules
 	id = "adv_mecha_modules"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Simple Exosuit Modules"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("adv_mecha", "bluespace_power")
@@ -1056,7 +1056,7 @@
 
 /datum/techweb_node/mech_scattershot
 	id = "mecha_tools"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Exosuit Weapon (LBX AC 10 \"Scattershot\")"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("ballistic_weapons")
@@ -1066,7 +1066,7 @@
 
 /datum/techweb_node/mech_carbine
 	id = "mech_carbine"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Exosuit Weapon (FNX-99 \"Hades\" Carbine)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("ballistic_weapons")
@@ -1076,7 +1076,7 @@
 
 /datum/techweb_node/mech_ion
 	id = "mmech_ion"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Exosuit Weapon (MKIV Ion Heavy Cannon)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("electronic_weapons", "emp_adv")
@@ -1086,7 +1086,7 @@
 
 /datum/techweb_node/mech_tesla
 	id = "mech_tesla"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Exosuit Weapon (MKI Tesla Cannon)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("electronic_weapons", "adv_power")
@@ -1096,7 +1096,7 @@
 
 /datum/techweb_node/mech_laser
 	id = "mech_laser"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Exosuit Weapon (CH-PS \"Immolator\" Laser)"
 	description = "A basic piece of mech weaponry"
 	prereq_ids = list("beam_weapons")
@@ -1106,7 +1106,7 @@
 
 /datum/techweb_node/mech_laser_heavy
 	id = "mech_laser_heavy"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Exosuit Weapon (CH-LC \"Solaris\" Laser Cannon)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("adv_beam_weapons")
@@ -1116,7 +1116,7 @@
 
 /datum/techweb_node/mech_disabler
 	id = "mech_disabler"
-	tech_tier = 4
+	tech_tier = 1
 	display_name =  "Exosuit Weapon (CH-DS \"Peacemaker\" Mounted Disabler)"
 	description = "A basic piece of mech weaponry"
 	prereq_ids = list("beam_weapons")
@@ -1126,7 +1126,7 @@
 
 /datum/techweb_node/mech_grenade_launcher
 	id = "mech_grenade_launcher"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Exosuit Weapon (SGL-6 Grenade Launcher)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("explosive_weapons")
@@ -1136,7 +1136,7 @@
 
 /datum/techweb_node/clusterbang_launcher
 	id = "clusterbang_launcher"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Exosuit Module (SOB-3 Clusterbang Launcher)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("explosive_weapons")
@@ -1146,7 +1146,7 @@
 
 /datum/techweb_node/mech_teleporter
 	id = "mech_teleporter"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Exosuit Module (Teleporter Module)"
 	description = "An advanced piece of mech Equipment"
 	prereq_ids = list("micro_bluespace")
@@ -1156,7 +1156,7 @@
 
 /datum/techweb_node/mech_wormhole_gen
 	id = "mech_wormhole_gen"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Exosuit Module (Localized Wormhole Generator)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("bluespace_travel")
@@ -1166,7 +1166,7 @@
 
 /datum/techweb_node/mech_lmg
 	id = "mech_lmg"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Exosuit Weapon (\"Ultra AC 2\" LMG)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("ballistic_weapons")
@@ -1176,7 +1176,7 @@
 
 /datum/techweb_node/mech_diamond_drill
 	id = "mech_diamond_drill"
-	tech_tier = 3
+	tech_tier = 1
 	display_name =  "Exosuit Diamond Drill"
 	description = "A diamond drill fit for a large exosuit"
 	prereq_ids = list("adv_mining")
@@ -1187,7 +1187,7 @@
 /////////////////////////Nanites/////////////////////////
 /datum/techweb_node/nanite_base
 	id = "nanite_base"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Basic Nanite Programming"
 	description = "The basics of nanite construction and programming."
 	prereq_ids = list("datatheory")
@@ -1199,7 +1199,7 @@
 
 /datum/techweb_node/nanite_smart
 	id = "nanite_smart"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Smart Nanite Programming"
 	description = "Nanite programs that require nanites to perform complex actions, act independently, roam or seek targets."
 	prereq_ids = list("nanite_base","robotics")
@@ -1209,7 +1209,7 @@
 
 /datum/techweb_node/nanite_mesh
 	id = "nanite_mesh"
-	tech_tier = 2
+	tech_tier = 1
 	display_name = "Mesh Nanite Programming"
 	description = "Nanite programs that require static structures and membranes."
 	prereq_ids = list("nanite_base","engineering")
@@ -1219,7 +1219,7 @@
 
 /datum/techweb_node/nanite_bio
 	id = "nanite_bio"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Biological Nanite Programming"
 	description = "Nanite programs that require complex biological interaction."
 	prereq_ids = list("nanite_base","biotech")
@@ -1230,7 +1230,7 @@
 
 /datum/techweb_node/nanite_neural
 	id = "nanite_neural"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Neural Nanite Programming"
 	description = "Nanite programs affecting nerves and brain matter."
 	prereq_ids = list("nanite_bio")
@@ -1240,7 +1240,7 @@
 
 /datum/techweb_node/nanite_synaptic
 	id = "nanite_synaptic"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Synaptic Nanite Programming"
 	description = "Nanite programs affecting mind and thoughts."
 	prereq_ids = list("nanite_neural","neural_programming")
@@ -1250,7 +1250,7 @@
 
 /datum/techweb_node/nanite_harmonic
 	id = "nanite_harmonic"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Harmonic Nanite Programming"
 	description = "Nanite programs that require seamless integration between nanites and biology."
 	prereq_ids = list("nanite_bio","nanite_smart","nanite_mesh")
@@ -1260,7 +1260,7 @@
 
 /datum/techweb_node/nanite_combat
 	id = "nanite_military"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Military Nanite Programming"
 	description = "Nanite programs that perform military-grade functions."
 	prereq_ids = list("nanite_harmonic", "syndicate_basic")
@@ -1270,7 +1270,7 @@
 
 /datum/techweb_node/nanite_hazard
 	id = "nanite_hazard"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Hazard Nanite Programs"
 	description = "Extremely advanced Nanite programs with the potential of being extremely dangerous."
 	prereq_ids = list("nanite_harmonic", "alientech")
@@ -1281,7 +1281,7 @@
 ////////////////////////Alien technology////////////////////////
 /datum/techweb_node/alientech //AYYYYYYYYLMAOO tech
 	id = "alientech"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Alien Technology"
 	description = "Things used by the greys."
 	prereq_ids = list("biotech","engineering")
@@ -1298,7 +1298,7 @@
 
 /datum/techweb_node/alien_bio
 	id = "alien_bio"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Alien Biological Tools"
 	description = "Advanced biological tools."
 	prereq_ids = list("alientech", "adv_biotech")
@@ -1312,7 +1312,7 @@
 
 /datum/techweb_node/alien_engi
 	id = "alien_engi"
-	tech_tier = 5
+	tech_tier = 1
 	display_name = "Alien Engineering"
 	description = "Alien engineering tools"
 	prereq_ids = list("alientech", "adv_engi")
@@ -1325,7 +1325,7 @@
 
 /datum/techweb_node/syndicate_basic
 	id = "syndicate_basic"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Illegal Technology"
 	description = "Dangerous research used to create dangerous objects."
 	prereq_ids = list("adv_engi", "adv_weaponry", "explosive_weapons")
@@ -1336,7 +1336,7 @@
 
 /datum/techweb_node/sticky_basic
 	id = "sticky_basic"
-	tech_tier = 3
+	tech_tier = 1
 	display_name = "Basic Sticky Technology"
 	description = "The only thing left to do after researching this tech is to start printing out a bunch of 'kick me' signs."
 	prereq_ids = list("syndicate_basic", "adv_engi")
@@ -1348,7 +1348,7 @@
 
 /datum/techweb_node/sticky_advanced
 	id = "sticky_advanced"
-	tech_tier = 4
+	tech_tier = 1
 	display_name = "Advanced Sticky Technology"
 	description = "Taking a good joke too far? Nonsense!"
 	prereq_ids = list("sticky_basic")
